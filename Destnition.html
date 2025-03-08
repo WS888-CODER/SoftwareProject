@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Farrah Travel - Destinations</title>
-  <!-- ربط نفس ملف الـCSS المستخدم في الصفحة الرئيسية (HomeStyle.css) -->
-  <link rel="stylesheet" href="Destnition.css">
-
+  <link rel="stylesheet" href="destnition.css">
 </head>
 <body>
-  <!-- زر السلايد بار (بدون صورة) -->
+  <!-- زر السايد بار -->
   <div class="slidebar-btn" id="slidebarBtn">
     <span class="bar"></span>
     <span class="bar"></span>
@@ -19,9 +17,11 @@
   <div class="slidebar" id="slidebar">
     <ul>
       <br><br>
-      <li><a href="PersonalInformation.html">Personal information</a></li><br>
+      <li><a href="#">Personal information</a></li><br>
       <li><a href="#">FARRAH Personalized schedule</a></li><br>
-      <li><a href="MySchedules.html">My schedules</a></li>
+      <li><a href="#">My schedules</a></li>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <li><a href="#">Sign out </a></li>
     </ul>
   </div>
 
@@ -29,7 +29,7 @@
   <header>
     <div class="header-left">
       <div class="logo">Farrah</div>
-      <!-- أيقونة البحث (شعار بحث) -->
+      <!-- أيقونة البحث (إذا أردت بقاءها في الدستنيشن) -->
       <div class="search-icon" id="searchIcon">
         <svg viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none"/>
@@ -39,82 +39,103 @@
     </div>
     <nav>
       <ul>
-        <!-- رابط الصفحة الرئيسية -->
         <li><a href="Home.html">Home</a></li>
-        <!-- الصفحة الحالية (Destinations) -->
         <li><a href="Destnition.html">Destinations</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- مربع البحث المنبثق -->
+  <!-- مربع البحث المنبثق في الدستنيشن (اختياري) -->
   <div class="search-popup" id="searchPopup">
-    <div class="search-box">
+    <div class="search-box" style="padding:10px;">
       <button class="close-search" id="closeSearch">&times;</button>
-      <form action="#" method="get">
-        <input type="search" name="q" placeholder="Search" />
+      <form id="destSearchForm" action="#" method="get" style="display: flex; gap: 10px;">
+        <input id="destSearchInput" type="search" name="q" placeholder="Search in Destinations..." style="flex:1;" />
+        <button type="submit" style="padding:6px 12px; background:#d0a84b; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>
       </form>
     </div>
   </div>
 
-  <!-- قسم خاص بصفحة الوجهات -->
-  <section class="destinations-page">
-    <h1 style="text-align:center; color:#fff; margin-top:120px;">Saudi Destinations</h1>
-    <!-- يمكنك استخدام نفس تنسيق البطاقات كما في الصفحة الرئيسية -->
-    <div class="cards-container" style="padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content:center;">
-      <!-- بطاقة 1 -->
-      <div class="card">
-        <img src="images/ANeom.jpg" alt="Neom">
-        <div class="card-content">
-          <h3>Neom</h3>
-          <p>Explore NEOM’s Red Sea coast with turquoise waters and vibrant reefs.</p>
-          <a href="#">Read More</a>
-        </div>
+  <!-- قسم الفلتر (باللغة الإنجليزية) -->
+  <section class="filter-section" style="padding: 20px; text-align: center; background: rgba(0,0,0,0.4); margin-top:120px;">
+    <div class="filter-group" style="display: inline-block; margin-right: 20px;">
+      <label for="typeFilter" style="color:#fff; margin-right: 10px;">Destination Type:</label>
+      <select id="typeFilter">
+        <option value="all">All</option>
+        <option value="mountainous">Mountainous</option>
+        <option value="sandy">Sandy</option>
+        <option value="marine">Marine</option>
+        <option value="rocky">Rocky</option>
+        <option value="oasis">Oasis</option>
+      </select>
+    </div>
+    <div class="filter-group" style="display: inline-block;">
+      <label for="regionFilter" style="color:#fff; margin-right: 10px;">Region:</label>
+      <select id="regionFilter">
+        <option value="all">All</option>
+        <option value="south">South</option>
+        <option value="north">North</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+        <option value="center">Center</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- قسم البطاقات (وجهات) -->
+  <section class="destinations-page" style="padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content:center;">
+    <!-- Heet Cave => Mountainous, Center -->
+    <div class="card" data-type="mountainous" data-region="center">
+      <img src="HeetCave.jpg" alt="Heet Cave">
+      <div class="card-content">
+        <h3>Heet Cave</h3>
+        <p>Discover an underground cave near Riyadh with a crystal-clear lake, ideal for thrill-seekers.</p>
+        <a href="#">Read More</a>
       </div>
-      <!-- بطاقة 2 -->
-      <div class="card">
-        <img src="images/HeetCave.jpg" alt="Heet Cave">
-        <div class="card-content">
-          <h3>Heet Cave</h3>
-          <p>Discover an underground cave near Riyadh with a crystal-clear lake, ideal for thrill-seekers.</p>
-          <a href="#">Read More</a>
-        </div>
+    </div>
+    <!-- Neom => Marine, North -->
+    <div class="card" data-type="marine" data-region="north">
+      <img src="ANeom.jpg" alt="Neom">
+      <div class="card-content">
+        <h3>Neom</h3>
+        <p>Explore NEOM’s Red Sea coast with turquoise waters and vibrant reefs.</p>
+        <a href="#">Read More</a>
       </div>
-      <!-- بطاقة 3 -->
-      <div class="card">
-        <img src="images/AhsaOasis.jpg" alt="Al-Ahsa Oasis">
-        <div class="card-content">
-          <h3>Al-Ahsa Oasis</h3>
-          <p>Saudi’s largest oasis, filled with lush palm groves and natural springs, reflecting a rich cultural heritage.</p>
-          <a href="#">Read More</a>
-        </div>
+    </div>
+    <!-- Al-Ahsa Oasis => Oasis, East -->
+    <div class="card" data-type="oasis" data-region="east">
+      <img src="AhsaOasis.jpg" alt="Al-Ahsa Oasis">
+      <div class="card-content">
+        <h3>Al-Ahsa Oasis</h3>
+        <p>Saudi’s largest oasis, filled with lush palm groves and natural springs.</p>
+        <a href="#">Read More</a>
       </div>
-      <!-- بطاقة 4 -->
-      <div class="card">
-        <img src="images/Hail.jpg" alt="Aja Mountains (Ha’il)">
-        <div class="card-content">
-          <h3>Aja Mountains (Ha’il)</h3>
-          <p>A rugged range encircling Ha’il, with striking rock formations and scenic valleys ideal for hikers and campers.</p>
-          <a href="#">Read More</a>
-        </div>
+    </div>
+    <!-- Nafud Al-Zulfi => Sandy, Center -->
+    <div class="card" data-type="sandy" data-region="center">
+      <img src="Alzelfi.jpg" alt="Nafud Al-Zulfi">
+      <div class="card-content">
+        <h3>Nafud Al-Zulfi</h3>
+        <p>Escape to vast dunes, indulge in desert luxury, and uncover local cultural gems.</p>
+        <a href="#">Read More</a>
       </div>
-      <!-- بطاقة 5 -->
-      <div class="card">
-        <img src="images/AbhaAlsodh.jpg" alt="Al-Soudah (Abha)">
-        <div class="card-content">
-          <h3>Al-Soudah (Abha)</h3>
-          <p>Saudi Arabia’s highest peak in the Asir region, known for cool weather, and panoramic mountain views.</p>
-          <a href="#">Read More</a>
-        </div>
+    </div>
+    <!-- جبليه جنوب (Al-Soudah) -->
+    <div class="card" data-type="mountainous" data-region="south">
+      <img src="AbhaAlsodh.jpg" alt="Al-Soudah (Abha)">
+      <div class="card-content">
+        <h3>Al-Soudah (Abha)</h3>
+        <p>Saudi Arabia’s highest peak, known for cool weather and panoramic mountain views.</p>
+        <a href="#">Read More</a>
       </div>
-      <!-- بطاقة 6 -->
-      <div class="card">
-        <img src="images/Alzelfi.jpg" alt="Nafud Al-Zulfi">
-        <div class="card-content">
-          <h3>Nafud Al-Zulfi</h3>
-          <p>Escape to vast dunes, indulge in desert luxury, and uncover local cultural gems.</p>
-          <a href="#">Read More</a>
-        </div>
+    </div>
+    <!-- صخريه شمال (Aja Mountains) -->
+    <div class="card" data-type="rocky" data-region="north">
+      <img src="Hail.jpg" alt="Aja Mountains (Ha’il)">
+      <div class="card-content">
+        <h3>Aja Mountains (Ha’il)</h3>
+        <p>A rugged range with striking rock formations and scenic valleys.</p>
+        <a href="#">Read More</a>
       </div>
     </div>
   </section>
@@ -189,9 +210,19 @@
     </div>
   </footer>
 
-  <!-- سكريبت البحث والسلايد بار -->
+  <!-- سكريبت -->
   <script>
-    // البحث
+    // زر السايد بار
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+    slidebarBtn.addEventListener('click', () => {
+      slidebar.classList.toggle('active');
+      slidebarBtn.classList.toggle('is-active');
+    });
+
+    // لو عندك بحث داخلي هنا (searchPopup) احتفظ به أو احذفه
+    // هنا مثلاً لنفترض أنك ما زلت تريد البحث من داخل Destnition
+
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     const closeSearch = document.getElementById('closeSearch');
@@ -208,13 +239,56 @@
       }
     });
 
-    // السلايد بار
-    const slidebarBtn = document.getElementById('slidebarBtn');
-    const slidebar = document.getElementById('slidebar');
-    slidebarBtn.addEventListener('click', () => {
-      slidebar.classList.toggle('active');
-      slidebarBtn.classList.toggle('is-active');
+    // فلتر (type + region)
+    const typeFilter = document.getElementById('typeFilter');
+    const regionFilter = document.getElementById('regionFilter');
+    const cards = document.querySelectorAll('.destinations-page .card');
+
+    function filterCards() {
+      const typeValue = typeFilter.value;
+      const regionValue = regionFilter.value;
+
+      cards.forEach(card => {
+        const cardType = card.getAttribute('data-type');
+        const cardRegion = card.getAttribute('data-region');
+        let show = true;
+
+        if (typeValue !== 'all' && cardType !== typeValue) {
+          show = false;
+        }
+        if (regionValue !== 'all' && cardRegion !== regionValue) {
+          show = false;
+        }
+        card.style.display = show ? 'block' : 'none';
+      });
+    }
+
+    typeFilter.addEventListener('change', filterCards);
+    regionFilter.addEventListener('change', filterCards);
+
+    // =================== استقبال ?q= من Home والبحث ===================
+    window.addEventListener('load', () => {
+      const params = new URLSearchParams(window.location.search);
+      const searchTerm = params.get('q'); // قد يكون null
+      if (searchTerm) {
+        // طبق البحث بالاسم
+        applySearchFromHome(searchTerm);
+      }
     });
+
+    function applySearchFromHome(term) {
+      const loweredTerm = term.toLowerCase().trim();
+      if (!loweredTerm) {
+        // فارغ => أظهر الكل
+        cards.forEach(c => c.style.display = 'block');
+      } else {
+        // فلترة بالعنوان h3
+        cards.forEach(c => {
+          const title = c.querySelector('h3').textContent.toLowerCase();
+          c.style.display = title.includes(loweredTerm) ? 'block' : 'none';
+        });
+      }
+    }
   </script>
 </body>
 </html>
