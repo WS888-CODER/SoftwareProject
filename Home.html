@@ -7,11 +7,8 @@
   <link rel="stylesheet" href="HomeStyle.css">
 </head>
 <body>
-
-
   <!-- زر السلايد بار (بدون صورة) -->
   <div class="slidebar-btn" id="slidebarBtn">
-    <!-- ثلاثة خطوط (أشرطة) -->
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
@@ -20,14 +17,14 @@
   <!-- السلايد بار -->
   <div class="slidebar" id="slidebar">
     <ul>
-     <br><br> <li><a href="PersonalInformation.html">Personal information</a></li><br>
-      
+      <br><br>
+      <li><a href="#">Personal information</a></li><br>
       <li><a href="#">FARRAH Personalized schedule</a></li><br>
-
-      <li><a href="MySchedules.html">My schedules</a></li>
+      <li><a href="#">My schedules</a></li>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <li><a href="#">Sign out </a></li>
     </ul>
   </div>
-
 
   <!-- الهيدر -->
   <header>
@@ -45,18 +42,36 @@
       <ul>
         <li><a href="Home.html">Home</a></li>
         <li><a href="Destnition.html">Destinations</a></li>
-        
-        
       </ul>
     </nav>
   </header>
 
   <!-- مربع البحث المنبثق -->
   <div class="search-popup" id="searchPopup">
-    <div class="search-box">
-      <button class="close-search" id="closeSearch">&times;</button>
-      <form action="#" method="get">
-        <input type="search" name="q" placeholder="Search" />
+    <div class="search-box" style="padding:10px;">
+      <!-- نموذج البحث يقوم بتحويل المستخدم إلى Destnition مع بارامتر ?q=... -->
+      <form id="homeSearchForm" action="#" method="get" style="display: flex; gap: 10px; align-items: center;">
+        <input 
+          id="homeSearchInput"
+          type="search" 
+          name="q" 
+          placeholder="Search in Destinations..." 
+          style="flex:1; padding:8px;"
+        />
+        <button 
+          type="submit"
+          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;"
+        >
+          Search
+        </button>
+        <!-- زر إغلاق -->
+        <button 
+          type="button"
+          id="closeSearch"
+          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;"
+        >
+          &times;
+        </button>
       </form>
     </div>
   </div>
@@ -66,7 +81,6 @@
     <div class="hero-content">
       <!-- النص على اليسار -->
       <div class="hero-text">
-     
         <h1>Saudi Arabia</h1>
         <p>
           Discover the breathtaking vistas of Saudi Arabia’s majestic deserts and ancient treasures. 
@@ -75,12 +89,12 @@
         <a href="Destnition.html" class="btn">Explore Now</a>
       </div>
 
-      <!-- السلايدر (بطاقات) -->
+      <!-- السلايدر (بطاقات) في الصفحة الرئيسية -->
       <div class="cards-slider" id="cardsSlider">
         <div class="cards-container" id="cardsContainer">
           <!-- بطاقة 1 -->
           <div class="card">
-            <img src="images/ANeom.jpg" alt="Destination 1">
+            <img src="ANeom.jpg" alt="Destination 1">
             <div class="card-content">
               <h3>Neom</h3>
               <p>Explore NEOM’s Red Sea coast with turquoise waters and vibrant reefs.</p>
@@ -89,7 +103,7 @@
           </div>
           <!-- بطاقة 2 -->
           <div class="card">
-            <img src="images/HeetCave.jpg" alt="Destination 2">
+            <img src="HeetCave.jpg" alt="Destination 2">
             <div class="card-content">
               <h3>Heet Cave</h3>
               <p>Discover an underground cave near Riyadh with a crystal-clear lake, ideal for thrill-seekers.</p>
@@ -98,16 +112,16 @@
           </div>
           <!-- بطاقة 3 -->
           <div class="card">
-            <img src="images/AhsaOasis.jpg" alt="Destination 3">
+            <img src="AhsaOasis.jpg" alt="Destination 3">
             <div class="card-content">
-              <h3> Al-Ahsa Oasis</h3>
-              <p>Saudi’s largest oasis, filled with lush palm groves and natural springs, reflecting a rich cultural heritage.</p>
+              <h3>Al-Ahsa Oasis</h3>
+              <p>Saudi’s largest oasis, filled with lush palm groves and natural springs.</p>
               <a href="#">Read More</a>
             </div>
           </div>
           <!-- بطاقة 4 -->
           <div class="card">
-            <img src="images/Hail.jpg" alt="Destination 4">
+            <img src="Hail.jpg" alt="Destination 4">
             <div class="card-content">
               <h3>Aja Mountains (Ha’il)</h3>
               <p>A rugged range encircling Ha’il, with striking rock formations and scenic valleys ideal for hikers and campers.
@@ -117,16 +131,16 @@
           </div>
           <!-- بطاقة 5 -->
           <div class="card">
-            <img src="images/AbhaAlsodh.jpg" alt="Destination 5">
+            <img src="AbhaAlsodh.jpg" alt="Destination 5">
             <div class="card-content">
-              <h3> Al-Soudah (Abha)</h3>
+              <h3>Al-Soudah (Abha)</h3>
               <p>Saudi Arabia’s highest peak in the Asir region, known for cool weather, and panoramic mountain views.</p>
               <a href="#">Read More</a>
             </div>
           </div>
           <!-- بطاقة 6 -->
           <div class="card">
-            <img src="images/Alzelfi.jpg" alt="Destination 6">
+            <img src="Alzelfi.jpg" alt="Destination 6">
             <div class="card-content">
               <h3>Nafud Al-Zulfi</h3>
               <p>Escape to vast dunes, indulge in desert luxury, and uncover local cultural gems.</p>
@@ -140,11 +154,10 @@
           <button class="slider-btn" id="nextBtn">&#9654;</button>
         </div>
       </div>
-      
     </div>
-    
   </section>
 
+  <!-- الفوتر -->
   <footer id="footer" class="footer">
     <div class="footer-top">
       <div class="container">
@@ -214,11 +227,16 @@
     </div>
   </footer>
 
+  <!-- سكريبت -->
   <script>
-    // 1) التعامل مع مربع البحث
+    // البحث في Home
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     const closeSearch = document.getElementById('closeSearch');
+
+    // نموذج و حقل بحث في Home
+    const homeSearchForm = document.getElementById('homeSearchForm');
+    const homeSearchInput = document.getElementById('homeSearchInput');
 
     searchIcon.addEventListener('click', () => {
       searchPopup.classList.add('active');
@@ -232,7 +250,23 @@
       }
     });
 
-    // 2) التعامل مع السلايدر
+    // عندما يضغط المستخدم على زر Search بصفحة Home
+    homeSearchForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const searchTerm = homeSearchInput.value.toLowerCase().trim();
+      // توجيه المستخدم إلى صفحة Destnition مع بارامتر ?q=....
+      window.location.href = "Destnition.html?q=" + encodeURIComponent(searchTerm);
+    });
+
+    // زر السايد بار
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+    slidebarBtn.addEventListener('click', () => {
+      slidebar.classList.toggle('active');
+      slidebarBtn.classList.toggle('is-active');
+    });
+
+    // تعامل مع السلايدر
     const cardsSlider = document.getElementById('cardsSlider');
     const cardsContainer = document.getElementById('cardsContainer');
     const prevBtn = document.getElementById('prevBtn');
@@ -246,7 +280,7 @@
       const step = 240;
 
       function nextSlide() {
-        if (currentTranslateX <= maxTranslateX) return; 
+        if (currentTranslateX <= maxTranslateX) return;
         const remain = currentTranslateX - maxTranslateX;
         if (remain <= step) {
           currentTranslateX = maxTranslateX;
@@ -274,17 +308,5 @@
     window.addEventListener('load', updateSliderBounds);
     window.addEventListener('resize', updateSliderBounds);
   </script>
-    <!-- ملف JavaScript أو كود JS مضمّن -->
-    <script>
-      const slidebarBtn = document.getElementById('slidebarBtn');
-      const slidebar = document.getElementById('slidebar');
-  
-      slidebarBtn.addEventListener('click', () => {
-        // عند الضغط على زر السلايد بار، نضيف/نزيل كلاس active
-        slidebar.classList.toggle('active');
-        // يمكن أيضًا عمل تأثير على زر السلايد بار نفسه
-        slidebarBtn.classList.toggle('is-active');
-      });
-    </script>
 </body>
 </html>
