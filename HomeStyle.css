@@ -8,10 +8,13 @@
 
 /* خلفية الصفحة */
 body {
-  background: url('images/neomBg.jpg') center center/cover no-repeat;
+  background: url('neomBg.jpg') center center/cover no-repeat;
   background-attachment: fixed; /* لجعل الخلفية ثابتة عند التمرير (اختياري) */
   margin: 0; 
 }
+
+
+
 
 
 /* زر السلايد بار */
