@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>Travel Landing Page</title>
+  <!-- ربط ملف CSS -->
+  <link rel="stylesheet" href="HomeStyle.css">
+</head>
+<body>
+
+
+  <!-- زر السلايد بار (بدون صورة) -->
+  <div class="slidebar-btn" id="slidebarBtn">
+    <!-- ثلاثة خطوط (أشرطة) -->
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+
+  <!-- السلايد بار -->
+  <div class="slidebar" id="slidebar">
+    <ul>
+     <br><br> <li><a href="PersonalInformation.html">Personal information</a></li><br>
+      
+      <li><a href="#">FARRAH Personalized schedule</a></li><br>
+
+      <li><a href="MySchedules.html">My schedules</a></li>
+    </ul>
+  </div>
+
+
+  <!-- الهيدر -->
+  <header>
+    <div class="header-left">
+      <div class="logo">Farrah</div>
+      <!-- أيقونة البحث (شعار بحث) -->
+      <div class="search-icon" id="searchIcon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none"/>
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Destnition.html">Destinations</a></li>
+        
+        
+      </ul>
+    </nav>
+  </header>
+
+  <!-- مربع البحث المنبثق -->
+  <div class="search-popup" id="searchPopup">
+    <div class="search-box">
+      <button class="close-search" id="closeSearch">&times;</button>
+      <form action="#" method="get">
+        <input type="search" name="q" placeholder="Search" />
+      </form>
+    </div>
+  </div>
+
+  <!-- قسم البطل (Hero Section) -->
+  <section class="hero">
+    <div class="hero-content">
+      <!-- النص على اليسار -->
+      <div class="hero-text">
+     
+        <h1>Saudi Arabia</h1>
+        <p>
+          Discover the breathtaking vistas of Saudi Arabia’s majestic deserts and ancient treasures. 
+          Explore its hidden gems—from serene oases to historic marvels and immerse yourself in a world of timeless beauty.
+        </p>
+        <a href="Destnition.html" class="btn">Explore Now</a>
+      </div>
+
+      <!-- السلايدر (بطاقات) -->
+      <div class="cards-slider" id="cardsSlider">
+        <div class="cards-container" id="cardsContainer">
+          <!-- بطاقة 1 -->
+          <div class="card">
+            <img src="ANeom.jpg" alt="Destination 1">
+            <div class="card-content">
+              <h3>Neom</h3>
+              <p>Explore NEOM’s Red Sea coast with turquoise waters and vibrant reefs.</p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+          <!-- بطاقة 2 -->
+          <div class="card">
+            <img src="HeetCave.jpg" alt="Destination 2">
+            <div class="card-content">
+              <h3>Heet Cave</h3>
+              <p>Discover an underground cave near Riyadh with a crystal-clear lake, ideal for thrill-seekers.</p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+          <!-- بطاقة 3 -->
+          <div class="card">
+            <img src="AhsaOasis.jpg" alt="Destination 3">
+            <div class="card-content">
+              <h3> Al-Ahsa Oasis</h3>
+              <p>Saudi’s largest oasis, filled with lush palm groves and natural springs, reflecting a rich cultural heritage.</p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+          <!-- بطاقة 4 -->
+          <div class="card">
+            <img src="Hail.jpg" alt="Destination 4">
+            <div class="card-content">
+              <h3>Aja Mountains (Ha’il)</h3>
+              <p>A rugged range encircling Ha’il, with striking rock formations and scenic valleys ideal for hikers and campers.
+              </p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+          <!-- بطاقة 5 -->
+          <div class="card">
+            <img src="AbhaAlsodh.jpg" alt="Destination 5">
+            <div class="card-content">
+              <h3> Al-Soudah (Abha)</h3>
+              <p>Saudi Arabia’s highest peak in the Asir region, known for cool weather, and panoramic mountain views.</p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+          <!-- بطاقة 6 -->
+          <div class="card">
+            <img src="Alzelfi.jpg" alt="Destination 6">
+            <div class="card-content">
+              <h3>Nafud Al-Zulfi</h3>
+              <p>Escape to vast dunes, indulge in desert luxury, and uncover local cultural gems.</p>
+              <a href="#">Read More</a>
+            </div>
+          </div>
+        </div>
+        <!-- أزرار التنقل -->
+        <div class="slider-controls">
+          <button class="slider-btn" id="prevBtn">&#9664;</button>
+          <button class="slider-btn" id="nextBtn">&#9654;</button>
+        </div>
+      </div>
+      
+    </div>
+    
+  </section>
+
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <!-- العمود الأول: نبذة عن الموقع السياحي -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>About Us</h2>
+              <p>
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia. 
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional 
+                services to ensure every journey becomes an unforgettable adventure.
+              </p>
+            </div>
+          </div>
+          <!-- العمود الثاني: Vision -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>Vision</h2>
+              <p>
+                Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
+                creating memorable travel experiences for every explorer.
+              </p>
+            </div>
+          </div>
+          <!-- العمود الثالث: معلومات التواصل الاجتماعي -->
+          <div class="col">
+            <h2>Contact Us</h2>
+            <ul class="social">
+              <li>
+                <img src="../images/facebook-icon.png" alt="facebook" />
+                <span>FarrahTravel</span>
+              </li>
+              <li>
+                <img src="../images/x-icon.png" alt="x" />
+                <span>@FarrahTravel</span>
+              </li>
+              <li>
+                <img src="../images/instagram-icon.png" alt="instagram" />
+                <span>@Farrah_Travel</span>
+              </li>
+              <li>
+                <img src="../images/gmail-icon.png" alt="gmail" />
+                <span>info@farrahtravel.com</span>
+              </li>
+              <li>
+                <img src="../images/phone-icon.png" alt="phone" />
+                <span>+966 555 123 456</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- حقوق النشر -->
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="copyright-content">
+            <p>
+              © 2025 | All Rights Reserved by 
+              <span>Farrah Travel</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1) التعامل مع مربع البحث
+    const searchIcon = document.getElementById('searchIcon');
+    const searchPopup = document.getElementById('searchPopup');
+    const closeSearch = document.getElementById('closeSearch');
+
+    searchIcon.addEventListener('click', () => {
+      searchPopup.classList.add('active');
+    });
+    closeSearch.addEventListener('click', () => {
+      searchPopup.classList.remove('active');
+    });
+    searchPopup.addEventListener('click', (e) => {
+      if (e.target === searchPopup) {
+        searchPopup.classList.remove('active');
+      }
+    });
+
+    // 2) التعامل مع السلايدر
+    const cardsSlider = document.getElementById('cardsSlider');
+    const cardsContainer = document.getElementById('cardsContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentTranslateX = 0;
+    function updateSliderBounds() {
+      const sliderWidth = cardsSlider.clientWidth;
+      const totalCardsWidth = cardsContainer.scrollWidth;
+      const maxTranslateX = sliderWidth - totalCardsWidth;
+      const step = 240;
+
+      function nextSlide() {
+        if (currentTranslateX <= maxTranslateX) return; 
+        const remain = currentTranslateX - maxTranslateX;
+        if (remain <= step) {
+          currentTranslateX = maxTranslateX;
+        } else {
+          currentTranslateX -= step;
+        }
+        cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
+      }
+
+      function prevSlide() {
+        if (currentTranslateX >= 0) return;
+        const remain = Math.abs(currentTranslateX);
+        if (remain <= step) {
+          currentTranslateX = 0;
+        } else {
+          currentTranslateX += step;
+        }
+        cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
+      }
+
+      nextBtn.onclick = nextSlide;
+      prevBtn.onclick = prevSlide;
+    }
+
+    window.addEventListener('load', updateSliderBounds);
+    window.addEventListener('resize', updateSliderBounds);
+  </script>
+    <!-- ملف JavaScript أو كود JS مضمّن -->
+    <script>
+      const slidebarBtn = document.getElementById('slidebarBtn');
+      const slidebar = document.getElementById('slidebar');
+  
+      slidebarBtn.addEventListener('click', () => {
+        // عند الضغط على زر السلايد بار، نضيف/نزيل كلاس active
+        slidebar.classList.toggle('active');
+        // يمكن أيضًا عمل تأثير على زر السلايد بار نفسه
+        slidebarBtn.classList.toggle('is-active');
+      });
+    </script>
+</body>
+</html>
