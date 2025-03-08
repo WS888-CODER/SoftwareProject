@@ -77,7 +77,7 @@
 
 /* خلفية الصفحة */
 body {
-  background: url('neomBg.jpg') center center/cover no-repeat;
+  background: url('images/neomBg.jpg') center center/cover no-repeat;
   background-attachment: fixed; /* لجعل الخلفية ثابتة عند التمرير (اختياري) */
   margin: 0; 
 }

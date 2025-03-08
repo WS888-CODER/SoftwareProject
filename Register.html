@@ -18,7 +18,7 @@
                 <a href="login.html">Login</a>
                 <a href="register.html">Register</a>
             </div>
-            <form>
+            <form novalidate>
                 <div class="form-group-Register">
                     <label for="username-login">Username:</label>
                     <input type="text" id="username-login" name="username-login" required>
@@ -44,12 +44,29 @@
             </form>
             
 
-            <hr class="form-divider-login">
 
            
             </form>
         </div>
     </div>
     </div>
+ <!-- Alert Popup -->
+<div id="alert-popup" class="popup-overlay">
+    <div class="popup-box">
+        <p id="alert-popup-message"></p> <!-- Error or alert message -->
+        <button id="alert_button"onclick="closePopup('alert')">OK</button>
+    </div>
+</div>
+
+<!-- Success Popup -->
+<div id="success-popup" class="popup-overlay">
+    <div class="popup-box">
+        <p id="success-popup-message"></p> <!-- Success message -->
+        <button id="success_button" onclick="closePopup('success')">OK</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
