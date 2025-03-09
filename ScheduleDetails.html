@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule Details</title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="ScheduleDetails.css">
+
+</head>
+
+<body>
+
+
+  <!-- زر السلايد بار (بدون صورة) -->
+  <div class="slidebar-btn" id="slidebarBtn">
+    <!-- ثلاثة خطوط (أشرطة) -->
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+
+  <!-- السلايد بار -->
+  <div class="slidebar" id="slidebar">
+    <ul>
+      <br><br>
+      <li><a href="PersonalInformation.html">Personal information</a></li><br>
+
+      <li><a href="#">FARRAH Personalized schedule</a></li><br>
+
+      <li><a href="MySchedules.html">My schedules</a></li>
+    </ul>
+  </div>
+
+
+  <!-- الهيدر -->
+  <header>
+    <div class="header-left">
+      <div class="logo">Farrah</div>
+      <!-- أيقونة البحث (شعار بحث) -->
+      <div class="search-icon" id="searchIcon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none" />
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2" />
+        </svg>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Destnition.html">Destinations</a></li>
+
+
+      </ul>
+    </nav>
+  </header>
+
+  <!-- مربع البحث المنبثق -->
+  <div class="search-popup" id="searchPopup">
+    <div class="search-box">
+      <button class="close-search" id="closeSearch">&times;</button>
+      <form action="#" method="get">
+        <input type="search" name="q" placeholder="Search" />
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- التقويم -->
+  <div class="container">
+    <div id="calendar"></div>
+  </div>
+  <!-- نافذة إضافة حدث جديد -->
+  <div id="createEventModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add New Destination</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="createEventForm">
+            <label>Choose Destination:</label>
+            <select id="eventDestination" class="form-control" required>
+              <option value="Neom">Neom</option>
+              <option value="Heet Cave">Heet Cave</option>
+              <option value="Al-Ahsa Oasis">Al-Ahsa Oasis</option>
+              <option value="Aja Mountains">Aja Mountains (Ha’il)</option>
+              <option value="Al-Soudah (Abha)">Al-Soudah (Abha)</option>
+              <option value="Nafud Al-Zulfi">Nafud Al-Zulfi</option>
+            </select>
+            <label>Destination Date & Time:</label>
+            <input type="datetime-local" id="newEventDateTime" class="form-control" required>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="saveNewEvent" class="btn btn-success">Add Destination</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+<!-- نافذة تعديل الوجهة -->
+<div id="editEventModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Destination</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="eventForm">
+          <!-- صورة الوجهة -->
+          <div class="destination-image-container">
+            <img id="destinationImage" src="" alt="Destination Image" class="destination-image">
+          </div>
+
+          <!-- عنوان الوجهة -->
+          <label>Destination Title:</label>
+          <p id="eventTitle" class="destination-title"></p>
+
+          <!-- وصف الوجهة -->
+          <label>Description:</label>
+          <p id="destinationDescription"></p>
+
+          <!-- رابط Read More -->
+          <a id="readMoreLink" href="#" target="_blank" class="btn btn-info">Read More</a>
+          <br>
+
+          <!-- اختيار الوقت والتاريخ -->
+          <label>Destination Date & Time:</label>
+          <input type="datetime-local" id="eventDateTime" class="form-control" required>
+
+          <!-- معرف الوجهة المخفي -->
+          <input type="hidden" id="eventId">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="saveChanges" class="btn btn-success">Save Changes</button>
+        <button type="button" id="deleteEvent" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="footercontainer">
+        <div class="row">
+          <!-- العمود الأول: نبذة عن الموقع السياحي -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>About Us</h2>
+              <p>
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
+                services to ensure every journey becomes an unforgettable adventure.
+              </p>
+            </div>
+          </div>
+          <!-- العمود الثاني: Vision -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>Vision</h2>
+              <p>
+                Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
+                creating memorable travel experiences for every explorer.
+              </p>
+            </div>
+          </div>
+          <!-- العمود الثالث: معلومات التواصل الاجتماعي -->
+          <div class="col">
+            <h2>Contact Us</h2>
+            <ul class="social">
+              <li>
+                <img src="../images/facebook-icon.png" alt="facebook" />
+                <span>FarrahTravel</span>
+              </li>
+              <li>
+                <img src="../images/x-icon.png" alt="x" />
+                <span>@FarrahTravel</span>
+              </li>
+              <li>
+                <img src="../images/instagram-icon.png" alt="instagram" />
+                <span>@Farrah_Travel</span>
+              </li>
+              <li>
+                <img src="../images/gmail-icon.png" alt="gmail" />
+                <span>info@farrahtravel.com</span>
+              </li>
+              <li>
+                <img src="../images/phone-icon.png" alt="phone" />
+                <span>+966 555 123 456</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- حقوق النشر -->
+    <div class="copyright">
+      <div class="footercontainer">
+        <div class="row">
+          <div class="copyright-content">
+            <p>
+              © 2025 | All Rights Reserved by
+              <span>Farrah Travel</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // 1) التعامل مع مربع البحث
+    const searchIcon = document.getElementById('searchIcon');
+    const searchPopup = document.getElementById('searchPopup');
+    const closeSearch = document.getElementById('closeSearch');
+
+    searchIcon.addEventListener('click', () => {
+      searchPopup.classList.add('active');
+    });
+    closeSearch.addEventListener('click', () => {
+      searchPopup.classList.remove('active');
+    });
+    searchPopup.addEventListener('click', (e) => {
+      if (e.target === searchPopup) {
+        searchPopup.classList.remove('active');
+      }
+    });
+
+    // 2) التعامل مع السلايدر
+    const cardsSlider = document.getElementById('cardsSlider');
+    const cardsContainer = document.getElementById('cardsContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentTranslateX = 0;
+    function updateSliderBounds() {
+      const sliderWidth = cardsSlider.clientWidth;
+      const totalCardsWidth = cardsContainer.scrollWidth;
+      const maxTranslateX = sliderWidth - totalCardsWidth;
+      const step = 240;
+
+      function nextSlide() {
+        if (currentTranslateX <= maxTranslateX) return;
+        const remain = currentTranslateX - maxTranslateX;
+        if (remain <= step) {
+          currentTranslateX = maxTranslateX;
+        } else {
+          currentTranslateX -= step;
+        }
+        cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
+      }
+
+      function prevSlide() {
+        if (currentTranslateX >= 0) return;
+        const remain = Math.abs(currentTranslateX);
+        if (remain <= step) {
+          currentTranslateX = 0;
+        } else {
+          currentTranslateX += step;
+        }
+        cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
+      }
+
+      nextBtn.onclick = nextSlide;
+      prevBtn.onclick = prevSlide;
+    }
+
+    window.addEventListener('load', updateSliderBounds);
+    window.addEventListener('resize', updateSliderBounds);
+  </script>
+  <!-- ملف JavaScript أو كود JS مضمّن -->
+  <script>
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+
+    slidebarBtn.addEventListener('click', () => {
+      // عند الضغط على زر السلايد بار، نضيف/نزيل كلاس active
+      slidebar.classList.toggle('active');
+      // يمكن أيضًا عمل تأثير على زر السلايد بار نفسه
+      slidebarBtn.classList.toggle('is-active');
+    });
+  </script>
+<script>
+  $(document).ready(function () {
+    let destinationsData = {
+        "Neom": { image: "ANeom.jpg", description: "Explore NEOM’s Red Sea coast.", readMore: "#" },
+        "Heet Cave": { image: "HeetCave.jpg", description: "Discover an underground cave near Riyadh.", readMore: "#" },
+        "Al-Ahsa Oasis": { image: "AhsaOasis.jpg", description: "Saudi’s largest oasis with lush palm groves.", readMore: "#" },
+        "Aja Mountains (Ha’il)": { image: "Hail.jpg", description: "A rugged range with striking rock formations.", readMore: "#" },
+        "Al-Soudah (Abha)": { image: "AbhaAlsodh.jpg", description: "Saudi Arabia’s highest peak with cool weather.", readMore: "#" },
+        "Nafud Al-Zulfi": { image: "Alzelfi.jpg", description: "Escape to vast dunes and desert luxury.", readMore: "#" }
+    };
+
+    function loadEvents() {
+        return JSON.parse(localStorage.getItem("destinations")) || [];
+    }
+
+    function saveEvents(events) {
+        localStorage.setItem("destinations", JSON.stringify(events));
+    }
+
+    $('#calendar').fullCalendar({
+        selectable: true,
+        editable: true,
+        eventLimit: true,
+        droppable: true,
+        customButtons: {
+            createDestination: {
+                text: 'Add Destination',
+                click: function () {
+                    $('#createEventModal').modal('show');
+                }
+            }
+        },
+        header: {
+            left: 'prev, today ,next',
+            center: 'title',
+            right: 'createDestination, month, agendaWeek, agendaDay'
+        },
+        buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day' },
+        events: loadEvents(),
+
+        eventClick: function (event) {
+            $('#eventId').val(event.id);
+            $('#eventTitle').text(event.title);
+            $('#eventDateTime').val(moment(event.start).format('YYYY-MM-DDTHH:mm'));
+
+            let destination = destinationsData[event.title];
+            if (destination) {
+                $('#destinationImage').attr('src', destination.image);
+                $('#destinationDescription').text(destination.description);
+                $('#readMoreLink').attr('href', destination.readMore);
+            } else {
+                $('#destinationImage').attr('src', '');
+                $('#destinationDescription').text('No description available.');
+                $('#readMoreLink').attr('href', '#');
+            }
+
+            $('#editEventModal').modal('show');
+        },
+
+        eventDrop: function (event) {
+            updateEvent(event);
+        },
+
+        eventResize: function (event) {
+            updateEvent(event);
+        }
+    });
+
+    function updateEvent(event) {
+        let events = loadEvents();
+        let updatedEvents = events.map(evt => evt.id === event.id ? { ...evt, start: event.start.format(), end: event.end ? event.end.format() : null } : evt);
+        saveEvents(updatedEvents);
+    }
+
+    $('#saveNewEvent').click(function () {
+        let newDateTime = $('#newEventDateTime').val();
+        let destination = $('#eventDestination').val();
+
+        if (newDateTime && destination) {
+            let newEvent = {
+                id: String(Date.now()),
+                title: destination,
+                start: moment(newDateTime),
+                backgroundColor: '#d0a84b',
+                borderColor: '#b88d3f'
+            };
+
+            let events = loadEvents();
+            events.push(newEvent);
+            saveEvents(events);
+
+            $('#calendar').fullCalendar('renderEvent', newEvent, true);
+            $('#createEventModal').modal('hide');
+            $('#createEventForm')[0].reset();
+        } else {
+            alert('Please select a date and destination.');
+        }
+    });
+
+    $('#saveChanges').click(function () {
+        let eventId = $('#eventId').val();
+        let newDateTime = $('#eventDateTime').val();
+        let events = loadEvents();
+
+        let event = $('#calendar').fullCalendar('clientEvents', eventId)[0];
+        if (event) {
+            event.start = moment(newDateTime);
+            $('#calendar').fullCalendar('updateEvent', event);
+        }
+
+        let updatedEvents = events.map(evt => evt.id === eventId ? { ...evt, start: moment(newDateTime) } : evt);
+        saveEvents(updatedEvents);
+
+        $('#editEventModal').modal('hide');
+    });
+
+    $('#deleteEvent').click(function () {
+        if (confirm('Are you sure you want to delete this destination?')) {
+            let eventId = $('#eventId').val();
+            $('#calendar').fullCalendar('removeEvents', eventId);
+
+            let events = loadEvents();
+            let filteredEvents = events.filter(evt => evt.id !== eventId);
+            saveEvents(filteredEvents);
+
+            $('#editEventModal').modal('hide');
+        }
+    });
+});
+</script>
+
+
+
+
+</body>
+
+</html>
