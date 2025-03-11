@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Farrah Travel - Destinations</title>
-  <link rel="stylesheet" href="Destnition.css">
+  <title>Farrah | Destinations</title>
+  <link rel="stylesheet" href="css/Destnition.css">
 </head>
+
 <body>
-  <!-- زر السايد بار -->
+  <!-- Slider bar-->
   <div class="slidebar-btn" id="slidebarBtn">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </div>
 
-  <!-- السلايد بار -->
   <div class="slidebar" id="slidebar">
     <ul>
       <br><br>
       <li><a href="PersonalInformation.html">Personal information</a></li><br>
       <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
       <li><a href="MySchedules.html">My schedules</a></li>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <li><a href="index.html">Sign out </a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
     </ul>
   </div>
 
-  <!-- الهيدر -->
+  <!-- header -->
   <header>
     <div class="header-left">
       <div class="logo">Farrah</div>
-      <!-- أيقونة البحث (إذا أردت بقاءها في الدستنيشن) -->
       <div class="search-icon" id="searchIcon">
         <svg viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none"/>
-          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2"/>
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none" />
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2" />
         </svg>
       </div>
     </div>
@@ -45,19 +44,20 @@
     </nav>
   </header>
 
-  <!-- مربع البحث المنبثق في الدستنيشن (اختياري) -->
   <div class="search-popup" id="searchPopup">
     <div class="search-box" style="padding:10px;">
       <button class="close-search" id="closeSearch">&times;</button>
       <form id="destSearchForm" action="#" method="get" style="display: flex; gap: 10px;">
         <input id="destSearchInput" type="search" name="q" placeholder="Search in Destinations..." style="flex:1;" />
-        <button type="submit" style="padding:6px 12px; background:#d0a84b; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>
+        <button type="submit"
+          style="padding:6px 12px; background:#d0a84b; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>
       </form>
     </div>
   </div>
 
-  <!-- قسم الفلتر (باللغة الإنجليزية) -->
-  <section class="filter-section" style="padding: 20px; text-align: center; background: rgba(0,0,0,0.4); margin-top:120px;">
+  <!-- Filter-->
+  <section class="filter-section"
+    style="padding: 20px; text-align: center; background: rgba(0,0,0,0.4); margin-top:120px;">
     <div class="filter-group" style="display: inline-block; margin-right: 20px;">
       <label for="typeFilter" style="color:#fff; margin-right: 10px;">Destination Type:</label>
       <select id="typeFilter">
@@ -82,8 +82,9 @@
     </div>
   </section>
 
-  <!-- قسم البطاقات (وجهات) -->
-  <section class="destinations-page" style="padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content:center;">
+  <!-- Destinations cards-->
+  <section class="destinations-page"
+    style="padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content:center;">
     <!-- Heet Cave => Mountainous, Center -->
     <div class="card" data-type="mountainous" data-region="center">
       <img src="images/HeetCave.jpg" alt="Heet Cave">
@@ -120,7 +121,7 @@
         <a href="NafudAl-Zulfi.html">Read More</a>
       </div>
     </div>
-    <!-- جبليه جنوب (Al-Soudah) -->
+    <!--  (Al-Soudah) -->
     <div class="card" data-type="mountainous" data-region="south">
       <img src="images/AbhaAlsodh.jpg" alt="Al-Soudah (Abha)">
       <div class="card-content">
@@ -129,7 +130,7 @@
         <a href="Al-Soudah.html">Read More</a>
       </div>
     </div>
-    <!-- صخريه شمال (Aja Mountains) -->
+    <!--   (Aja Mountains) -->
     <div class="card" data-type="rocky" data-region="north">
       <img src="images/Hail.jpg" alt="Aja Mountains (Ha’il)">
       <div class="card-content">
@@ -140,23 +141,23 @@
     </div>
   </section>
 
-  <!-- الفوتر -->
+  <!-- footer -->
   <footer id="footer" class="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <!-- العمود الأول: نبذة عن الموقع السياحي -->
+          <!-- About us -->
           <div class="col">
             <div class="single-footer">
               <h2>About Us</h2>
               <p>
-                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia. 
-                We are dedicated to providing curated travel experiences, insightful guides, and exceptional 
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
                 services to ensure every journey becomes an unforgettable adventure.
               </p>
             </div>
           </div>
-          <!-- العمود الثاني: Vision -->
+          <!-- Vision -->
           <div class="col">
             <div class="single-footer">
               <h2>Vision</h2>
@@ -166,28 +167,28 @@
               </p>
             </div>
           </div>
-          <!-- العمود الثالث: معلومات التواصل الاجتماعي -->
+          <!-- Contact Us-->
           <div class="col">
             <h2>Contact Us</h2>
             <ul class="social">
               <li>
-                <img src="../images/facebook-icon.png" alt="facebook" />
+                <img src="images/facebook-icon.png" alt="facebook" />
                 <span>FarrahTravel</span>
               </li>
               <li>
-                <img src="../images/x-icon.png" alt="x" />
+                <img src="images/x-icon.png" alt="x" />
                 <span>@FarrahTravel</span>
               </li>
               <li>
-                <img src="../images/instagram-icon.png" alt="instagram" />
+                <img src="images/instagram-icon.png" alt="instagram" />
                 <span>@Farrah_Travel</span>
               </li>
               <li>
-                <img src="../images/gmail-icon.png" alt="gmail" />
+                <img src="images/gmail-icon.png" alt="gmail" />
                 <span>info@farrahtravel.com</span>
               </li>
               <li>
-                <img src="../images/phone-icon.png" alt="phone" />
+                <img src="images/phone-icon.png" alt="phone" />
                 <span>+966 555 123 456</span>
               </li>
             </ul>
@@ -195,13 +196,13 @@
         </div>
       </div>
     </div>
-    <!-- حقوق النشر -->
+    <!--  copyright -->
     <div class="copyright">
       <div class="container">
         <div class="row">
           <div class="copyright-content">
             <p>
-              © 2025 | All Rights Reserved by 
+              © 2025 | All Rights Reserved by
               <span>Farrah Travel</span>
             </p>
           </div>
@@ -210,18 +211,15 @@
     </div>
   </footer>
 
-  <!-- سكريبت -->
+  <!-- Script -->
   <script>
-    // زر السايد بار
+    //slidebar Btn
     const slidebarBtn = document.getElementById('slidebarBtn');
     const slidebar = document.getElementById('slidebar');
     slidebarBtn.addEventListener('click', () => {
       slidebar.classList.toggle('active');
       slidebarBtn.classList.toggle('is-active');
     });
-
-    // لو عندك بحث داخلي هنا (searchPopup) احتفظ به أو احذفه
-    // هنا مثلاً لنفترض أنك ما زلت تريد البحث من داخل Destnition
 
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
@@ -266,12 +264,10 @@
     typeFilter.addEventListener('change', filterCards);
     regionFilter.addEventListener('change', filterCards);
 
-    // =================== استقبال ?q= من Home والبحث ===================
     window.addEventListener('load', () => {
       const params = new URLSearchParams(window.location.search);
       const searchTerm = params.get('q'); // قد يكون null
       if (searchTerm) {
-        // طبق البحث بالاسم
         applySearchFromHome(searchTerm);
       }
     });
@@ -279,10 +275,8 @@
     function applySearchFromHome(term) {
       const loweredTerm = term.toLowerCase().trim();
       if (!loweredTerm) {
-        // فارغ => أظهر الكل
         cards.forEach(c => c.style.display = 'block');
       } else {
-        // فلترة بالعنوان h3
         cards.forEach(c => {
           const title = c.querySelector('h3').textContent.toLowerCase();
           c.style.display = title.includes(loweredTerm) ? 'block' : 'none';
@@ -291,4 +285,5 @@
     }
   </script>
 </body>
+
 </html>
