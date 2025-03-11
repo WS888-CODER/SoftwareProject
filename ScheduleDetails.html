@@ -81,7 +81,7 @@
               <option value="Neom">Neom</option>
               <option value="Heet Cave">Heet Cave</option>
               <option value="Al-Ahsa Oasis">Al-Ahsa Oasis</option>
-              <option value="Aja Mountains">Aja Mountains (Ha’il)</option>
+              <option value="Aja Mountains (Ha’il)">Aja Mountains (Ha’il)</option>
               <option value="Al-Soudah (Abha)">Al-Soudah (Abha)</option>
               <option value="Nafud Al-Zulfi">Nafud Al-Zulfi</option>
             </select>
@@ -202,7 +202,7 @@
         <div class="row">
           <div class="copyright-content">
             <p>
-              ©️ 2025 | All Rights Reserved by
+              © 2025 | All Rights Reserved by
               <span>Farrah Travel</span>
             </p>
           </div>
@@ -210,6 +210,49 @@
       </div>
     </div>
   </footer>
+  <script>
+    const cardsSlider = document.getElementById('cardsSlider');
+    const cardsContainer = document.getElementById('cardsContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentTranslateX = 0;
+    function updateSliderBounds() {
+      const sliderWidth = cardsSlider.clientWidth;
+      const totalCardsWidth = cardsContainer.scrollWidth;
+      const maxTranslateX = sliderWidth - totalCardsWidth;
+      const step = 240;
+
+      function nextSlide() {
+        if (currentTranslateX <= maxTranslateX) return;
+        const remain = currentTranslateX - maxTranslateX;
+        if (remain <= step) {
+          currentTranslateX = maxTranslateX;
+        } else {
+          currentTranslateX -= step;
+        }
+        cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
+      }
+
+      function prevSlide() {
+        if (currentTranslateX >= 0) return;
+        const remain = Math.abs(currentTranslateX);
+        if (remain <= step) {
+          currentTranslateX = 0;
+        } else {
+          currentTranslateX += step;
+        }
+        cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
+      }
+
+      nextBtn.onclick = nextSlide;
+      prevBtn.onclick = prevSlide;
+    }
+
+    window.addEventListener('load', updateSliderBounds);
+    window.addEventListener('resize', updateSliderBounds);
+  </script>
+  <!-- ملف JavaScript أو كود JS مضمّن -->
   <script>
     const slidebarBtn = document.getElementById('slidebarBtn');
     const slidebar = document.getElementById('slidebar');
@@ -227,7 +270,7 @@
         "Neom": { image: "images/ANeom.jpg", description: "Explore NEOM’s Red Sea coast.", readMore: "Neom.html" },
         "Heet Cave": { image: "images/HeetCave.jpg", description: "Discover an underground cave near Riyadh.", readMore: "HeetCave.html" },
         "Al-Ahsa Oasis": { image: "images/AhsaOasis.jpg", description: "Saudi’s largest oasis with lush palm groves.", readMore: "Al-AhsaOasis.html" },
-        "Aja Mountains": { image: "images/Hail.jpg", description: "A rugged range with striking rock formations.", readMore: "AjaMountains.html" },
+        "Aja Mountains (Ha’il)": { image: "images/Hail.jpg", description: "A rugged range with striking rock formations.", readMore: "AjaMountains.html" },
         "Al-Soudah (Abha)": { image: "images/AbhaAlsodh.jpg", description: "Saudi Arabia’s highest peak with cool weather.", readMore: "Al-Soudah.html" },
         "Nafud Al-Zulfi": { image: "images/Alzelfi.jpg", description: "Escape to vast dunes and desert luxury.", readMore: "NafudAl-Zulfi.html" }
       };
