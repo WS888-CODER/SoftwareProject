@@ -59,80 +59,93 @@
   <div class="container">
     <div id="calendar"></div>
   </div>
-  <!-- نافذة إضافة حدث جديد -->
-  <div id="createEventModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Add New Destination</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
-        </div>
-        <div class="modal-body">
-          <form id="createEventForm">
-            <label>Choose Destination:</label>
-            <select id="eventDestination" class="form-control" required>
-              <option value="Neom">Neom</option>
-              <option value="Heet Cave">Heet Cave</option>
-              <option value="Al-Ahsa Oasis">Al-Ahsa Oasis</option>
-              <option value="Aja Mountains (Ha’il)">Aja Mountains (Ha’il)</option>
-              <option value="Al-Soudah (Abha)">Al-Soudah (Abha)</option>
-              <option value="Nafud Al-Zulfi">Nafud Al-Zulfi</option>
-            </select>
-            <label>Destination Date & Time:</label>
-            <input type="datetime-local" id="newEventDateTime" class="form-control" required>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="saveNewEvent" class="btn btn-success">Add Destination</button>
-        </div>
+<!-- add destination -->
+<div id="createEventModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add New Destination</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="createEventForm">
+          <!-- Choose Schedule-->
+          <label>Choose Schedule:</label>
+          <select id="eventSchedule" class="form-control" required>
+            <option value="Schedule 1">Schedule 1</option>
+            <option value="Schedule 2">Schedule 2</option>
+          </select>
+
+          <!-- Choose Destination -->
+          <label>Choose Destination:</label>
+          <select id="eventDestination" class="form-control" required>
+            <option value="Neom">Neom</option>
+            <option value="Heet Cave">Heet Cave</option>
+            <option value="Al-Ahsa Oasis">Al-Ahsa Oasis</option>
+            <option value="Aja Mountains (Ha’il)">Aja Mountains (Ha’il)</option>
+            <option value="Al-Soudah (Abha)">Al-Soudah (Abha)</option>
+            <option value="Nafud Al-Zulfi">Nafud Al-Zulfi</option>
+          </select>
+
+          <!--Destination Date & Time -->
+          <label>Destination Date & Time:</label>
+          <input type="datetime-local" id="newEventDateTime" class="form-control" required>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="saveNewEvent" class="btn btn-success">Add Destination</button>
       </div>
     </div>
   </div>
+</div>
 
 
 
-  <!-- نافذة تعديل الوجهة -->
-  <div id="editEventModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Destination</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <form id="eventForm">
-            <!-- صورة الوجهة -->
-            <div class="destination-image-container">
-              <img id="destinationImage" src="" alt="Destination Image" class="destination-image">
-            </div>
+<!-- Edit Destination-->
+<div id="editEventModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Destination</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="eventForm">
+          <!-- Schedule name-->
+          <label>Schedule:</label>
+          <p id="eventScheduleName" class="schedule-title"></p>
 
-            <!-- عنوان الوجهة -->
-            <label>Destination Title:</label>
-            <p id="eventTitle" class="destination-title"></p>
+          <!--Schedule img -->
+          <div class="destination-image-container">
+            <img id="destinationImage" src="" alt="Destination Image" class="destination-image">
+          </div>
 
-            <!-- وصف الوجهة -->
-            <label>Description:</label>
-            <p id="destinationDescription"></p>
+          <!-- Schedule title-->
+          <label>Destination Title:</label>
+          <p id="eventTitle" class="destination-title"></p>
 
-            <!-- رابط Read More -->
-            <a id="readMoreLink" href="#" target="_blank" class="btn btn-info">Read More</a>
-            <br>
+          <!-- Schedule Description-->
+          <label>Description:</label>
+          <p id="destinationDescription"></p>
 
-            <!-- اختيار الوقت والتاريخ -->
-            <label>Destination Date & Time:</label>
-            <input type="datetime-local" id="eventDateTime" class="form-control" required>
+          <!--  Read More link -->
+          <a id="readMoreLink" href="#" target="_blank" class="btn btn-info">Read More</a>
+          <br>
 
-            <!-- معرف الوجهة المخفي -->
-            <input type="hidden" id="eventId">
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="saveChanges" class="btn btn-success">Save Changes</button>
-          <button type="button" id="deleteEvent" class="btn btn-danger">Delete</button>
-        </div>
+          <!-- Destination Date & Time-->
+          <label>Destination Date & Time:</label>
+          <input type="datetime-local" id="eventDateTime" class="form-control" required>
+
+          <input type="hidden" id="eventId">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="saveChanges" class="btn btn-success">Save Changes</button>
+        <button type="button" id="deleteEvent" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </div>
+</div>
 
 
 <!-- footer -->
@@ -260,133 +273,139 @@
   </script>
   <script>
     $(document).ready(function () {
-      let destinationsData = {
-        "Neom": { image: "images/ANeom.jpg", description: "Explore NEOM’s Red Sea coast.", readMore: "Neom.html" },
-        "Heet Cave": { image: "images/HeetCave.jpg", description: "Discover an underground cave near Riyadh.", readMore: "HeetCave.html" },
-        "Al-Ahsa Oasis": { image: "images/AhsaOasis.jpg", description: "Saudi’s largest oasis with lush palm groves.", readMore: "Al-AhsaOasis.html" },
-        "Aja Mountains (Ha’il)": { image: "images/Hail.jpg", description: "A rugged range with striking rock formations.", readMore: "AjaMountains.html" },
-        "Al-Soudah (Abha)": { image: "images/AbhaAlsodh.jpg", description: "Saudi Arabia’s highest peak with cool weather.", readMore: "Al-Soudah.html" },
-        "Nafud Al-Zulfi": { image: "images/Alzelfi.jpg", description: "Escape to vast dunes and desert luxury.", readMore: "NafudAl-Zulfi.html" }
+  let destinationsData = {
+    "Neom": { image: "images/ANeom.jpg", description: "Explore NEOM’s Red Sea coast.", readMore: "Neom.html" },
+    "Heet Cave": { image: "images/HeetCave.jpg", description: "Discover an underground cave near Riyadh.", readMore: "HeetCave.html" },
+    "Al-Ahsa Oasis": { image: "images/AhsaOasis.jpg", description: "Saudi’s largest oasis with lush palm groves.", readMore: "Al-AhsaOasis.html" },
+    "Aja Mountains (Ha’il)": { image: "images/Hail.jpg", description: "A rugged range with striking rock formations.", readMore: "AjaMountains.html" },
+    "Al-Soudah (Abha)": { image: "images/AbhaAlsodh.jpg", description: "Saudi Arabia’s highest peak with cool weather.", readMore: "Al-Soudah.html" },
+    "Nafud Al-Zulfi": { image: "images/Alzelfi.jpg", description: "Escape to vast dunes and desert luxury.", readMore: "NafudAl-Zulfi.html" }
+  };
+
+  function loadEvents() {
+    return JSON.parse(localStorage.getItem("destinations")) || [];
+  }
+
+  function saveEvents(events) {
+    localStorage.setItem("destinations", JSON.stringify(events));
+  }
+
+  $('#calendar').fullCalendar({
+    selectable: true,
+    editable: true,
+    eventLimit: true,
+    droppable: true,
+    customButtons: {
+      createDestination: {
+        text: 'Add Destination',
+        click: function () {
+          $('#createEventModal').modal('show');
+        }
+      }
+    },
+    header: {
+      left: 'prev, today ,next',
+      center: 'title',
+      right: 'createDestination, month, agendaWeek, agendaDay'
+    },
+    buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day' },
+    events: loadEvents(),
+
+    eventClick: function (event) {
+      $('#eventId').val(event.id);
+      $('#eventTitle').text(event.title);
+      $('#eventDateTime').val(moment(event.start).format('YYYY-MM-DDTHH:mm'));
+
+      // عرض اسم الجدول عند التعديل
+      $('#eventScheduleName').text(event.schedule ? event.schedule : "Unknown Schedule");
+
+      let destination = destinationsData[event.title];
+      if (destination) {
+        $('#destinationImage').attr('src', destination.image);
+        $('#destinationDescription').text(destination.description);
+        $('#readMoreLink').attr('href', destination.readMore);
+      } else {
+        $('#destinationImage').attr('src', '');
+        $('#destinationDescription').text('No description available.');
+        $('#readMoreLink').attr('href', '#');
+      }
+
+      $('#editEventModal').modal('show');
+    },
+
+    eventDrop: function (event) {
+      updateEvent(event);
+    },
+
+    eventResize: function (event) {
+      updateEvent(event);
+    }
+  });
+
+  function updateEvent(event) {
+    let events = loadEvents();
+    let updatedEvents = events.map(evt => evt.id === event.id ? { ...evt, start: event.start.format(), end: event.end ? event.end.format() : null } : evt);
+    saveEvents(updatedEvents);
+  }
+
+  $('#saveNewEvent').click(function () {
+    let newDateTime = $('#newEventDateTime').val();
+    let destination = $('#eventDestination').val();
+    let schedule = $('#eventSchedule').val(); 
+
+    if (newDateTime && destination) {
+      let newEvent = {
+        id: String(Date.now()),
+        title: destination,
+        schedule: schedule, 
+        start: moment(newDateTime),
+        backgroundColor: '#d0a84b',
+        borderColor: '#b88d3f'
       };
 
-      function loadEvents() {
-        return JSON.parse(localStorage.getItem("destinations")) || [];
-      }
+      let events = loadEvents();
+      events.push(newEvent);
+      saveEvents(events);
 
-      function saveEvents(events) {
-        localStorage.setItem("destinations", JSON.stringify(events));
-      }
+      $('#calendar').fullCalendar('renderEvent', newEvent, true);
+      $('#createEventModal').modal('hide');
+      $('#createEventForm')[0].reset();
+    } else {
+      alert('Please select a date and destination.');
+    }
+  });
 
-      $('#calendar').fullCalendar({
-        selectable: true,
-        editable: true,
-        eventLimit: true,
-        droppable: true,
-        customButtons: {
-          createDestination: {
-            text: 'Add Destination',
-            click: function () {
-              $('#createEventModal').modal('show');
-            }
-          }
-        },
-        header: {
-          left: 'prev, today ,next',
-          center: 'title',
-          right: 'createDestination, month, agendaWeek, agendaDay'
-        },
-        buttonText: { today: 'Today', month: 'Month', week: 'Week', day: 'Day' },
-        events: loadEvents(),
+  $('#saveChanges').click(function () {
+    let eventId = $('#eventId').val();
+    let newDateTime = $('#eventDateTime').val();
+    let events = loadEvents();
 
-        eventClick: function (event) {
-          $('#eventId').val(event.id);
-          $('#eventTitle').text(event.title);
-          $('#eventDateTime').val(moment(event.start).format('YYYY-MM-DDTHH:mm'));
+    let event = $('#calendar').fullCalendar('clientEvents', eventId)[0];
+    if (event) {
+      event.start = moment(newDateTime);
+      $('#calendar').fullCalendar('updateEvent', event);
+    }
 
-          let destination = destinationsData[event.title];
-          if (destination) {
-            $('#destinationImage').attr('src', destination.image);
-            $('#destinationDescription').text(destination.description);
-            $('#readMoreLink').attr('href', destination.readMore);
-          } else {
-            $('#destinationImage').attr('src', '');
-            $('#destinationDescription').text('No description available.');
-            $('#readMoreLink').attr('href', '#');
-          }
+    let updatedEvents = events.map(evt => evt.id === eventId ? { ...evt, start: moment(newDateTime) } : evt);
+    saveEvents(updatedEvents);
 
-          $('#editEventModal').modal('show');
-        },
+    $('#editEventModal').modal('hide');
+  });
 
-        eventDrop: function (event) {
-          updateEvent(event);
-        },
+  $('#deleteEvent').click(function () {
+    if (confirm('Are you sure you want to delete this destination?')) {
+      let eventId = $('#eventId').val();
+      $('#calendar').fullCalendar('removeEvents', eventId);
 
-        eventResize: function (event) {
-          updateEvent(event);
-        }
-      });
+      let events = loadEvents();
+      let filteredEvents = events.filter(evt => evt.id !== eventId);
+      saveEvents(filteredEvents);
 
-      function updateEvent(event) {
-        let events = loadEvents();
-        let updatedEvents = events.map(evt => evt.id === event.id ? { ...evt, start: event.start.format(), end: event.end ? event.end.format() : null } : evt);
-        saveEvents(updatedEvents);
-      }
+      $('#editEventModal').modal('hide');
+    }
+  });
+});
 
-      $('#saveNewEvent').click(function () {
-        let newDateTime = $('#newEventDateTime').val();
-        let destination = $('#eventDestination').val();
-
-        if (newDateTime && destination) {
-          let newEvent = {
-            id: String(Date.now()),
-            title: destination,
-            start: moment(newDateTime),
-            backgroundColor: '#d0a84b',
-            borderColor: '#b88d3f'
-          };
-
-          let events = loadEvents();
-          events.push(newEvent);
-          saveEvents(events);
-
-          $('#calendar').fullCalendar('renderEvent', newEvent, true);
-          $('#createEventModal').modal('hide');
-          $('#createEventForm')[0].reset();
-        } else {
-          alert('Please select a date and destination.');
-        }
-      });
-
-      $('#saveChanges').click(function () {
-        let eventId = $('#eventId').val();
-        let newDateTime = $('#eventDateTime').val();
-        let events = loadEvents();
-
-        let event = $('#calendar').fullCalendar('clientEvents', eventId)[0];
-        if (event) {
-          event.start = moment(newDateTime);
-          $('#calendar').fullCalendar('updateEvent', event);
-        }
-
-        let updatedEvents = events.map(evt => evt.id === eventId ? { ...evt, start: moment(newDateTime) } : evt);
-        saveEvents(updatedEvents);
-
-        $('#editEventModal').modal('hide');
-      });
-
-      $('#deleteEvent').click(function () {
-        if (confirm('Are you sure you want to delete this destination?')) {
-          let eventId = $('#eventId').val();
-          $('#calendar').fullCalendar('removeEvents', eventId);
-
-          let events = loadEvents();
-          let filteredEvents = events.filter(evt => evt.id !== eventId);
-          saveEvents(filteredEvents);
-
-          $('#editEventModal').modal('hide');
-        }
-      });
-    });
   </script>
 
 </body>
