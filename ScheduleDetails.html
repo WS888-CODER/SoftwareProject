@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Schedule Details</title>
+  <title>FARRAH | Schedule Details</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
@@ -11,58 +11,51 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="ScheduleDetails.css">
+  <link rel="stylesheet" href="css/ScheduleDetails.css">
+  <link rel="stylesheet" href="css/HomeStyle.css">
+
 
 </head>
 
 <body>
 
-
-  <!-- زر السلايد بار (بدون صورة) -->
+  <!-- Slider bar-->
   <div class="slidebar-btn" id="slidebarBtn">
-    <!-- ثلاثة خطوط (أشرطة) -->
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </div>
 
-  <!-- السلايد بار -->
   <div class="slidebar" id="slidebar">
     <ul>
       <br><br>
       <li><a href="PersonalInformation.html">Personal information</a></li><br>
-
       <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
-
       <li><a href="MySchedules.html">My schedules</a></li>
-      <li><a class='sign-out'href="index.html">Sign out </a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
     </ul>
   </div>
 
-
-  <!-- الهيدر -->
+  <!-- header -->
   <header>
     <div class="header-left">
       <div class="logo">Farrah</div>
-      
+      <div class="search-icon" id="searchIcon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none" />
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2" />
+        </svg>
+      </div>
     </div>
     <nav>
       <ul>
-        <li><a style="text-decoration: none;" href="Home.html">Home</a></li>
-        <li><a style="text-decoration: none;" href="Destnition.html">Destinations</a></li>
-
-
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Destnition.html">Destinations</a></li>
       </ul>
     </nav>
   </header>
 
-
-
-
-
-
-
-  <!-- التقويم -->
+  <!-- calendar -->
   <div class="container">
     <div id="calendar"></div>
   </div>
@@ -142,74 +135,76 @@
   </div>
 
 
-  <footer id="footer" class="footer">
-    <div class="footer-top">
-      <div class="footercontainer">
-        <div class="row">
-          <!-- العمود الأول: نبذة عن الموقع السياحي -->
-          <div class="col">
-            <div class="single-footer">
-              <h2>About Us</h2>
-              <p>
-                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
-                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
-                services to ensure every journey becomes an unforgettable adventure.
-              </p>
-            </div>
-          </div>
-          <!-- العمود الثاني: Vision -->
-          <div class="col">
-            <div class="single-footer">
-              <h2>Vision</h2>
-              <p>
-                Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
-                creating memorable travel experiences for every explorer.
-              </p>
-            </div>
-          </div>
-          <!-- العمود الثالث: معلومات التواصل الاجتماعي -->
-          <div class="col">
-            <h2>Contact Us</h2>
-            <ul class="social">
-              <li>
-                <img src="../images/facebook-icon.png" alt="facebook" />
-                <span>FarrahTravel</span>
-              </li>
-              <li>
-                <img src="../images/x-icon.png" alt="x" />
-                <span>@FarrahTravel</span>
-              </li>
-              <li>
-                <img src="../images/instagram-icon.png" alt="instagram" />
-                <span>@Farrah_Travel</span>
-              </li>
-              <li>
-                <img src="../images/gmail-icon.png" alt="gmail" />
-                <span>info@farrahtravel.com</span>
-              </li>
-              <li>
-                <img src="../images/phone-icon.png" alt="phone" />
-                <span>+966 555 123 456</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- حقوق النشر -->
-    <div class="copyright">
-      <div class="footercontainer">
-        <div class="row">
-          <div class="copyright-content">
+<!-- footer -->
+<footer id="footer" class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <!-- About us -->
+        <div class="col">
+          <div class="single-footer">
+            <h2>About Us</h2>
             <p>
-              © 2025 | All Rights Reserved by
-              <span>Farrah Travel</span>
+              Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+              We are dedicated to providing curated travel experiences, insightful guides, and exceptional
+              services to ensure every journey becomes an unforgettable adventure.
             </p>
           </div>
         </div>
+        <!-- Vision -->
+        <div class="col">
+          <div class="single-footer">
+            <h2>Vision</h2>
+            <p>
+              Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
+              creating memorable travel experiences for every explorer.
+            </p>
+          </div>
+        </div>
+        <!-- Contact Us-->
+        <div class="col">
+          <h2>Contact Us</h2>
+          <ul class="social">
+            <li>
+              <img src="images/facebook-icon.png" alt="facebook" />
+              <span>FarrahTravel</span>
+            </li>
+            <li>
+              <img src="images/x-icon.png" alt="x" />
+              <span>@FarrahTravel</span>
+            </li>
+            <li>
+              <img src="images/instagram-icon.png" alt="instagram" />
+              <span>@Farrah_Travel</span>
+            </li>
+            <li>
+              <img src="images/gmail-icon.png" alt="gmail" />
+              <span>info@farrahtravel.com</span>
+            </li>
+            <li>
+              <img src="images/phone-icon.png" alt="phone" />
+              <span>+966 555 123 456</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-  </footer>
+  </div>
+  <!--  copyright -->
+  <div class="copyright">
+    <div class="container">
+      <div class="row">
+        <div class="copyright-content">
+          <p>
+            © 2025 | All Rights Reserved by
+            <span>Farrah Travel</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
   <script>
     const cardsSlider = document.getElementById('cardsSlider');
     const cardsContainer = document.getElementById('cardsContainer');
@@ -252,15 +247,14 @@
     window.addEventListener('load', updateSliderBounds);
     window.addEventListener('resize', updateSliderBounds);
   </script>
-  <!-- ملف JavaScript أو كود JS مضمّن -->
+
+
   <script>
     const slidebarBtn = document.getElementById('slidebarBtn');
     const slidebar = document.getElementById('slidebar');
 
     slidebarBtn.addEventListener('click', () => {
-      // عند الضغط على زر السلايد بار، نضيف/نزيل كلاس active
       slidebar.classList.toggle('active');
-      // يمكن أيضًا عمل تأثير على زر السلايد بار نفسه
       slidebarBtn.classList.toggle('is-active');
     });
   </script>
@@ -394,9 +388,6 @@
       });
     });
   </script>
-
-
-
 
 </body>
 
