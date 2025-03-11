@@ -1,4 +1,4 @@
-<h1>index.html, login.html</h1>
+<h1>index.html, login.html, Register.html</h1>
 First we have a simple main page to let the user log-in or register. For the login, register page. I used a form to let the user enter his information and JavaScript to validate that each field is filled in and in the right format. If it's not, a pop-up message will appear indicating the mistake he made and when the user enters everything correctly then a success pop-message will appear and redirect it to the home page.
 
 
@@ -16,3 +16,12 @@ Home page for the “Farrah” website features a header that includes the site 
 
 <h1>Destnition.html</h1>
 Destnition page displays natural destinations dynamically and attractively. It also features a filter bar that allows users to filter natural destinations based on type (mountainous, sandy, marine, rocky, oasis) and geographic location. The natural destinations are showcased in a dynamic slider of destination cards, and JavaScript is used to enable filtering and search to display results matching the user’s input. The page is built using HTML and CSS to ensure a responsive and smooth design.
+
+
+<h1>PersonalInformation.html</h1>
+
+
+
+<h1>MySchedules.html</h1>
+
+<h1>ScheduleDetails.html</h1>
