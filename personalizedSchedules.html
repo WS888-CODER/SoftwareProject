@@ -4,14 +4,16 @@
   <meta charset="UTF-8" />
   <title>Personalized Farrah schedule</title>
   <!-- ربط ملف CSS -->
+  <link rel="stylesheet" href="HomeStyle.css">
+
   <link rel="stylesheet" href="personalizedSchedule.css">
+
 </head>
 <body>
 
-
-  <!-- زر السلايد بار (بدون صورة) -->
-  <div class="slidebar-btn" id="slidebarBtn">
-    <!-- ثلاثة خطوط (أشرطة) -->
+ 
+<!-- زر السايد بار -->
+<div class="slidebar-btn" id="slidebarBtn">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
@@ -29,35 +31,44 @@
     </ul>
   </div>
 
-
   <!-- الهيدر -->
   <header>
     <div class="header-left">
       <div class="logo">Farrah</div>
-      <!-- أيقونة البحث (شعار بحث) -->
-      <div class="search-icon" id="searchIcon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none"/>
-          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2"/>
-        </svg>
-      </div>
     </div>
     <nav>
       <ul>
         <li><a href="Home.html">Home</a></li>
         <li><a href="Destnition.html">Destinations</a></li>
-        
-        
       </ul>
     </nav>
   </header>
-
   <!-- مربع البحث المنبثق -->
   <div class="search-popup" id="searchPopup">
-    <div class="search-box">
-      <button class="close-search" id="closeSearch">&times;</button>
-      <form action="#" method="get">
-        <input type="search" name="q" placeholder="Search" />
+    <div class="search-box" style="padding:10px;">
+      <!-- نموذج البحث يقوم بتحويل المستخدم إلى Destnition مع بارامتر ?q=... -->
+      <form id="homeSearchForm" action="#" method="get" style="display: flex; gap: 10px; align-items: center;">
+        <input 
+          id="homeSearchInput"
+          type="search" 
+          name="q" 
+          placeholder="Search in Destinations..." 
+          style="flex:1; padding:8px;"
+        />
+        <button 
+          type="submit"
+          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;"
+        >
+          Search
+        </button>
+        <!-- زر إغلاق -->
+        <button 
+          type="button"
+          id="closeSearch"
+          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;"
+        >
+          &times;
+        </button>
       </form>
     </div>
   </div>
@@ -119,24 +130,17 @@
         
     
       <script>
-        // 1) التعامل مع مربع البحث
-        const searchIcon = document.getElementById('searchIcon');
-        const searchPopup = document.getElementById('searchPopup');
-        const closeSearch = document.getElementById('closeSearch');
-    
-        searchIcon.addEventListener('click', () => {
-          searchPopup.classList.add('active');
-        });
-        closeSearch.addEventListener('click', () => {
-          searchPopup.classList.remove('active');
-        });
-        searchPopup.addEventListener('click', (e) => {
-          if (e.target === searchPopup) {
-            searchPopup.classList.remove('active');
-          }
-        });
-    
-        function nextStep(step) {
+      // زر السايد بار
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+    slidebarBtn.addEventListener('click', () => {
+      slidebar.classList.toggle('active');
+      slidebarBtn.classList.toggle('is-active');
+    });
+
+ 
+  
+    function nextStep(step) {
     let input = document.querySelector(`#step-${step}-personalized input, #step-${step}-personalized select`);
     
     if (!input.value.trim()) {
@@ -168,24 +172,19 @@ function closePopup(id) {
     popup.style.visibility = "hidden";
     popup.style.opacity = "0";
 }
-
-// Handle Form Submission
 document.getElementById("travel-form-personalized").addEventListener("submit", function(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent immediate submission
 
-    let budget = document.getElementById("budget-personalized").value;
-    let destination = document.getElementById("destination-personalized").value;
-    let activities = document.getElementById("activities-personalized").value;
-    let duration = document.getElementById("duration-personalized").value;
+    // Show loading message
+    showPopup("loading", "⏳ Please do not click anywhere, we are generating your schedule!");
 
-    showPopup("success", `✅ Personalized Trip Plan:
-- Budget: $${budget}
-- Destination: ${destination}
-- Activities: ${activities}
-- Duration: ${duration} days
-
-Your schedule is being generated!`);
+    // Wait for 2 seconds, then redirect to "myschedule.html"
+    setTimeout(() => {
+        window.location.href = "MySchedules.html"; // Change this to the correct URL
+    }, 2000);
 });
+
+
 
 
         </script>

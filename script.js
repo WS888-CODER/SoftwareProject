@@ -1,68 +1,91 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Select all forms on the page
-    document.querySelectorAll("form").forEach(function (form) {
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent form submission
+    const form = document.querySelector("form");
 
-            // Get input values from the CURRENT form
-            let username = form.querySelector("input[name='username-login']")?.value;
-            let email = form.querySelector("input[name='email-login']")?.value; // Only for register
-            let password = form.querySelector("input[name='password-login']")?.value;
-            let phone = form.querySelector("input[name='phone-login']")?.value; // Only for register
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
 
-            // Validate password length
-            if (password && password.length < 8) {
-                showPopup('alert', "🚨 Password must be at least 8 characters long!");
+        let username = document.getElementById("username-login")?.value.trim() || "";
+        let password = document.getElementById("password-login")?.value.trim() || "";
+
+        // Initialize email and phone as empty string (they might not be present)
+        let email = "";
+        let phone = "";
+
+        // Check if the email and phone fields exist on the page (for registration)
+        if (document.getElementById("email-login")) {
+            email = document.getElementById("email-login").value.trim();
+        }
+        if (document.getElementById("phone-login")) {
+            phone = document.getElementById("phone-login").value.trim();
+        }
+
+        // If we are in the login form (only username and password are required)
+        if (!document.getElementById("email-login") && !document.getElementById("phone-login")) {
+            if (!username || !password) {
+                showPopup("error", "🛑 Please enter both username and password.");
                 return;
             }
-
-            // Validate email format (must contain "@")
-            if (email && !email.includes("@")) {
-                showPopup('alert', "📧 Please enter a valid email address that contains '@'.");
+        } 
+        // If we are in the registration form (username, email, password, and phone are required)
+        else {
+            if (!username || !email || !password || !phone) {
+                showPopup("error", "🛑 Please fill in all fields before submitting.");
                 return;
             }
+        }
 
-            // Validate phone format (only for Register form)
-            if (phone && !/^\d{3}-\d{3}-\d{4}$/.test(phone)) {
-                showPopup('alert', "📞 Phone number must be in the format: 123-456-7890");
-                return;
-            }
+        // Validate email format (if email field exists)
+        if (document.getElementById("email-login") && email && (!email.includes("@") || !email.includes("."))) {
+            showPopup("error", "📧 Please enter a valid email address.");
+            return;
+        }
 
-            // Show success message for successful submission
-            showPopup('success', "✅ Successfully Submitted! Redirecting...");
+        // Validate password length
+        if (password.length < 8) {
+            showPopup("error", "🔒 Password must be at least 8 characters.");
+            return;
+        }
 
-            // Wait for 2 seconds, then redirect to homepage
-            setTimeout(function () {
-                window.location.href = "Home.html"; // Change this to your actual homepage
-            }, 2000);
-        });
-    });
-});
-
-// Function to show the popup (alert or success)
-function showPopup(type, message) {
-    if (type === 'alert') {
-        document.getElementById("alert-popup-message").textContent = message;
-        let alertPopup = document.getElementById("alert-popup");
-        alertPopup.style.visibility = "visible";
-        alertPopup.style.opacity = "1";
-    } else if (type === 'success') {
-        document.getElementById("success-popup-message").textContent = message;
-        let successPopup = document.getElementById("success-popup");
-        successPopup.style.visibility = "visible";
-        successPopup.style.opacity = "1";
+       // Validate phone number format (if phone field exists)
+if (document.getElementById("phone-login") && phone) {
+    let phonePattern = /^\+966\d{9}$/;
+    if (!phone.match(phonePattern)) {
+        showPopup("error", "📞 Please enter a valid phone number starting with +966 and consisting of 12 digits.");
+        return;
     }
 }
 
-// Function to close the popup
+
+
+        // Show success popup
+        showPopup("success", "✅ Success! Redirecting...");
+
+        setTimeout(() => {
+            window.location.href = "Home.html"; // Redirect based on form type
+        }, 2000);
+    });
+});
+
+// Function to show popups
+function showPopup(type, message) {
+    let popupId = type === "success" ? "success-popup" : "alert-popup";
+    let messageId = type === "success" ? "success-popup-message" : "alert-popup-message";
+
+    document.getElementById(messageId).textContent = message;
+    let popup = document.getElementById(popupId);
+    popup.style.visibility = "visible";
+    popup.style.opacity = "1";
+
+    // Automatically hide the popup after 3 seconds (3000 ms)
+    setTimeout(() => {
+        closePopup(type);
+    }, 3000); // You can adjust the time as needed (in milliseconds)
+}
+
+// Function to close popups
 function closePopup(type) {
-    if (type === 'alert') {
-        let alertPopup = document.getElementById("alert-popup");
-        alertPopup.style.visibility = "hidden";
-        alertPopup.style.opacity = "0";
-    } else if (type === 'success') {
-        let successPopup = document.getElementById("success-popup");
-        successPopup.style.visibility = "hidden";
-        successPopup.style.opacity = "0";
-    }
+    let popupId = type === "success" ? "success-popup" : "alert-popup";
+    let popup = document.getElementById(popupId);
+    popup.style.visibility = "hidden";
+    popup.style.opacity = "0";
 }

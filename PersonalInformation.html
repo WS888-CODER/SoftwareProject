@@ -7,48 +7,38 @@
     <link rel="stylesheet" href="PersonalInformation.css">
 </head>
 <body>
-  <!-- زر السلايد بار (بدون صورة) -->
-  <div class="slidebar-btn" id="slidebarBtn">
-    <!-- ثلاثة خطوط (أشرطة) -->
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </div>
+  
+<!-- زر السايد بار -->
+<div class="slidebar-btn" id="slidebarBtn">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</div>
 
-   <!-- السلايد بار -->
-   <div class="slidebar" id="slidebar">
+<!-- السلايد بار -->
+<div class="slidebar" id="slidebar">
+  <ul>
+    <br><br>
+    <li><a href="PersonalInformation.html">Personal information</a></li><br>
+    <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
+    <li><a href="MySchedules.html">My schedules</a></li>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <li><a href="index.html">Sign out </a></li>
+  </ul>
+</div>
+
+<!-- الهيدر -->
+<header>
+  <div class="header-left">
+    <div class="logo">Farrah</div>
+  </div>
+  <nav>
     <ul>
-      <br><br>
-      <li><a href="PersonalInformation.html">Personal information</a></li><br>
-      <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
-      <li><a href="MySchedules.html">My schedules</a></li>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <li><a href="index.html">Sign out </a></li>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="Destnition.html">Destinations</a></li>
     </ul>
-  </div>
-
-
-  <!-- الهيدر -->
-  <header>
-    <div class="header-left">
-      <div class="logo">Farrah</div>
-      <!-- أيقونة البحث (شعار بحث) -->
-      <div class="search-icon" id="searchIcon">
-        <svg viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none"/>
-          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2"/>
-        </svg>
-      </div>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="Home.html">Home</a></li>
-        <li><a href="Destnition.html">Destinations</a></li>
-        
-        
-      </ul>
-    </nav>
-  </header>
+  </nav>
+</header>
 
   <!-- مربع البحث المنبثق -->
   <div class="search-popup" id="searchPopup">
@@ -67,7 +57,7 @@
             <form>
                 <div class="form-group">
                     <label>Username:</label>
-                    <input type="text" id="username" value="JohnDoe" disabled>
+                    <input type="text" id="username" value="Khalid alqahtani" disabled>
                 </div>
                 <div class="form-group">
                     <label>Phone Number:</label>
@@ -75,7 +65,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
-                    <input type="email" id="email" value="johndoe@example.com" disabled>
+                    <input type="email" id="email" value="khalidAlq@example.com" disabled>
                 </div>
                 <div class="form-group">
                     <label>Password:</label>
@@ -155,109 +145,102 @@
         </div>
       </div>
     </footer>
-    <script>
-        document.getElementById('edit-btn').addEventListener('click', function() {
-            document.getElementById('username').disabled = false;
-            document.getElementById('phone').disabled = false;
-            document.getElementById('email').disabled = false;
-            document.getElementById('password').disabled = false;
-            this.style.display = 'none';
-            document.getElementById('save-btn').style.display = 'inline-block';
-            document.getElementById('cancel-btn').style.display = 'inline-block';
-        });
+    <!-- Alert Popup -->
+<div id="alert-popup" class="popup-overlay">
+  <div class="popup-box">
+      <p id="alert-popup-message"></p> <!-- Error or alert message -->
+  </div>
+</div>
 
-        document.getElementById('save-btn').addEventListener('click', function() {
-            document.getElementById('username').disabled = true;
-            document.getElementById('phone').disabled = true;
-            document.getElementById('email').disabled = true;
-            document.getElementById('password').disabled = true;
-            this.style.display = 'none';
-            document.getElementById('cancel-btn').style.display = 'none';
-            document.getElementById('edit-btn').style.display = 'block';
-            alert('Information updated successfully!');
-        });
-
-        document.getElementById('cancel-btn').addEventListener('click', function() {
-            document.getElementById('username').disabled = true;
-            document.getElementById('phone').disabled = true;
-            document.getElementById('email').disabled = true;
-            document.getElementById('password').disabled = true;
-            this.style.display = 'none';
-            document.getElementById('save-btn').style.display = 'none';
-            document.getElementById('edit-btn').style.display = 'block';
-        });
-    </script>
+<!-- Success Popup -->
+<div id="success-popup" class="popup-overlay">
+  <div class="popup-box">
+      <p id="success-popup-message"></p> <!-- Success message -->
+  </div>
+</div>
     <script>
-      // 1) التعامل مع مربع البحث
-      const searchIcon = document.getElementById('searchIcon');
-      const searchPopup = document.getElementById('searchPopup');
-      const closeSearch = document.getElementById('closeSearch');
-  
-      searchIcon.addEventListener('click', () => {
-        searchPopup.classList.add('active');
-      });
-      closeSearch.addEventListener('click', () => {
-        searchPopup.classList.remove('active');
-      });
-      searchPopup.addEventListener('click', (e) => {
-        if (e.target === searchPopup) {
-          searchPopup.classList.remove('active');
-        }
-      });
-  
-      // 2) التعامل مع السلايدر
-      const cardsSlider = document.getElementById('cardsSlider');
-      const cardsContainer = document.getElementById('cardsContainer');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-  
-      let currentTranslateX = 0;
-      function updateSliderBounds() {
-        const sliderWidth = cardsSlider.clientWidth;
-        const totalCardsWidth = cardsContainer.scrollWidth;
-        const maxTranslateX = sliderWidth - totalCardsWidth;
-        const step = 240;
-  
-        function nextSlide() {
-          if (currentTranslateX <= maxTranslateX) return; 
-          const remain = currentTranslateX - maxTranslateX;
-          if (remain <= step) {
-            currentTranslateX = maxTranslateX;
-          } else {
-            currentTranslateX -= step;
-          }
-          cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
-        }
-  
-        function prevSlide() {
-          if (currentTranslateX >= 0) return;
-          const remain = Math.abs(currentTranslateX);
-          if (remain <= step) {
-            currentTranslateX = 0;
-          } else {
-            currentTranslateX += step;
-          }
-          cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
-        }
-  
-        nextBtn.onclick = nextSlide;
-        prevBtn.onclick = prevSlide;
-      }
-  
-      window.addEventListener('load', updateSliderBounds);
-      window.addEventListener('resize', updateSliderBounds);
+       // زر السايد بار
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+    slidebarBtn.addEventListener('click', () => {
+      slidebar.classList.toggle('active');
+      slidebarBtn.classList.toggle('is-active');
+    });
+     document.getElementById('edit-btn').addEventListener('click', function() {
+    document.getElementById('username').disabled = false;
+    document.getElementById('phone').disabled = false;
+    document.getElementById('email').disabled = false;
+    document.getElementById('password').disabled = false;
+    this.style.display = 'none';
+    document.getElementById('save-btn').style.display = 'inline-block';
+    document.getElementById('cancel-btn').style.display = 'inline-block';
+});
+
+document.getElementById('save-btn').addEventListener('click', function() {
+    // Get the values of the input fields
+    let email = document.getElementById('email').value.trim();
+    let password = document.getElementById('password').value.trim();
+
+    // Validate email format
+    if (!email.includes("@") || !email.includes(".")) {
+        showPopup("error", "📧 Please enter a valid email address.");
+        return; // Stop further execution
+    }
+
+    // Validate password length
+    if (password.length < 8) {
+        showPopup("error", "🔒 Password must be at least 8 characters.");
+        return; // Stop further execution
+    }
+
+    // If all validations pass, save the information and update the UI
+    document.getElementById('username').disabled = true;
+    document.getElementById('phone').disabled = true;
+    document.getElementById('email').disabled = true;
+    document.getElementById('password').disabled = true;
+    this.style.display = 'none';
+    document.getElementById('cancel-btn').style.display = 'none';
+    document.getElementById('edit-btn').style.display = 'block';
+
+    // Show success popup
+    showPopup("success", "✅ Information updated successfully!");
+});
+
+document.getElementById('cancel-btn').addEventListener('click', function() {
+    document.getElementById('username').disabled = true;
+    document.getElementById('phone').disabled = true;
+    document.getElementById('email').disabled = true;
+    document.getElementById('password').disabled = true;
+    this.style.display = 'none';
+    document.getElementById('save-btn').style.display = 'none';
+    document.getElementById('edit-btn').style.display = 'block';
+});
+
+// Function to show popups
+function showPopup(type, message) {
+    let popupId = type === "success" ? "success-popup" : "alert-popup";
+    let messageId = type === "success" ? "success-popup-message" : "alert-popup-message";
+
+    document.getElementById(messageId).textContent = message;
+    let popup = document.getElementById(popupId);
+    popup.style.visibility = "visible";
+    popup.style.opacity = "1";
+
+    // Automatically hide the popup after 3 seconds (3000 ms)
+    setTimeout(() => {
+        closePopup(type);
+    }, 3000); // You can adjust the time as needed (in milliseconds)
+}
+
+// Function to close popups
+function closePopup(type) {
+    let popupId = type === "success" ? "success-popup" : "alert-popup";
+    let popup = document.getElementById(popupId);
+    popup.style.visibility = "hidden";
+    popup.style.opacity = "0";
+}
+
     </script>
-      <!-- ملف JavaScript أو كود JS مضمّن -->
-      <script>
-        const slidebarBtn = document.getElementById('slidebarBtn');
-        const slidebar = document.getElementById('slidebar');
     
-        slidebarBtn.addEventListener('click', () => {
-          // عند الضغط على زر السلايد بار، نضيف/نزيل كلاس active
-          slidebar.classList.toggle('active');
-          // يمكن أيضًا عمل تأثير على زر السلايد بار نفسه
-          slidebarBtn.classList.toggle('is-active');
-        });
-      </script>
 </body>
 </html>
