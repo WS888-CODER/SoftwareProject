@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
   <meta charset="UTF-8" />
   <title>Personalized Farrah schedule</title>
-  <!-- ربط ملف CSS -->
-  <link rel="stylesheet" href="HomeStyle.css">
-
-  <link rel="stylesheet" href="personalizedSchedule.css">
-
+  <link rel="stylesheet" href="css/HomeStyle.css">
+  <link rel="stylesheet" href="css/personalizedSchedule.css">
 </head>
+
 <body>
 
- 
-<!-- زر السايد بار -->
-<div class="slidebar-btn" id="slidebarBtn">
+
+  <!--slidebar button-->
+  <div class="slidebar-btn" id="slidebarBtn">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </div>
 
-  <!-- السلايد بار -->
   <div class="slidebar" id="slidebar">
     <ul>
       <br><br>
       <li><a href="PersonalInformation.html">Personal information</a></li><br>
       <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
       <li><a href="MySchedules.html">My schedules</a></li>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <li><a href="index.html">Sign out </a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
     </ul>
   </div>
 
-  <!-- الهيدر -->
+  <!-- header -->
   <header>
     <div class="header-left">
       <div class="logo">Farrah</div>
@@ -43,30 +40,17 @@
       </ul>
     </nav>
   </header>
-  <!-- مربع البحث المنبثق -->
   <div class="search-popup" id="searchPopup">
     <div class="search-box" style="padding:10px;">
-      <!-- نموذج البحث يقوم بتحويل المستخدم إلى Destnition مع بارامتر ?q=... -->
       <form id="homeSearchForm" action="#" method="get" style="display: flex; gap: 10px; align-items: center;">
-        <input 
-          id="homeSearchInput"
-          type="search" 
-          name="q" 
-          placeholder="Search in Destinations..." 
-          style="flex:1; padding:8px;"
-        />
-        <button 
-          type="submit"
-          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;"
-        >
+        <input id="homeSearchInput" type="search" name="q" placeholder="Search in Destinations..."
+          style="flex:1; padding:8px;" />
+        <button type="submit"
+          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;">
           Search
         </button>
-        <!-- زر إغلاق -->
-        <button 
-          type="button"
-          id="closeSearch"
-          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;"
-        >
+        <button type="button" id="closeSearch"
+          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;">
           &times;
         </button>
       </form>
@@ -74,121 +58,113 @@
   </div>
   <section class="form-container-personalized">
     <div class="form-box-personalized">
-        <h2 class="form-title-personalized">Plan Your Personalized Trip</h2>
-        <p class="form-subtitle-personalized">Answer a few questions, and we'll create your perfect schedule!</p>
+      <h2 class="form-title-personalized">Plan Your Personalized Trip</h2>
+      <p class="form-subtitle-personalized">Answer a few questions, and we'll create your perfect schedule!</p>
 
-        <form id="travel-form-personalized">
-            <!-- Step 1: Budget -->
-            <div class="step-personalized" id="step-1-personalized">
-                <label for="budget-personalized">💰 What is your budget? ($)</label>
-                <input type="number" id="budget-personalized" name="budget-personalized" min="500" placeholder="Enter your budget">
-                <button type="button" onclick="nextStep(1)">Next</button>
-            </div>
-        
-            <!-- Step 2: Destination -->
-            <div class="step-personalized" id="step-2-personalized" style="display: none;">
-                <label for="destination-personalized">📍 What type of destination do you prefer?</label>
-                <select id="destination-personalized" name="destination-personalized">
-                    <option value="">Select a destination</option>
-                    <option value="beach">🏖️ Beach</option>
-                    <option value="mountains">🏔️ Mountains</option>
-                    <option value="desert">🏜️ Desert</option>
-                    <option value="historical">🏛️ Historical Sites</option>
-                </select>
-                <button type="button" onclick="nextStep(2)">Next</button>
-            </div>
-        
-            <!-- Step 3: Activities -->
-            <div class="step-personalized" id="step-3-personalized" style="display: none;">
-                <label for="activities-personalized">🎯 What activities do you enjoy?</label>
-                <input type="text" id="activities-personalized" name="activities-personalized" placeholder="e.g., hiking, diving, sightseeing">
-                <button type="button" onclick="nextStep(3)">Next</button>
-            </div>
-        
-            <!-- Step 4: Duration -->
-            <div class="step-personalized" id="step-4-personalized" style="display: none;">
-                <label for="duration-personalized">📅 How many days will your trip be?</label>
-                <input type="number" id="duration-personalized" name="duration-personalized" min="1" max="30">
-                <button type="submit">Generate Schedule</button>
-            </div>
-        </form>
-        
-        <!-- Success Popup -->
-        <div id="success-popup-personalized" class="popup-overlay-personalized">
-            <div class="popup-box-personalized">
-                <p id="success-message-personalized"></p>
-            </div>
+      <form id="travel-form-personalized">
+        <!-- Step 1: Budget -->
+        <div class="step-personalized" id="step-1-personalized">
+          <label for="budget-personalized">💰 What is your budget? ($)</label>
+          <input type="number" id="budget-personalized" name="budget-personalized" min="500"
+            placeholder="Enter your budget">
+          <button type="button" onclick="nextStep(1)">Next</button>
         </div>
-        
-        <!-- Error Popup -->
-        <div id="error-popup-personalized" class="popup-overlay-personalized">
-            <div class="popup-box-personalized">
-                <p id="error-message-personalized"></p>
-            </div>
+
+        <!-- Step 2: Destination -->
+        <div class="step-personalized" id="step-2-personalized" style="display: none;">
+          <label for="destination-personalized">📍 What type of destination do you prefer?</label>
+          <select id="destination-personalized" name="destination-personalized">
+            <option value="">Select a destination</option>
+            <option value="beach">🏖️ Beach</option>
+            <option value="mountains">🏔️ Mountains</option>
+            <option value="desert">🏜️ Desert</option>
+            <option value="historical">🏛️ Historical Sites</option>
+          </select>
+          <button type="button" onclick="nextStep(2)">Next</button>
         </div>
-        
-        
-    
+
+        <!-- Step 3: Activities -->
+        <div class="step-personalized" id="step-3-personalized" style="display: none;">
+          <label for="activities-personalized">🎯 What activities do you enjoy?</label>
+          <input type="text" id="activities-personalized" name="activities-personalized"
+            placeholder="e.g., hiking, diving, sightseeing">
+          <button type="button" onclick="nextStep(3)">Next</button>
+        </div>
+
+        <!-- Step 4: Duration -->
+        <div class="step-personalized" id="step-4-personalized" style="display: none;">
+          <label for="duration-personalized">📅 How many days will your trip be?</label>
+          <input type="number" id="duration-personalized" name="duration-personalized" min="1" max="30">
+          <button type="submit">Generate Schedule</button>
+        </div>
+      </form>
+
+      <!-- Success Popup -->
+      <div id="success-popup-personalized" class="popup-overlay-personalized">
+        <div class="popup-box-personalized">
+          <p id="success-message-personalized"></p>
+        </div>
+      </div>
+
+      <!-- Error Popup -->
+      <div id="error-popup-personalized" class="popup-overlay-personalized">
+        <div class="popup-box-personalized">
+          <p id="error-message-personalized"></p>
+        </div>
+      </div>
+
       <script>
-      // زر السايد بار
-    const slidebarBtn = document.getElementById('slidebarBtn');
-    const slidebar = document.getElementById('slidebar');
-    slidebarBtn.addEventListener('click', () => {
-      slidebar.classList.toggle('active');
-      slidebarBtn.classList.toggle('is-active');
-    });
+        const slidebarBtn = document.getElementById('slidebarBtn');
+        const slidebar = document.getElementById('slidebar');
+        slidebarBtn.addEventListener('click', () => {
+          slidebar.classList.toggle('active');
+          slidebarBtn.classList.toggle('is-active');
+        });
 
- 
-  
-    function nextStep(step) {
-    let input = document.querySelector(`#step-${step}-personalized input, #step-${step}-personalized select`);
-    
-    if (!input.value.trim()) {
-        showPopup("error", "🛑 Please fill in this field before proceeding.");
-        return;
-    }
+        function nextStep(step) {
+          let input = document.querySelector(`#step-${step}-personalized input, #step-${step}-personalized select`);
 
-    document.getElementById(`step-${step}-personalized`).style.display = "none";
-    document.getElementById(`step-${step + 1}-personalized`).style.display = "block";
-}
+          if (!input.value.trim()) {
+            showPopup("error", "🛑 Please fill in this field before proceeding.");
+            return;
+          }
 
-// Function to show popups
-function showPopup(type, message) {
-    let popupId = type === "success" ? "success-popup-personalized" : "error-popup-personalized";
-    let messageId = type === "success" ? "success-message-personalized" : "error-message-personalized";
-    
-    document.getElementById(messageId).textContent = message;
-    let popup = document.getElementById(popupId);
-    popup.style.visibility = "visible";
-    popup.style.opacity = "1";
+          document.getElementById(`step-${step}-personalized`).style.display = "none";
+          document.getElementById(`step-${step + 1}-personalized`).style.display = "block";
+        }
 
-    // Hide after 2 seconds
-    setTimeout(() => closePopup(popupId), 2000);
-}
+        // Function to show popups
+        function showPopup(type, message) {
+          let popupId = type === "success" ? "success-popup-personalized" : "error-popup-personalized";
+          let messageId = type === "success" ? "success-message-personalized" : "error-message-personalized";
 
-// Function to close popups
-function closePopup(id) {
-    let popup = document.getElementById(id);
-    popup.style.visibility = "hidden";
-    popup.style.opacity = "0";
-}
-document.getElementById("travel-form-personalized").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent immediate submission
+          document.getElementById(messageId).textContent = message;
+          let popup = document.getElementById(popupId);
+          popup.style.visibility = "visible";
+          popup.style.opacity = "1";
 
-    // Show loading message
-    showPopup("loading", "⏳ Please do not click anywhere, we are generating your schedule!");
+          // Hide after 2 seconds
+          setTimeout(() => closePopup(popupId), 2000);
+        }
 
-    // Wait for 2 seconds, then redirect to "myschedule.html"
-    setTimeout(() => {
-        window.location.href = "MySchedules.html"; // Change this to the correct URL
-    }, 2000);
-});
+        // Function to close popups
+        function closePopup(id) {
+          let popup = document.getElementById(id);
+          popup.style.visibility = "hidden";
+          popup.style.opacity = "0";
+        }
+        document.getElementById("travel-form-personalized").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent immediate submission
 
+          // Show loading message
+          showPopup("loading", "⏳ Please do not click anywhere, we are generating your schedule!");
 
+          // Wait for 2 seconds, then redirect to "myschedule.html"
+          setTimeout(() => {
+            window.location.href = "MySchedules.html"; // Change this to the correct URL
+          }, 2000);
+        });
+      </script>
+</body>
 
-
-        </script>
-
-    </body>
-    </html>
-    
+</html>
