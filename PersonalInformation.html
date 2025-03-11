@@ -1,246 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Information</title>
-    <link rel="stylesheet" href="PersonalInformation.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FARRAH | Personal Information</title>
+  <link rel="stylesheet" href="css/PersonalInformation.css">
 </head>
+
 <body>
-  
-<!-- زر السايد بار -->
-<div class="slidebar-btn" id="slidebarBtn">
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-</div>
-
-<!-- السلايد بار -->
-<div class="slidebar" id="slidebar">
-  <ul>
-    <br><br>
-    <li><a href="PersonalInformation.html">Personal information</a></li><br>
-    <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
-    <li><a href="MySchedules.html">My schedules</a></li>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <li><a href="index.html">Sign out </a></li>
-  </ul>
-</div>
-
-<!-- الهيدر -->
-<header>
-  <div class="header-left">
-    <div class="logo">Farrah</div>
+  <!-- Slider bar-->
+  <div class="slidebar-btn" id="slidebarBtn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
   </div>
-  <nav>
-    <ul>
-      <li><a href="Home.html">Home</a></li>
-      <li><a href="Destnition.html">Destinations</a></li>
-    </ul>
-  </nav>
-</header>
 
-  <!-- مربع البحث المنبثق -->
-  <div class="search-popup" id="searchPopup">
-    <div class="search-box">
-      <button class="close-search" id="closeSearch">&times;</button>
-      <form action="#" method="get">
-        <input type="search" name="q" placeholder="Search" />
+  <div class="slidebar" id="slidebar">
+    <ul>
+      <br><br>
+      <li><a href="PersonalInformation.html">Personal information</a></li><br>
+      <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
+      <li><a href="MySchedules.html">My schedules</a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
+    </ul>
+  </div>
+
+  <!-- header -->
+  <header>
+    <div class="header-left">
+      <div class="logo">Farrah</div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Destnition.html">Destinations</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Personal Information -->
+  <div class="form-container">
+    <div class="form-box">
+      <h2>Personal Information</h2>
+      <form>
+        <div class="form-group">
+          <label>Username:</label>
+          <input type="text" id="username" value="Khalid alqahtani" disabled>
+        </div>
+        <div class="form-group">
+          <label>Phone Number:</label>
+          <input type="text" id="phone" value="+966123456789" disabled>
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" id="email" value="khalidAlq@example.com" disabled>
+        </div>
+        <div class="form-group">
+          <label>Password:</label>
+          <input type="password" id="password" value="********" disabled>
+        </div>
+        <button type="button" id="edit-btn" class="edit-btn">Edit</button>
+        <button type="button" id="save-btn" class="save-btn" style="display: none;">Save</button>
+        <button type="button" id="cancel-btn" class="cancel-btn" style="display: none;">Cancel</button>
       </form>
     </div>
   </div>
-
-
-    <div class="container">
-        <div class="form-box">
-            <h2>Personal Information</h2>
-            <form>
-                <div class="form-group">
-                    <label>Username:</label>
-                    <input type="text" id="username" value="Khalid alqahtani" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Phone Number:</label>
-                    <input type="text" id="phone" value="+966123456789" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" id="email" value="khalidAlq@example.com" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Password:</label>
-                    <input type="password" id="password" value="********" disabled>
-                </div>
-                <button type="button" id="edit-btn" class="edit-btn">Edit</button>
-                <button type="button" id="save-btn" class="save-btn" style="display: none;">Save</button>
-                <button type="button" id="cancel-btn" class="cancel-btn" style="display: none;">Cancel</button>
-            </form>
-        </div>
-    </div>
-    <footer id="footer" class="footer">
-      <div class="footer-top">
-        <div class="footercontainer">
-          <div class="row">
-            <!-- العمود الأول: نبذة عن الموقع السياحي -->
-            <div class="col">
-              <div class="single-footer">
-                <h2>About Us</h2>
-                <p>
-                  Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia. 
-                  We are dedicated to providing curated travel experiences, insightful guides, and exceptional 
-                  services to ensure every journey becomes an unforgettable adventure.
-                </p>
-              </div>
-            </div>
-            <!-- العمود الثاني: Vision -->
-            <div class="col">
-              <div class="single-footer">
-                <h2>Vision</h2>
-                <p>
-                  Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
-                  creating memorable travel experiences for every explorer.
-                </p>
-              </div>
-            </div>
-            <!-- العمود الثالث: معلومات التواصل الاجتماعي -->
-            <div class="col">
-              <h2>Contact Us</h2>
-              <ul class="social">
-                <li>
-                  <img src="../images/facebook-icon.png" alt="facebook" />
-                  <span>FarrahTravel</span>
-                </li>
-                <li>
-                  <img src="../images/x-icon.png" alt="x" />
-                  <span>@FarrahTravel</span>
-                </li>
-                <li>
-                  <img src="../images/instagram-icon.png" alt="instagram" />
-                  <span>@Farrah_Travel</span>
-                </li>
-                <li>
-                  <img src="../images/gmail-icon.png" alt="gmail" />
-                  <span>info@farrahtravel.com</span>
-                </li>
-                <li>
-                  <img src="../images/phone-icon.png" alt="phone" />
-                  <span>+966 555 123 456</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- حقوق النشر -->
-      <div class="copyright">
-        <div class="footercontainer">
-          <div class="row">
-            <div class="copyright-content">
+  <!-- footer -->
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <!-- About us -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>About Us</h2>
               <p>
-                © 2025 | All Rights Reserved by 
-                <span>Farrah Travel</span>
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
+                services to ensure every journey becomes an unforgettable adventure.
               </p>
             </div>
           </div>
+          <!-- Vision -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>Vision</h2>
+              <p>
+                Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
+                creating memorable travel experiences for every explorer.
+              </p>
+            </div>
+          </div>
+          <!-- Contact Us-->
+          <div class="col">
+            <h2>Contact Us</h2>
+            <ul class="social">
+              <li>
+                <img src="images/facebook-icon.png" alt="facebook" />
+                <span>FarrahTravel</span>
+              </li>
+              <li>
+                <img src="images/x-icon.png" alt="x" />
+                <span>@FarrahTravel</span>
+              </li>
+              <li>
+                <img src="images/instagram-icon.png" alt="instagram" />
+                <span>@Farrah_Travel</span>
+              </li>
+              <li>
+                <img src="images/gmail-icon.png" alt="gmail" />
+                <span>info@farrahtravel.com</span>
+              </li>
+              <li>
+                <img src="images/phone-icon.png" alt="phone" />
+                <span>+966 555 123 456</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </footer>
-    <!-- Alert Popup -->
-<div id="alert-popup" class="popup-overlay">
-  <div class="popup-box">
-      <p id="alert-popup-message"></p> <!-- Error or alert message -->
-  </div>
-</div>
+    </div>
+    <!--  copyright -->
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="copyright-content">
+            <p>
+              © 2025 | All Rights Reserved by
+              <span>Farrah Travel</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<!-- Success Popup -->
-<div id="success-popup" class="popup-overlay">
-  <div class="popup-box">
-      <p id="success-popup-message"></p> <!-- Success message -->
+  <!-- Alert Popup -->
+  <div id="alert-popup" class="popup-overlay">
+    <div class="popup-box">
+      <p id="alert-popup-message"></p> <!-- Error or alert message -->
+    </div>
   </div>
-</div>
-    <script>
-       // زر السايد بار
+
+  <!-- Success Popup -->
+  <div id="success-popup" class="popup-overlay">
+    <div class="popup-box">
+      <p id="success-popup-message"></p> <!-- Success message -->
+    </div>
+  </div>
+  <script>
     const slidebarBtn = document.getElementById('slidebarBtn');
     const slidebar = document.getElementById('slidebar');
     slidebarBtn.addEventListener('click', () => {
       slidebar.classList.toggle('active');
       slidebarBtn.classList.toggle('is-active');
     });
-     document.getElementById('edit-btn').addEventListener('click', function() {
-    document.getElementById('username').disabled = false;
-    document.getElementById('phone').disabled = false;
-    document.getElementById('email').disabled = false;
-    document.getElementById('password').disabled = false;
-    this.style.display = 'none';
-    document.getElementById('save-btn').style.display = 'inline-block';
-    document.getElementById('cancel-btn').style.display = 'inline-block';
-});
+    document.getElementById('edit-btn').addEventListener('click', function () {
+      document.getElementById('username').disabled = false;
+      document.getElementById('phone').disabled = false;
+      document.getElementById('email').disabled = false;
+      document.getElementById('password').disabled = false;
+      this.style.display = 'none';
+      document.getElementById('save-btn').style.display = 'inline-block';
+      document.getElementById('cancel-btn').style.display = 'inline-block';
+    });
 
-document.getElementById('save-btn').addEventListener('click', function() {
-    // Get the values of the input fields
-    let email = document.getElementById('email').value.trim();
-    let password = document.getElementById('password').value.trim();
+    document.getElementById('save-btn').addEventListener('click', function () {
+      // Get the values of the input fields
+      let email = document.getElementById('email').value.trim();
+      let password = document.getElementById('password').value.trim();
 
-    // Validate email format
-    if (!email.includes("@") || !email.includes(".")) {
+      // Validate email format
+      if (!email.includes("@") || !email.includes(".")) {
         showPopup("error", "📧 Please enter a valid email address.");
         return; // Stop further execution
-    }
+      }
 
-    // Validate password length
-    if (password.length < 8) {
+      // Validate password length
+      if (password.length < 8) {
         showPopup("error", "🔒 Password must be at least 8 characters.");
         return; // Stop further execution
+      }
+
+      // If all validations pass, save the information and update the UI
+      document.getElementById('username').disabled = true;
+      document.getElementById('phone').disabled = true;
+      document.getElementById('email').disabled = true;
+      document.getElementById('password').disabled = true;
+      this.style.display = 'none';
+      document.getElementById('cancel-btn').style.display = 'none';
+      document.getElementById('edit-btn').style.display = 'block';
+
+      // Show success popup
+      showPopup("success", "✅ Information updated successfully!");
+    });
+
+    document.getElementById('cancel-btn').addEventListener('click', function () {
+      document.getElementById('username').disabled = true;
+      document.getElementById('phone').disabled = true;
+      document.getElementById('email').disabled = true;
+      document.getElementById('password').disabled = true;
+      this.style.display = 'none';
+      document.getElementById('save-btn').style.display = 'none';
+      document.getElementById('edit-btn').style.display = 'block';
+    });
+
+    // Function to show popups
+    function showPopup(type, message) {
+      let popupId = type === "success" ? "success-popup" : "alert-popup";
+      let messageId = type === "success" ? "success-popup-message" : "alert-popup-message";
+
+      document.getElementById(messageId).textContent = message;
+      let popup = document.getElementById(popupId);
+      popup.style.visibility = "visible";
+      popup.style.opacity = "1";
+
+      // Automatically hide the popup after 3 seconds (3000 ms)
+      setTimeout(() => {
+        closePopup(type);
+      }, 3000); // You can adjust the time as needed (in milliseconds)
     }
 
-    // If all validations pass, save the information and update the UI
-    document.getElementById('username').disabled = true;
-    document.getElementById('phone').disabled = true;
-    document.getElementById('email').disabled = true;
-    document.getElementById('password').disabled = true;
-    this.style.display = 'none';
-    document.getElementById('cancel-btn').style.display = 'none';
-    document.getElementById('edit-btn').style.display = 'block';
+    // Function to close popups
+    function closePopup(type) {
+      let popupId = type === "success" ? "success-popup" : "alert-popup";
+      let popup = document.getElementById(popupId);
+      popup.style.visibility = "hidden";
+      popup.style.opacity = "0";
+    }
 
-    // Show success popup
-    showPopup("success", "✅ Information updated successfully!");
-});
+  </script>
 
-document.getElementById('cancel-btn').addEventListener('click', function() {
-    document.getElementById('username').disabled = true;
-    document.getElementById('phone').disabled = true;
-    document.getElementById('email').disabled = true;
-    document.getElementById('password').disabled = true;
-    this.style.display = 'none';
-    document.getElementById('save-btn').style.display = 'none';
-    document.getElementById('edit-btn').style.display = 'block';
-});
-
-// Function to show popups
-function showPopup(type, message) {
-    let popupId = type === "success" ? "success-popup" : "alert-popup";
-    let messageId = type === "success" ? "success-popup-message" : "alert-popup-message";
-
-    document.getElementById(messageId).textContent = message;
-    let popup = document.getElementById(popupId);
-    popup.style.visibility = "visible";
-    popup.style.opacity = "1";
-
-    // Automatically hide the popup after 3 seconds (3000 ms)
-    setTimeout(() => {
-        closePopup(type);
-    }, 3000); // You can adjust the time as needed (in milliseconds)
-}
-
-// Function to close popups
-function closePopup(type) {
-    let popupId = type === "success" ? "success-popup" : "alert-popup";
-    let popup = document.getElementById(popupId);
-    popup.style.visibility = "hidden";
-    popup.style.opacity = "0";
-}
-
-    </script>
-    
 </body>
+
 </html>
