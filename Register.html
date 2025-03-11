@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login and Register</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Register</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="container-index">
-        <!-- Background Overlay -->
-        <div class="overlay-index"></div>
-        <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo-index"></a>
+  <div class="container-index">
+    <!-- Background Overlay -->
+    <div class="overlay-index"></div>
+    <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo-index"></a>
 
     <div class="container-login">
-        <div class="form-container-Register">
-            <div class="headerform">
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
-            </div>
-            <form novalidate>
-                <div class="form-group-Register">
-                    <label for="username-login">Username:</label>
-                    <input type="text" id="username-login" name="username-login" required>
-                </div>
-                
-                <div class="form-group-Register">
-                    <label for="email-login">Email:</label>
-                    <input type="email" id="email-login" name="email-login" required>
-                </div>
-            
-                <div class="form-group-Register">
-                    <label for="password-login">Password:</label>
-                    <input type="password" id="password-login" name="password-login" required minlength="8">
-                </div>
-                
-                <div class="form-group-Register">
-                    <label for="phone-login">Phone Number:</label>
-                    <input type="tel" id="phone-login" name="phone-login" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-                    <small>Format: +966-xxx-xxx-xxxx</small>
-                </div>
-                
-                <button type="submit">Submit</button>
-            </form>
-            
-
-
-           
-            </form>
+      <div class="form-container-Register">
+        <div class="headerform">
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
         </div>
-    </div>
-    </div>
- <!-- Alert Popup -->
-<div id="alert-popup" class="popup-overlay">
-    <div class="popup-box">
-        <p id="alert-popup-message"></p> <!-- Error or alert message -->
-    </div>
-</div>
+        <form novalidate>
+          <div class="form-group-Register">
+            <label for="username-login">Username:</label>
+            <input type="text" id="username-login" name="username-login" required>
+          </div>
 
-<!-- Success Popup -->
-<div id="success-popup" class="popup-overlay">
-    <div class="popup-box">
-        <p id="success-popup-message"></p> <!-- Success message -->
-    </div>
-</div>
+          <div class="form-group-Register">
+            <label for="email-login">Email:</label>
+            <input type="email" id="email-login" name="email-login" required>
+          </div>
 
-<script src="script.js"></script>
+          <div class="form-group-Register">
+            <label for="password-login">Password:</label>
+            <input type="password" id="password-login" name="password-login" required minlength="8">
+          </div>
+
+          <div class="form-group-Register">
+            <label for="phone-login">Phone Number:</label>
+            <input type="tel" id="phone-login" name="phone-login" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+            <small>Format: +966-xxx-xxx-xxxx</small>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+
+
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Alert Popup -->
+  <div id="alert-popup" class="popup-overlay">
+    <div class="popup-box">
+      <p id="alert-popup-message"></p> <!-- Error or alert message -->
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="success-popup" class="popup-overlay">
+    <div class="popup-box">
+      <p id="success-popup-message"></p> <!-- Success message -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
+
 </html>
