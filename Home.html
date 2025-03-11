@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="ar">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Travel Landing Page</title>
-  <!-- ربط ملف CSS -->
-  <link rel="stylesheet" href="HomeStyle.css">
+  <title>FARRAH| Home Page</title>
+  <link rel="stylesheet" href="css/HomeStyle.css">
 </head>
+
 <body>
-  <!-- زر السلايد بار (بدون صورة) -->
+  <!-- Slider bar-->
   <div class="slidebar-btn" id="slidebarBtn">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </div>
 
-  <!-- السلايد بار -->
   <div class="slidebar" id="slidebar">
     <ul>
       <br><br>
       <li><a href="PersonalInformation.html">Personal information</a></li><br>
       <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
       <li><a href="MySchedules.html">My schedules</a></li>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <li><a href="index.html">Sign out </a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
     </ul>
   </div>
 
-  <!-- الهيدر -->
+  <!-- header -->
   <header>
     <div class="header-left">
       <div class="logo">Farrah</div>
-      <!-- أيقونة البحث (شعار بحث) -->
       <div class="search-icon" id="searchIcon">
         <svg viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none"/>
-          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2"/>
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none" />
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2" />
         </svg>
       </div>
     </div>
@@ -46,53 +44,38 @@
     </nav>
   </header>
 
-  <!-- مربع البحث المنبثق -->
   <div class="search-popup" id="searchPopup">
     <div class="search-box" style="padding:10px;">
-      <!-- نموذج البحث يقوم بتحويل المستخدم إلى Destnition مع بارامتر ?q=... -->
       <form id="homeSearchForm" action="#" method="get" style="display: flex; gap: 10px; align-items: center;">
-        <input 
-          id="homeSearchInput"
-          type="search" 
-          name="q" 
-          placeholder="Search in Destinations..." 
-          style="flex:1; padding:8px;"
-        />
-        <button 
-          type="submit"
-          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;"
-        >
+        <input id="homeSearchInput" type="search" name="q" placeholder="Search in Destinations..."
+          style="flex:1; padding:8px;" />
+        <button type="submit"
+          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;">
           Search
         </button>
-        <!-- زر إغلاق -->
-        <button 
-          type="button"
-          id="closeSearch"
-          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;"
-        >
+        <button type="button" id="closeSearch"
+          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;">
           &times;
         </button>
       </form>
     </div>
   </div>
 
-  <!-- قسم البطل (Hero Section) -->
   <section class="hero">
     <div class="hero-content">
-      <!-- النص على اليسار -->
       <div class="hero-text">
         <h1>Saudi Arabia</h1>
         <p>
-          Discover the breathtaking vistas of Saudi Arabia’s majestic deserts and ancient treasures. 
-          Explore its hidden gems—from serene oases to historic marvels and immerse yourself in a world of timeless beauty.
+          Discover the breathtaking vistas of Saudi Arabia’s majestic deserts and ancient treasures.
+          Explore its hidden gems—from serene oases to historic marvels and immerse yourself in a world of timeless
+          beauty.
         </p>
         <a href="Destnition.html" class="btn">Explore Now</a>
       </div>
 
-      <!-- السلايدر (بطاقات) في الصفحة الرئيسية -->
       <div class="cards-slider" id="cardsSlider">
         <div class="cards-container" id="cardsContainer">
-          <!-- بطاقة 1 -->
+          <!-- card 1 -->
           <div class="card">
             <img src="images/ANeom.jpg" alt="Destination 1">
             <div class="card-content">
@@ -101,7 +84,7 @@
               <a href="Neom.html">Read More</a>
             </div>
           </div>
-          <!-- بطاقة 2 -->
+          <!-- card 2 -->
           <div class="card">
             <img src="images/HeetCave.jpg" alt="Destination 2">
             <div class="card-content">
@@ -110,7 +93,7 @@
               <a href="HeetCave.html">Read More</a>
             </div>
           </div>
-          <!-- بطاقة 3 -->
+          <!-- card 3 -->
           <div class="card">
             <img src="images/AhsaOasis.jpg" alt="Destination 3">
             <div class="card-content">
@@ -119,26 +102,28 @@
               <a href="Al-AhsaOasis.html">Read More</a>
             </div>
           </div>
-          <!-- بطاقة 4 -->
+          <!-- card 4 -->
           <div class="card">
             <img src="images/Hail.jpg" alt="Destination 4">
             <div class="card-content">
               <h3>Aja Mountains (Ha’il)</h3>
-              <p>A rugged range encircling Ha’il, with striking rock formations and scenic valleys ideal for hikers and campers.
+              <p>A rugged range encircling Ha’il, with striking rock formations and scenic valleys ideal for hikers and
+                campers.
               </p>
               <a href="AjaMountains.html">Read More</a>
             </div>
           </div>
-          <!-- بطاقة 5 -->
+          <!-- card 5 -->
           <div class="card">
             <img src="images/AbhaAlsodh.jpg" alt="Destination 5">
             <div class="card-content">
               <h3>Al-Soudah (Abha)</h3>
-              <p>Saudi Arabia’s highest peak in the Asir region, known for cool weather, and panoramic mountain views.</p>
+              <p>Saudi Arabia’s highest peak in the Asir region, known for cool weather, and panoramic mountain views.
+              </p>
               <a href="Al-Soudah.html">Read More</a>
             </div>
           </div>
-          <!-- بطاقة 6 -->
+          <!-- card 6 -->
           <div class="card">
             <img src="images/Alzelfi.jpg" alt="Destination 6">
             <div class="card-content">
@@ -148,7 +133,7 @@
             </div>
           </div>
         </div>
-        <!-- أزرار التنقل -->
+        <!--cards burron -->
         <div class="slider-controls">
           <button class="slider-btn" id="prevBtn">&#9664;</button>
           <button class="slider-btn" id="nextBtn">&#9654;</button>
@@ -157,23 +142,23 @@
     </div>
   </section>
 
-  <!-- الفوتر -->
+  <!-- footer -->
   <footer id="footer" class="footer">
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <!-- العمود الأول: نبذة عن الموقع السياحي -->
+          <!-- About us -->
           <div class="col">
             <div class="single-footer">
               <h2>About Us</h2>
               <p>
-                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia. 
-                We are dedicated to providing curated travel experiences, insightful guides, and exceptional 
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
                 services to ensure every journey becomes an unforgettable adventure.
               </p>
             </div>
           </div>
-          <!-- العمود الثاني: Vision -->
+          <!-- Vision -->
           <div class="col">
             <div class="single-footer">
               <h2>Vision</h2>
@@ -183,28 +168,28 @@
               </p>
             </div>
           </div>
-          <!-- العمود الثالث: معلومات التواصل الاجتماعي -->
+          <!-- Contact Us-->
           <div class="col">
             <h2>Contact Us</h2>
             <ul class="social">
               <li>
-                <img src="../images/facebook-icon.png" alt="facebook" />
+                <img src="images/facebook-icon.png" alt="facebook" />
                 <span>FarrahTravel</span>
               </li>
               <li>
-                <img src="../images/x-icon.png" alt="x" />
+                <img src="images/x-icon.png" alt="x" />
                 <span>@FarrahTravel</span>
               </li>
               <li>
-                <img src="../images/instagram-icon.png" alt="instagram" />
+                <img src="images/instagram-icon.png" alt="instagram" />
                 <span>@Farrah_Travel</span>
               </li>
               <li>
-                <img src="../images/gmail-icon.png" alt="gmail" />
+                <img src="images/gmail-icon.png" alt="gmail" />
                 <span>info@farrahtravel.com</span>
               </li>
               <li>
-                <img src="../images/phone-icon.png" alt="phone" />
+                <img src="images/phone-icon.png" alt="phone" />
                 <span>+966 555 123 456</span>
               </li>
             </ul>
@@ -212,13 +197,13 @@
         </div>
       </div>
     </div>
-    <!-- حقوق النشر -->
+    <!--  copyright -->
     <div class="copyright">
       <div class="container">
         <div class="row">
           <div class="copyright-content">
             <p>
-              © 2025 | All Rights Reserved by 
+              © 2025 | All Rights Reserved by
               <span>Farrah Travel</span>
             </p>
           </div>
@@ -227,14 +212,12 @@
     </div>
   </footer>
 
-  <!-- سكريبت -->
+  <!-- Script -->
   <script>
-    // البحث في Home
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     const closeSearch = document.getElementById('closeSearch');
 
-    // نموذج و حقل بحث في Home
     const homeSearchForm = document.getElementById('homeSearchForm');
     const homeSearchInput = document.getElementById('homeSearchInput');
 
@@ -250,15 +233,11 @@
       }
     });
 
-    // عندما يضغط المستخدم على زر Search بصفحة Home
     homeSearchForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const searchTerm = homeSearchInput.value.toLowerCase().trim();
-      // توجيه المستخدم إلى صفحة Destnition مع بارامتر ?q=....
       window.location.href = "Destnition.html?q=" + encodeURIComponent(searchTerm);
     });
-
-    // زر السايد بار
     const slidebarBtn = document.getElementById('slidebarBtn');
     const slidebar = document.getElementById('slidebar');
     slidebarBtn.addEventListener('click', () => {
@@ -266,7 +245,6 @@
       slidebarBtn.classList.toggle('is-active');
     });
 
-    // تعامل مع السلايدر
     const cardsSlider = document.getElementById('cardsSlider');
     const cardsContainer = document.getElementById('cardsContainer');
     const prevBtn = document.getElementById('prevBtn');
@@ -309,4 +287,5 @@
     window.addEventListener('resize', updateSliderBounds);
   </script>
 </body>
+
 </html>
