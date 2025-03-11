@@ -228,57 +228,7 @@
 
     </script>
 
-    <script>
-      const cardsSlider = document.getElementById('cardsSlider');
-      const cardsContainer = document.getElementById('cardsContainer');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-
-      let currentTranslateX = 0;
-      function updateSliderBounds() {
-        const sliderWidth = cardsSlider.clientWidth;
-        const totalCardsWidth = cardsContainer.scrollWidth;
-        const maxTranslateX = sliderWidth - totalCardsWidth;
-        const step = 240;
-
-        function nextSlide() {
-          if (currentTranslateX <= maxTranslateX) return;
-          const remain = currentTranslateX - maxTranslateX;
-          if (remain <= step) {
-            currentTranslateX = maxTranslateX;
-          } else {
-            currentTranslateX -= step;
-          }
-          cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
-        }
-
-        function prevSlide() {
-          if (currentTranslateX >= 0) return;
-          const remain = Math.abs(currentTranslateX);
-          if (remain <= step) {
-            currentTranslateX = 0;
-          } else {
-            currentTranslateX += step;
-          }
-          cardsContainer.style.transform = `translateX(${currentTranslateX}px)`;
-        }
-
-        nextBtn.onclick = nextSlide;
-        prevBtn.onclick = prevSlide;
-      }
-
-      window.addEventListener('load', updateSliderBounds);
-      window.addEventListener('resize', updateSliderBounds);
-    </script>
-    <script>
-      const slidebarBtn = document.getElementById('slidebarBtn');
-      const slidebar = document.getElementById('slidebar');
-
-      slidebarBtn.addEventListener('click', () => {
-        slidebar.classList.toggle('active');
-        slidebarBtn.classList.toggle('is-active');
-      });
-    </script>
+    
 
 </body>
 
