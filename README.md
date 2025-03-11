@@ -6,3 +6,4 @@ First we have a simple main page to let the user log-in or register. For the log
 For Farrah's personalized schedule page, we also used a form in HTML to let the user answer some questions which will help us generate a good schedule that matches his preferences for his trip and also, here, we have JavaScript to validate that each field is filled in whenever the user achieves the last question and click on generate schedule button it will redirect him to Myschedules page.
 
  
+<h1>HeetCave.html, Neom.html, AjaMountains.html, Al-AhsaOasis.html, Al-Soudah.html, NafudAl-Zulfi.html(destinations pages)</h1>
