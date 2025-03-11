@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login and Register</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Register</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="container-index">
-        <!-- Background Overlay -->
-        <div class="overlay-index"></div>
-        <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo-index"></a>
+  <div class="container-index">
+    <!-- Background Overlay -->
+    <div class="overlay-index"></div>
+    <a href="index.html"><img src="images/logo.png" alt="Logo" class="logo-index"></a>
 
 
     <div class="container-login">
-        <div class="form-container-login">
-            <div class="headerform">
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
-            </div>
-            <form novalidate>
-                <div class="form-group-login">
-                    <label for="username-login">Username:</label>
-                    <input type="text" id="username-login" name="username-login" required>
-                </div>
-                <div class="form-group-login">
-                    <label for="password-login">Password:</label>
-                    <input type="password" id="password-login" name="password-login" required>
-                    <a id="reset_Password_login">forgot your password? Reset it</a>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-
-            <hr class="form-divider-login">
-
-           
-            </form>
+      <div class="form-container-login">
+        <div class="headerform">
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
         </div>
-    </div>
-    </div>
-   <!-- Alert Popup -->
-<div id="alert-popup" class="popup-overlay">
-    <div class="popup-box">
-        <p id="alert-popup-message"></p> <!-- Error or alert message -->
-    </div>
-</div>
+        <form novalidate>
+          <div class="form-group-login">
+            <label for="username-login">Username:</label>
+            <input type="text" id="username-login" name="username-login" required>
+          </div>
+          <div class="form-group-login">
+            <label for="password-login">Password:</label>
+            <input type="password" id="password-login" name="password-login" required>
+            <a id="reset_Password_login">forgot your password? Reset it</a>
+          </div>
+          <button type="submit">Login</button>
+        </form>
 
-<!-- Success Popup -->
-<div id="success-popup" class="popup-overlay">
-    <div class="popup-box">
-        <p id="success-popup-message"></p> <!-- Success message -->
-    </div>
-</div>
+        <hr class="form-divider-login">
 
-    <script src="script.js"></script>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Alert Popup -->
+  <div id="alert-popup" class="popup-overlay">
+    <div class="popup-box">
+      <p id="alert-popup-message"></p> <!-- Error or alert message -->
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="success-popup" class="popup-overlay">
+    <div class="popup-box">
+      <p id="success-popup-message"></p> <!-- Success message -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
+
 </html>
