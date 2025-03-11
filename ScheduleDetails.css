@@ -84,6 +84,7 @@
         .slidebar ul li a:hover {
           color: #d0a84b;
         }
+<<<<<<< Updated upstream
         
         
         header {
@@ -91,6 +92,16 @@
           padding: 20px 0;  /* Add or adjust padding if necessary */
       }
       
+=======
+        .sign-out {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%; 
+          padding: 2em;
+          text-align: left; 
+        }
+>>>>>>> Stashed changes
       
       /* 2) الهيدر */
       header {
