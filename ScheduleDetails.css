@@ -76,6 +76,7 @@
         }
         .slidebar ul li a {
           color: #fff;
+          font-size: 19px;  /* Adjust this to the desired size */
           text-decoration: none;
           font-size: 1rem;
           transition: color 0.3s;
@@ -85,7 +86,11 @@
         }
         
         
-       
+        header {
+          font-size: 16px;  /* Adjust this to the desired size */
+          padding: 20px 0;  /* Add or adjust padding if necessary */
+      }
+      
       
       /* 2) الهيدر */
       header {
@@ -498,4 +503,12 @@
 .modal-header {
   background-color: #333; /* لون داكن للهيدر حتى يكون الزر واضحًا */
   color: white; /* جعل عنوان النافذة بلون أبيض */
+}
+.sign-out {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  padding: 2em;
+  text-align: left; 
 }
