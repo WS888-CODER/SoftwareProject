@@ -354,6 +354,14 @@ nav ul li a:hover {
 .close-search:hover {
   color: #d0a84b;
 }
+.sign-out {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  padding: 2em;
+  text-align: left; 
+}
 /* Background overlay */
 .popup-overlay {
   position: fixed;

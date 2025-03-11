@@ -12,7 +12,14 @@ body {
   background-attachment: fixed; /* لجعل الخلفية ثابتة عند التمرير (اختياري) */
   margin: 0; 
 }
-
+.sign-out {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; 
+  padding: 2em;
+  text-align: left; 
+}
 /* شريط الفلتر */
 .filter-section {
   /* بدلنا الأسطر المضمّنة بخصائص CSS أكثر ترتيبًا */

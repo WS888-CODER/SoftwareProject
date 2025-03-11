@@ -68,6 +68,14 @@ body {
   .slidebar.active {
     left: 0;
   }
+  .sign-out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    padding: 2em;
+    text-align: left; 
+  }
   
   /* تنسيق عناصر القائمة داخل السلايد بار */
   .slidebar ul {

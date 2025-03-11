@@ -94,7 +94,14 @@ button:hover {
         transform: translateY(0);
     }
 }
-
+.sign-out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    padding: 2em;
+    text-align: left; 
+  }
 
 /* Popup Overlay */
 .popup-overlay-personalized {
