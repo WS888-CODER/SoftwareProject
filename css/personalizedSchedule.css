@@ -1,0 +1,136 @@
+/* (Reset)  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+/*Background*/
+body {
+  background: url('../images/neomBg.jpg') center center/cover no-repeat;
+  background-attachment: fixed; 
+  margin: 0; 
+}
+
+  /* Form Section */
+.form-container-personalized {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.form-box-personalized {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+}
+
+.form-title-personalized {
+    color: #d0a84b;
+}
+
+.form-subtitle-personalized {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color:white;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color:white;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #d0a84b;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #b88d3f;
+}
+
+/* Step-by-step form */
+.step-personalized {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* First step visible by default */
+#step-1-personalized {
+    display: block;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.sign-out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    padding: 2em;
+    text-align: left; 
+  }
+
+/* Popup Overlay */
+.popup-overlay-personalized {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+/* Popup Box */
+.popup-box-personalized {
+    background: rgba(11, 8, 8, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    color: white;
+    border: 2px solid black;
+}
+
+.popup-box-personalized p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
