@@ -7,3 +7,4 @@ For Farrah's personalized schedule page, we also used a form in HTML to let the 
 
  
 <h1>HeetCave.html, Neom.html, AjaMountains.html, Al-AhsaOasis.html, Al-Soudah.html, NafudAl-Zulfi.html(destinations pages)</h1>
+Using HTML, CSS and JavaScript we creates a destination webpages as part of the Farrah Travel project. It includes: weather conditions fetched from an API and displayed in styled cards. An "About" section explaining its significance and attractions.A map section displaying destination's location using the Leaflet library.A reviews section showing visitor ratings and allowing users to submit reviews.
