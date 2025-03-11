@@ -490,9 +490,8 @@ copyright span {
   }
 }
 
-/* التأكد أن الكروت تحت الهيدر مباشرة */
 .schedule-wrapper {
-  margin-top: 20px; /* تقليل المسافة العلوية */
+  margin-top: 20px; 
 }
 
 
@@ -526,10 +525,6 @@ copyright span {
   align-items: center;
   gap: 10px;
 }
-
-
-
-
 
 
 .cards-slider {
