@@ -179,16 +179,16 @@ body, html {
 
 .weather-cards {
     display: flex;
-    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
-    justify-content: center; /* Centers the cards */
-    gap: 20px; /* Space between cards */
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 20px; 
 }
 
 .weather-card {
     background: rgba(255, 255, 255, 0.2);
     padding: 15px;
     border-radius: 10px;
-    width: 200px; /* Adjust width as needed */
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,7 +196,7 @@ body, html {
 }
 
 .weather-card img {
-    width: 40px; /* Adjust icon size */
+    width: 40px; 
     height: 40px;
     margin-bottom: 10px;
 }
@@ -211,19 +211,19 @@ body, html {
     background: rgba(255, 255, 255, 0.2);
     padding: 15px;
     border-radius: 10px;
-    width: 200px; /* Fixed width */
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-    border: 2px solid transparent; /* Initially no border */
+    border: 2px solid transparent; 
 }
 
 .weather-card:hover {
-    transform: scale(1.1); /* Slightly enlarges the card */
-    box-shadow: 0 0 15px rgba(245, 185, 13, 0.6); /* Soft glow effect */
-    border: 2px solid #f5b90d; /* Golden border when hovered */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(245, 185, 13, 0.6); 
+    border: 2px solid #f5b90d; 
 }
 
 .weather-card img {
@@ -234,7 +234,7 @@ body, html {
 }
 
 .weather-card:hover img {
-    transform: rotate(10deg) scale(1.1); /* Small tilt & zoom effect */
+    transform: rotate(10deg) scale(1.1); 
 }
 .weather-card i {
     font-size: 30px;
@@ -314,18 +314,18 @@ body, html {
 		
 #submit {
 	background: #f5b90d;
-	width: 100px; /* Sets the width of the button */
-    height: 40px; /* Sets the height of the button */
-    border-radius: 10px; /* Adjusts the shape of the button (rounded corners) */
-    padding: 10px; /* Adds padding inside the button */
-    color: white; /* Sets the text color */
-    border: none; /* Removes the border */
-    cursor: pointer; /* Changes the cursor to a pointer when hovering */
+	width: 100px; 
+    height: 40px; 
+    border-radius: 10px;
+    padding: 10px;
+    color: white; 
+    border: none; 
+    cursor: pointer; 
 }
 #submit:hover {
-  background-color: #a37b07; /* Changes the background color on hover */
-  color: #fff; /* Changes the text color on hover */
-  transform: scale(1.05); /* Slightly enlarges the button on hover */
+  background-color: #a37b07;
+  color: #fff; 
+  transform: scale(1.05);
 }
 .star-rating {
   display: flex;
@@ -334,19 +334,19 @@ body, html {
 
 .star {
   font-size: 2em;
-  color: #ccc; /* Default star color */
+  color: #ccc; 
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .star:hover,
 .star:hover ~ .star {
-  color: #ffcc00; /* Star color on hover */
+  color: #ffcc00; 
 }
 
 .star.selected,
 .star.selected ~ .star {
-  color: #ffcc00; /* Star color when selected */
+  color: #ffcc00; 
 }
 .reviewPhoto {
 	height: 50px;
@@ -360,21 +360,21 @@ body, html {
   margin-top:80px;
   margin-right: 60px;
   display: flex;
-  justify-content: flex-end; /* Aligns the images to the right side */
-  gap: 10px; /* Adds space between the photos */
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .review-photo1 {
-  width: 180px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  border: 2px solid black; /* Adds a black border */
-  border-radius: 10px; /* Makes the corners rounded */
-  cursor: pointer; /* Make it clickable */
+  width: 180px;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 10px; 
+  cursor: pointer;
 }
 .destination-header {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Space between text and images */
+    align-items: center;
+    justify-content: space-between;
     padding: 20px;
 }
 .destination-info h1 {
@@ -382,12 +382,12 @@ body, html {
 }
 .destination-info {
 	margin-left:40px;
-    flex: 1; /* Allows it to take up available space */
+    flex: 1;
 }
 
 .destination-images {
     display: flex;
-    gap: 10px; /* Space between images */
+    gap: 10px;
 }
 
 .review {
@@ -397,22 +397,22 @@ body, html {
 .review-photo, .review-video {
   display: block;
   margin-top: 10px;
-  cursor: pointer; /* Make it clickable */
+  cursor: pointer;
 }
 .photo-container {
   display: flex;
-  gap: 10px; /* Adds space between the photos */
+  gap: 10px; 
 }
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed;
+  z-index: 1; 
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.9); /* Black background with opacity */
+  width: 100%;
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9); 
 }
 
 .modal-content {
@@ -432,18 +432,13 @@ body, html {
   cursor: pointer;
 }
 
-
-
-
-
-
-/* فوتر */
+/* footer */
 .footer {
-  position: relative; /* أو absolute/fixed حسب حاجتك */
+  position: relative; 
   width: 100%;
-  background: rgba(0, 0, 0, 0.7); /* خلفية داكنة شبه شفافة */
+  background: rgba(0, 0, 0, 0.7);
   color: #fff;
-  padding: 0em; /* المسافات */
+  padding: 0em; 
 }
 
 /* .footer-top */
@@ -469,7 +464,7 @@ body, html {
   text-shadow: 0.1em 0.1em 0.1em #333;
   font-size: 20px;
   margin-bottom: 15px;
-  color: #f5b90d; /* لون ذهبي للعناوين */
+  color: #f5b90d;
 }
 .footer p {
   font-size: 14px;
@@ -505,7 +500,7 @@ body, html {
   color: #ddd;
 }
 
-/* حقوق النشر */
+/* copyright*/
 .copyright {
   text-align: center;
   padding: 15px;
