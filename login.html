@@ -21,7 +21,7 @@
           <a href="login.html">Login</a>
           <a href="register.html">Register</a>
         </div>
-        <form novalidate>
+        <form method="POST" action="login.php" id="loginForm" novalidate>
           <div class="form-group-login">
             <label for="username-login">Username:</label>
             <input type="text" id="username-login" name="username-login" required>
@@ -29,7 +29,7 @@
           <div class="form-group-login">
             <label for="password-login">Password:</label>
             <input type="password" id="password-login" name="password-login" required>
-            <a id="reset_Password_login">forgot your password? Reset it</a>
+            <a id="reset_Password_login" href="forgot-password.html">forgot your password? Reset it</a>
           </div>
           <button type="submit">Login</button>
         </form>
