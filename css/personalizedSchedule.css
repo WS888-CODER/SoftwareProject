@@ -125,6 +125,25 @@ label {
     font-weight: bold;
     color:white;
 }
+/* Container for the input and Riyal symbol */
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the Riyal symbol */
+.riyal-personalized {
+  width: 40px; /* Adjust size as needed */
+  height: auto;
+  margin-left: 5px; /* Space between the input field and the symbol */
+}
+
+/* Style the input field */
+#budget-personalized {
+  padding-right: 30px; /* Space for the Riyal symbol */
+}
+
+
 
 input, select {
     width: 100%;
