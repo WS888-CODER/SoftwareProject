@@ -31,7 +31,7 @@
           transition: 0.3s;
         }
         
-#        .slidebar-btn.is-active .bar:nth-of-type(1) {
+       .slidebar-btn.is-active .bar:nth-of-type(1) {
           transform: translateY(10px) rotate(45deg);
         }
         .slidebar-btn.is-active .bar:nth-of-type(2) {
@@ -74,15 +74,7 @@
         .slidebar ul li a:hover {
           color: #d0a84b;
         }
-<<<<<<< Updated upstream
-        
-        
-        header {
-          font-size: 16px;  /* Adjust this to the desired size */
-          padding: 20px 0;  /* Add or adjust padding if necessary */
-      }
       
-=======
         .sign-out {
           position: absolute;
           bottom: 0;
@@ -91,7 +83,6 @@
           padding: 2em;
           text-align: left; 
         }
->>>>>>> Stashed changes
       
       /* header */
       header {
@@ -107,6 +98,8 @@
         color: #fff;
         background-color: rgba(0,0,0,0.0); 
         margin-left: 0px; 
+        font-size: 16px;  
+        padding: 20px 0; 
       }
       .header-left {
         display: flex;
