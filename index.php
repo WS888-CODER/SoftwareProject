@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Farrah | Destinations</title>
+  <link rel="stylesheet" href="css/Destnition.css">
+</head>
+
+<body>
+  <!-- Slider bar-->
+  <div class="slidebar-btn" id="slidebarBtn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+
+  <div class="slidebar" id="slidebar">
+    <ul>
+      <br><br>
+      <li><a href="PersonalInformation.html">Personal information</a></li><br>
+      <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
+      <li><a href="MySchedules.html">My schedules</a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
+    </ul>
+  </div>
+
+  <!-- header -->
+  <header>
+    <div class="header-left">
+      <div class="logo">Farrah</div>
+      <div class="search-icon" id="searchIcon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none" />
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2" />
+        </svg>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Destnition.html">Destinations</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="search-popup" id="searchPopup">
+    <div class="search-box" style="padding:10px;">
+      <button class="close-search" id="closeSearch">&times;</button>
+      <form id="destSearchForm" action="#" method="get" style="display: flex; gap: 10px;">
+        <input id="destSearchInput" type="search" name="q" placeholder="Search in Destinations..." style="flex:1;" />
+        <button type="submit"
+          style="padding:6px 12px; background:#d0a84b; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Filter-->
+  <section class="filter-section"
+    style="padding: 20px; text-align: center; background: rgba(0,0,0,0.4); margin-top:120px;">
+    <div class="filter-group" style="display: inline-block; margin-right: 20px;">
+      <label for="typeFilter" style="color:#fff; margin-right: 10px;">Destination Type:</label>
+      <select id="typeFilter">
+        <option value="all">All</option>
+        <option value="mountainous">Mountainous</option>
+        <option value="sandy">Sandy</option>
+        <option value="marine">Marine</option>
+        <option value="rocky">Rocky</option>
+        <option value="oasis">Oasis</option>
+      </select>
+    </div>
+    <div class="filter-group" style="display: inline-block;">
+      <label for="regionFilter" style="color:#fff; margin-right: 10px;">Region:</label>
+      <select id="regionFilter">
+        <option value="all">All</option>
+        <option value="south">South</option>
+        <option value="north">North</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+        <option value="center">Center</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Destinations cards-->
+  <section class="destinations-page"
+    style="padding: 20px; display: flex; gap: 20px; flex-wrap: wrap; justify-content:center;">
+    <!-- Heet Cave => Mountainous, Center -->
+    <div class="card" data-type="mountainous" data-region="center">
+      <img src="images/HeetCave.jpg" alt="Heet Cave">
+      <div class="card-content">
+        <h3>Heet Cave</h3>
+        <p>Discover an underground cave near Riyadh with a crystal-clear lake, ideal for thrill-seekers.</p>
+        <a href="Destination.php?DestinationID=1">Read More</a>
+      </div>
+    </div>
+    <!-- Neom => Marine, North -->
+    <div class="card" data-type="marine" data-region="north">
+      <img src="images/ANeom.jpg" alt="Neom">
+      <div class="card-content">
+        <h3>Neom</h3>
+        <p>Explore NEOM’s Red Sea coast with turquoise waters and vibrant reefs.</p>
+        <a href="Destination.php?DestinationID=2">Read More</a>
+      </div>
+    </div>
+    <!-- Al-Ahsa Oasis => Oasis, East -->
+    <div class="card" data-type="oasis" data-region="east">
+      <img src="images/AhsaOasis.jpg" alt="Al-Ahsa Oasis">
+      <div class="card-content">
+        <h3>Al-Ahsa Oasis</h3>
+        <p>Saudi’s largest oasis, filled with lush palm groves and natural springs.</p>
+        <a href="Destination.php?DestinationID=3">Read More</a>
+      </div>
+    </div>
+    <!-- Nafud Al-Zulfi => Sandy, Center -->
+    <div class="card" data-type="sandy" data-region="center">
+      <img src="images/Alzelfi.jpg" alt="Nafud Al-Zulfi">
+      <div class="card-content">
+        <h3>Nafud Al-Zulfi</h3>
+        <p>Escape to vast dunes, indulge in desert luxury, and uncover local cultural gems.</p>
+        <a href="Destination.php?DestinationID=4">Read More</a>
+      </div>
+    </div>
+    <!--  (Al-Soudah) -->
+    <div class="card" data-type="mountainous" data-region="south">
+      <img src="images/AbhaAlsodh.jpg" alt="Al-Soudah (Abha)">
+      <div class="card-content">
+        <h3>Al-Soudah (Abha)</h3>
+        <p>Saudi Arabia’s highest peak, known for cool weather and panoramic mountain views.</p>
+        <a href="Destination.php?DestinationID=5">Read More</a>
+      </div>
+    </div>
+    <!--   (Aja Mountains) -->
+    <div class="card" data-type="rocky" data-region="north">
+      <img src="images/Hail.jpg" alt="Aja Mountains (Ha’il)">
+      <div class="card-content">
+        <h3>Aja Mountains (Ha’il)</h3>
+        <p>A rugged range with striking rock formations and scenic valleys.</p>
+        <a href="Destination.php?DestinationID=6">Read More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <!-- About us -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>About Us</h2>
+              <p>
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
+                services to ensure every journey becomes an unforgettable adventure.
+              </p>
+            </div>
+          </div>
+          <!-- Vision -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>Vision</h2>
+              <p>
+                Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
+                creating memorable travel experiences for every explorer.
+              </p>
+            </div>
+          </div>
+          <!-- Contact Us-->
+          <div class="col">
+            <h2>Contact Us</h2>
+            <ul class="social">
+              <li>
+                <img src="images/facebook-icon.png" alt="facebook" />
+                <span>FarrahTravel</span>
+              </li>
+              <li>
+                <img src="images/x-icon.png" alt="x" />
+                <span>@FarrahTravel</span>
+              </li>
+              <li>
+                <img src="images/instagram-icon.png" alt="instagram" />
+                <span>@Farrah_Travel</span>
+              </li>
+              <li>
+                <img src="images/gmail-icon.png" alt="gmail" />
+                <span>info@farrahtravel.com</span>
+              </li>
+              <li>
+                <img src="images/phone-icon.png" alt="phone" />
+                <span>+966 555 123 456</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  copyright -->
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="copyright-content">
+            <p>
+              © 2025 | All Rights Reserved by
+              <span>Farrah Travel</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    //slidebar Btn
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+    slidebarBtn.addEventListener('click', () => {
+      slidebar.classList.toggle('active');
+      slidebarBtn.classList.toggle('is-active');
+    });
+
+    const searchIcon = document.getElementById('searchIcon');
+    const searchPopup = document.getElementById('searchPopup');
+    const closeSearch = document.getElementById('closeSearch');
+
+    searchIcon.addEventListener('click', () => {
+      searchPopup.classList.add('active');
+    });
+    closeSearch.addEventListener('click', () => {
+      searchPopup.classList.remove('active');
+    });
+    searchPopup.addEventListener('click', (e) => {
+      if (e.target === searchPopup) {
+        searchPopup.classList.remove('active');
+      }
+    });
+
+    // فلتر (type + region)
+    const typeFilter = document.getElementById('typeFilter');
+    const regionFilter = document.getElementById('regionFilter');
+    const cards = document.querySelectorAll('.destinations-page .card');
+
+    function filterCards() {
+      const typeValue = typeFilter.value;
+      const regionValue = regionFilter.value;
+
+      cards.forEach(card => {
+        const cardType = card.getAttribute('data-type');
+        const cardRegion = card.getAttribute('data-region');
+        let show = true;
+
+        if (typeValue !== 'all' && cardType !== typeValue) {
+          show = false;
+        }
+        if (regionValue !== 'all' && cardRegion !== regionValue) {
+          show = false;
+        }
+        card.style.display = show ? 'block' : 'none';
+      });
+    }
+
+    typeFilter.addEventListener('change', filterCards);
+    regionFilter.addEventListener('change', filterCards);
+
+    window.addEventListener('load', () => {
+      const params = new URLSearchParams(window.location.search);
+      const searchTerm = params.get('q'); // قد يكون null
+      if (searchTerm) {
+        applySearchFromHome(searchTerm);
+      }
+    });
+
+    function applySearchFromHome(term) {
+      const loweredTerm = term.toLowerCase().trim();
+      if (!loweredTerm) {
+        cards.forEach(c => c.style.display = 'block');
+      } else {
+        cards.forEach(c => {
+          const title = c.querySelector('h3').textContent.toLowerCase();
+          c.style.display = title.includes(loweredTerm) ? 'block' : 'none';
+        });
+      }
+    }
+  </script>
+</body>
+
+</html>

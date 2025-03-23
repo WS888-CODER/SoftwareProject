@@ -8,17 +8,6 @@ function openImageViewer(imgSrc) {
 }
 
 
-const stars = document.querySelectorAll('.star');
-
-stars.forEach(star => {
-  star.addEventListener('click', () => {
-    stars.forEach(s => s.classList.remove('selected'));
-    star.classList.add('selected');
-    let previousSiblings = getPreviousSiblings(star);
-    previousSiblings.forEach(s => s.classList.add('selected'));
-  });
-});
-
 function getPreviousSiblings(elem) {
   let siblings = [];
   while (elem = elem.previousElementSibling) {

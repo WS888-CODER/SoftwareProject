@@ -403,35 +403,48 @@ body, html {
   display: flex;
   gap: 10px; 
 }
+
 .modal {
-  display: none; 
+  overflow: auto;
+  display: none;
   position: fixed;
-  z-index: 1; 
+  z-index: 1000;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%; 
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9); 
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
 .modal-content {
   margin: auto;
   display: block;
   width: 80%;
   max-width: 700px;
 }
-
+.modal img,
+.modal video {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
 .close {
   position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
+  top: 10px; /* Adjust so it's inside the modal */
+  right: 20px;
+  font-size: 30px;
+  color: white;
   cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
+.close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
 /* footer */
 .footer {
   position: relative; 
@@ -517,3 +530,4 @@ copyright span {
   box-sizing: border-box;
   font-family: "Arial", sans-serif;
 }
+
