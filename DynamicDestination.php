@@ -1,5 +1,5 @@
 <?php
-include 'db_connection.php'; // Include database connection
+include 'db.php'; // Include database connection
 // Enable error reporting for debugging (remove or adjust in production)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
