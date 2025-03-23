@@ -57,7 +57,7 @@
           <a href="ScheduleDetails.html" style="text-decoration: none;">
             <button class="ScheduleDetails-button">More details</button>
           </a>
-          <button class="trash-btn" >&#128465;</button> 
+          <button class="trash-btn">&#128465;</button>
         </div>
         <br>
         <div class="cards-slider">
@@ -111,10 +111,10 @@
           <a href="ScheduleDetails.html" style="text-decoration: none;">
             <button class="ScheduleDetails-button">More details</button>
           </a>
-          <button class="trash-btn" >&#128465;</button> 
+          <button class="trash-btn">&#128465;</button>
         </div>
         <br>
-        <div class="cards-slider" >
+        <div class="cards-slider">
           <button class="slider-btn prev-btn">&#9664;</button>
           <div class="cards-container">
             <!-- card 1-->
@@ -175,7 +175,7 @@
             </div>
 
           </div>
-          <button class="slider-btn next-btn" >&#9654;</button>
+          <button class="slider-btn next-btn">&#9654;</button>
         </div>
         <br>
         <div class="schedule-info">
@@ -187,6 +187,14 @@
     </div>
 
     <script>
+      //side bar
+      const slidebarBtn = document.getElementById('slidebarBtn');
+      const slidebar = document.getElementById('slidebar');
+      slidebarBtn.addEventListener('click', () => {
+        slidebar.classList.toggle('active');
+        slidebarBtn.classList.toggle('is-active');
+      });
+      //schedule
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".schedule-wrapper").forEach((scheduleWrapper) => {
           const prevBtn = scheduleWrapper.querySelector(".prev-btn");
@@ -228,7 +236,7 @@
 
     </script>
 
-    
+
 
 </body>
 
