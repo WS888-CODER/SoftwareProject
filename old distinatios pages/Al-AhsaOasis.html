@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Al-Ahsa Oasis</title>
+  <link rel="stylesheet" href="css/DestnitionStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url('images/AhsaOasis.jpg') no-repeat center center/cover;
+      background-attachment: fixed;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Slider bar-->
+  <div class="slidebar-btn" id="slidebarBtn">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+
+  <div class="slidebar" id="slidebar">
+    <ul>
+      <br><br>
+      <li><a href="PersonalInformation.html">Personal information</a></li><br>
+      <li><a href="personalizedSchedules.html">FARRAH Personalized schedule</a></li><br>
+      <li><a href="MySchedules.html">My schedules</a></li>
+      <li><a class="sign-out" href="index.html">Sign out </a></li>
+    </ul>
+  </div>
+
+  <!-- header -->
+  <header>
+    <div class="header-left">
+      <div class="logo">Farrah</div>
+      <div class="search-icon" id="searchIcon">
+        <svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke="#fff" stroke-width="2" fill="none" />
+          <line x1="16" y1="16" x2="22" y2="22" stroke="#fff" stroke-width="2" />
+        </svg>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Destnition.html">Destinations</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="background">
+    <div class="overlay"></div>
+  </div>
+
+  <div class="destination-header">
+    <div class="destination-info">
+      <h1>Al-Ahsa Oasis</h1><br>
+      <p><strong>Experience the lush tranquility of Al-Ahsa Oasis, the world's largest oasis</strong></p>
+    </div>
+    <div class="destination-images photo-container1">
+      <img class="review-photo1" src="images/Al-Ahsa1.jpg" onclick="openModal('photo1')">
+      <img class="review-photo1" src="images/Al-Ahsa2.jpg" onclick="openModal('photo2')">
+      <img class="review-photo1" src="images/Al-Ahsa3.jpg" onclick="openModal('photo3')">
+    </div>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="black-container">
+    <h2 style="color: #f5b90d; text-align: center; text-align: left;">Weather Condition</h2> <br><br>
+
+    <div class="weather-cards">
+      <div class="weather-card">
+        <i class="fas fa-temperature-high"></i>
+        <p><strong>Temperature:</strong> <span id="temperature"></span>°C</p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-hand-holding-water"></i>
+        <p><strong>Feels Like:</strong> <span id="feelsLike"></span>°C</p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-cloud-sun"></i>
+        <p><strong>Condition:</strong> <span id="condition"></span></p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-tint"></i>
+        <p><strong>Humidity:</strong> <span id="humidity"></span>%</p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-wind"></i>
+        <p><strong>Wind Speed:</strong> <span id="windSpeed"></span> m/s</p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-eye"></i>
+        <p><strong>Visibility:</strong> <span id="visibility"></span> km</p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-sun"></i>
+        <p><strong>Sunrise:</strong> <span id="sunrise"></span></p>
+      </div>
+      <div class="weather-card">
+        <i class="fas fa-cloud-sun"></i>
+        <p><strong>Sunset:</strong> <span id="sunset"></span></p>
+      </div>
+
+    </div>
+
+    <h2 class="last-updated">Last Updated: <span id="lastUpdated"></span></h2>
+  </div>
+
+  <br><br><br><br>
+  <div class="black-container">
+    <h2 style="color: #f5b90d;">About Al-Ahsa Oasis</h2> <br>
+    <p>A UNESCO World Heritage site, Al-Ahsa has been a thriving center of civilization for over 5,000 years. The oasis
+      played a crucial role in trade and agriculture in the Arabian Peninsula, supplying dates and fresh water to
+      ancient travelers..</p>
+  </div>
+  <br><br>
+  <div class="info-map-container">
+    <div class="black-container info">
+      <h2 style="color: #f5b90d;">More Information</h2> <br>
+      <ul>
+        <li><strong>City:</strong> Al-Ahsa</li>
+        <li><strong>Region:</strong> East</li>
+        <li><strong>Type:</strong> Oasis</li>
+        <li><strong>Time needed:</strong> 1-2 days</li>
+        <li><strong>Things to do:</strong>
+          <pre>    Hike Al-Qarah Mountain</pre>
+          <pre>    Tour Ibrahim Palace</pre>
+          <pre>    Relax at Al Hasa Hot Springs</pre>
+          <pre>    Shop at Al Ahsa Souq</pre>
+          <pre>    Take a Heritage Tour</pre>
+          <pre>    Visit Jawatha Mosque</pre>
+        </li>
+      </ul>
+    </div>
+
+    <div class="black-container map-container">
+      <h2 class="map-title">
+        <pre>Location                                                               </pre>
+      </h2><br>
+      <div id="map" class="map-preview"></div>
+      <a href="#" id="enlargeMapLink" class="enlarge-map-link">Click to Enlarge Map</a>
+    </div>
+
+    <!-- Modal for Enlarge View -->
+    <div id="mapModal" class="map-modal">
+      <div class="map-modal-content">
+        <span id="closeMapModal" class="map-modal-close">&times;</span>
+        <div id="modalMap" class="modal-map"></div>
+      </div>
+    </div>
+
+  </div>
+  <br><br>
+  <div class="black-container reviews-container">
+    <div class="reviews">
+      <h2 style="color: #f5b90d;">Reviews of Visitors</h2><br>
+      <div class="ratings">
+        <p>⭐ 4.6 (85 reviews)</p>
+      </div>
+      <div class="review">
+        <p><strong style="color: #f5b90d;">Michael Brown</strong><br>★★★★★<br> <span class="date">10 Jan 2025</span></p>
+        <p>Al-Ahsa Oasis is a lush paradise! The palm groves and natural springs are simply stunning.</p><br>
+      </div>
+      <div class="review">
+        <p><strong style="color: #f5b90d;">Emily Davis</strong> <br>★★★★☆<br><span class="date">08 Jan 2025</span></p>
+        <p>Exploring Al-Qarah Mountain and Ibrahim Palace was a highlight. The oasis is rich in history and beauty.</p>
+        <br>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modal-content" class="modal-content">
+      <video id="modal-video" class="modal-content" controls></video>
+    </div>
+
+    <!--review form-->
+    <div class="add-review">
+      <form>
+        <h2 style="color: #f5b90d;">Add a Review</h2><br>
+        <p>add your rating:</p>
+        <div class="star-rating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div> <br>
+        <p>add your comment:</p>
+        <textarea class="comment" placeholder="Write your comment"></textarea>
+        <p>insert photos:</p>
+        <input type="file">
+        <button id="submit">submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="DestinationScript.js"></script>
+
+
+  <br><br>
+  <!-- footer -->
+  <footer id="footer" class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <!-- About us -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>About Us</h2>
+              <p>
+                Welcome to Farrah Travel, your gateway to exploring the hidden treasures of Saudi Arabia.
+                We are dedicated to providing curated travel experiences, insightful guides, and exceptional
+                services to ensure every journey becomes an unforgettable adventure.
+              </p>
+            </div>
+          </div>
+          <!-- Vision -->
+          <div class="col">
+            <div class="single-footer">
+              <h2>Vision</h2>
+              <p>
+                Our vision is to showcase the natural and cultural wonders of Saudi Arabia,
+                creating memorable travel experiences for every explorer.
+              </p>
+            </div>
+          </div>
+          <!-- Contact Us-->
+          <div class="col">
+            <h2>Contact Us</h2>
+            <ul class="social">
+              <li>
+                <img src="images/facebook-icon.png" alt="facebook" />
+                <span>FarrahTravel</span>
+              </li>
+              <li>
+                <img src="images/x-icon.png" alt="x" />
+                <span>@FarrahTravel</span>
+              </li>
+              <li>
+                <img src="images/instagram-icon.png" alt="instagram" />
+                <span>@Farrah_Travel</span>
+              </li>
+              <li>
+                <img src="images/gmail-icon.png" alt="gmail" />
+                <span>info@farrahtravel.com</span>
+              </li>
+              <li>
+                <img src="images/phone-icon.png" alt="phone" />
+                <span>+966 555 123 456</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  copyright -->
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="copyright-content">
+            <p>
+              © 2025 | All Rights Reserved by
+              <span>Farrah Travel</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="DestinationScript.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+  <script>
+    const slidebarBtn = document.getElementById('slidebarBtn');
+    const slidebar = document.getElementById('slidebar');
+    slidebarBtn.addEventListener('click', () => {
+      slidebar.classList.toggle('active');
+      slidebarBtn.classList.toggle('is-active');
+    });
+
+
+    const apiKey = "63ecd3ddb653464781ede6b7c4ed1e33";
+    const latitude = 25.3833;
+    const longitude = 49.6000;
+    const weatherUrl = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${apiKey}`;
+
+    function fetchWeather() {
+      fetch(weatherUrl)
+        .then(response => response.json())
+        .then(data => {
+          const weather = data.data[0];
+          document.getElementById("temperature").innerText = weather.temp;
+          document.getElementById("feelsLike").innerText = weather.app_temp;
+          document.getElementById("condition").innerText = weather.weather.description;
+          document.getElementById("humidity").innerText = weather.rh;
+          document.getElementById("windSpeed").innerText = weather.wind_spd;
+          document.getElementById("visibility").innerText = weather.vis;
+          document.getElementById("sunrise").innerText = weather.sunrise;
+          document.getElementById("sunset").innerText = weather.sunset;
+
+          // Update last updated time
+          document.getElementById("lastUpdated").innerText = new Date().toLocaleTimeString();
+        })
+        .catch(error => {
+          console.error("Error fetching weather data:", error);
+          document.getElementById("weather-info").innerText = "Failed to load weather data.";
+        });
+    }
+
+    // Fetch weather initially
+    fetchWeather();
+
+    // Update every 5 minutes (300,000 milliseconds)
+    setInterval(fetchWeather, 60000);
+
+
+    // Initialize the map
+    var map = L.map('map').setView([25.3833, 49.6000], 13); // Coordinates for Heet Cave
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Add a marker for Heet Cave
+    var marker = L.marker([25.3833, 49.6000]).addTo(map)
+      .bindPopup("<b>Al-Ahsa Osis</b><br>Al-Ahsa, Saudi Arabia.")
+      .openPopup();
+
+    // When the map is clicked, show the link to enlarge the map
+    map.on('click', function () {
+      document.getElementById("enlargeMapLink").style.display = "inline";
+    });
+
+    // Enlarge map when the link is clicked
+    document.getElementById("enlargeMapLink").addEventListener("click", function (event) {
+      event.preventDefault();
+      // Hide the small map
+      document.getElementById("map").style.display = "none";
+
+      // Show the modal
+      document.getElementById("mapModal").style.display = "block";
+
+      // Initialize modal map
+      var modalMap = L.map('modalMap').setView([25.3833, 49.6000], 13); // Same coordinates
+
+      // Add OpenStreetMap tiles to the modal map
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(modalMap);
+
+      // Add a marker for Heet Cave in the modal map
+      L.marker([25.3833, 49.6000]).addTo(modalMap)
+        .bindPopup("<b>Al-Ahsa Osis</b><br>Al-Ahsa, Saudi Arabia.")
+        .openPopup();
+    });
+
+    // Close the modal when the user clicks the close button
+    document.getElementById("closeMapModal").addEventListener("click", function () {
+      // Hide the modal
+      document.getElementById("mapModal").style.display = "none";
+
+      // Show the small map again
+      document.getElementById("map").style.display = "block";
+    });
+  </script>
+
+
+</body>
+
+</html>

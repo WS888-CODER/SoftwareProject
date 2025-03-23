@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $host = "localhost";  // Change if needed
 $username = "root";   // Change based on your database credentials
 $password = "root";       // Change if you have set a password
-$database = "farrah_database"; 
+$database = "farrah"; 
 
 $conn = new mysqli($host, $username, $password, $database);
 
