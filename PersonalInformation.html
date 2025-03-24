@@ -39,33 +39,34 @@
     </nav>
   </header>
 
-  <!-- Personal Information -->
-  <div class="form-container">
-    <div class="form-box">
-      <h2 class="title-form">Personal Information</h2>
-      <form>
-        <div class="form-group">
-          <label>Username:</label>
-          <input type="text" id="username" value="Khalid alqahtani" disabled>
-        </div>
-        <div class="form-group">
-          <label>Phone Number:</label>
-          <input type="text" id="phone" value="+966123456789" disabled>
-        </div>
-        <div class="form-group">
-          <label>Email:</label>
-          <input type="email" id="email" value="khalidAlq@example.com" disabled>
-        </div>
-        <div class="form-group">
-          <label>Password:</label>
-          <input type="password" id="password" value="********" disabled>
-        </div>
-        <button type="button" id="edit-btn" class="edit-btn">Edit</button>
-        <button type="button" id="save-btn" class="save-btn" style="display: none;">Save</button>
-        <button type="button" id="cancel-btn" class="cancel-btn" style="display: none;">Cancel</button>
-      </form>
+    <!-- Personal Information -->
+    <div class="form-container">
+      <div class="form-box">
+        <h2 class="title-form">Personal Information</h2>
+        <form id="personal-info-form">
+          <div class="form-group">
+            <label>Username:</label>
+            <input type="text" id="username" required disabled>
+          </div>
+          <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="text" id="phone" required disabled>
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" required disabled>
+          </div>
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="password" id="password" required disabled>
+          </div>
+          <button type="button" id="edit-btn" class="edit-btn">Edit</button>
+          <button type="button" id="save-btn" class="save-btn" style="display: none;">Save</button>
+          <button type="button" id="cancel-btn" class="cancel-btn" style="display: none;">Cancel</button>
+        </form>
+      </div>
     </div>
-  </div>
+
   <!-- footer -->
   <footer id="footer" class="footer">
     <div class="footer-top">
@@ -139,16 +140,108 @@
   <!-- Alert Popup -->
   <div id="alert-popup" class="popup-overlay">
     <div class="popup-box">
-      <p id="alert-popup-message"></p> <!-- Error or alert message -->
+      <p id="alert-popup-message"></p>
     </div>
   </div>
 
   <!-- Success Popup -->
   <div id="success-popup" class="popup-overlay">
     <div class="popup-box">
-      <p id="success-popup-message"></p> <!-- Success message -->
+      <p id="success-popup-message"></p>
     </div>
   </div>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("personal-info-form");
+      const fields = ["username", "phone", "email", "password"];
+
+      window.onload = () => {
+        fetch("PersonalInformation.php")
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === "success") {
+              document.getElementById("username").value = data.data.name;
+              document.getElementById("phone").value = data.data.phone;
+              document.getElementById("email").value = data.data.email;
+              document.getElementById("password").value = data.data.password;
+            }
+          });
+      };
+
+      document.getElementById("edit-btn").addEventListener("click", function () {
+        fields.forEach(id => document.getElementById(id).disabled = false);
+        this.style.display = "none";
+        document.getElementById("save-btn").style.display = "inline-block";
+        document.getElementById("cancel-btn").style.display = "inline-block";
+      });
+
+      document.getElementById("cancel-btn").addEventListener("click", function () {
+        window.location.reload();
+      });
+
+      document.getElementById("save-btn").addEventListener("click", function () {
+        let username = document.getElementById("username").value.trim();
+        let phone = document.getElementById("phone").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value.trim();
+
+        if (!username || !phone || !email || !password) {
+          showPopup("error", "🛑 Please fill in all fields before saving.");
+          return;
+        }
+
+        if (!email.includes("@") || !email.includes(".")) {
+          showPopup("error", "📧 Please enter a valid email address.");
+          return;
+        }
+
+        if (password.length < 8) {
+          showPopup("error", "🔒 Password must be at least 8 characters.");
+          return;
+        }
+
+        let phonePattern = /^\+966\d{9}$/;
+        if (!phone.match(phonePattern)) {
+          showPopup("error", "📞 Please enter a valid phone number starting with +966 and 12 digits total.");
+          return;
+        }
+
+        const data = { username, phone, email, password };
+
+        fetch("updateUser.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === "success") {
+            showPopup("success", data.message);
+          } else {
+            showPopup("error", data.message);
+          }
+        })
+        .catch(() => {
+          showPopup("error", "⚠️ Something went wrong. Please try again.");
+        });
+      });
+
+      function showPopup(type, message) {
+        let popupId = type === "success" ? "success-popup" : "alert-popup";
+        let messageId = type === "success" ? "success-popup-message" : "alert-popup-message";
+        document.getElementById(messageId).textContent = message;
+        let popup = document.getElementById(popupId);
+        popup.style.visibility = "visible";
+        popup.style.opacity = "1";
+        setTimeout(() => {
+          popup.style.visibility = "hidden";
+          popup.style.opacity = "0";
+        }, 3000);
+      }
+    });
+  </script>
   <script>
     const slidebarBtn = document.getElementById('slidebarBtn');
     const slidebar = document.getElementById('slidebar');
@@ -156,79 +249,6 @@
       slidebar.classList.toggle('active');
       slidebarBtn.classList.toggle('is-active');
     });
-    document.getElementById('edit-btn').addEventListener('click', function () {
-      document.getElementById('username').disabled = false;
-      document.getElementById('phone').disabled = false;
-      document.getElementById('email').disabled = false;
-      document.getElementById('password').disabled = false;
-      this.style.display = 'none';
-      document.getElementById('save-btn').style.display = 'inline-block';
-      document.getElementById('cancel-btn').style.display = 'inline-block';
-    });
-
-    document.getElementById('save-btn').addEventListener('click', function () {
-      // Get the values of the input fields
-      let email = document.getElementById('email').value.trim();
-      let password = document.getElementById('password').value.trim();
-
-      // Validate email format
-      if (!email.includes("@") || !email.includes(".")) {
-        showPopup("error", "📧 Please enter a valid email address.");
-        return; // Stop further execution
-      }
-
-      // Validate password length
-      if (password.length < 8) {
-        showPopup("error", "🔒 Password must be at least 8 characters.");
-        return; // Stop further execution
-      }
-
-      // If all validations pass, save the information and update the UI
-      document.getElementById('username').disabled = true;
-      document.getElementById('phone').disabled = true;
-      document.getElementById('email').disabled = true;
-      document.getElementById('password').disabled = true;
-      this.style.display = 'none';
-      document.getElementById('cancel-btn').style.display = 'none';
-      document.getElementById('edit-btn').style.display = 'block';
-
-      // Show success popup
-      showPopup("success", "✅ Information updated successfully!");
-    });
-
-    document.getElementById('cancel-btn').addEventListener('click', function () {
-      document.getElementById('username').disabled = true;
-      document.getElementById('phone').disabled = true;
-      document.getElementById('email').disabled = true;
-      document.getElementById('password').disabled = true;
-      this.style.display = 'none';
-      document.getElementById('save-btn').style.display = 'none';
-      document.getElementById('edit-btn').style.display = 'block';
-    });
-
-    // Function to show popups
-    function showPopup(type, message) {
-      let popupId = type === "success" ? "success-popup" : "alert-popup";
-      let messageId = type === "success" ? "success-popup-message" : "alert-popup-message";
-
-      document.getElementById(messageId).textContent = message;
-      let popup = document.getElementById(popupId);
-      popup.style.visibility = "visible";
-      popup.style.opacity = "1";
-
-      // Automatically hide the popup after 3 seconds (3000 ms)
-      setTimeout(() => {
-        closePopup(type);
-      }, 3000); // You can adjust the time as needed (in milliseconds)
-    }
-
-    // Function to close popups
-    function closePopup(type) {
-      let popupId = type === "success" ? "success-popup" : "alert-popup";
-      let popup = document.getElementById(popupId);
-      popup.style.visibility = "hidden";
-      popup.style.opacity = "0";
-    }
 
   </script>
 
