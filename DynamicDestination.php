@@ -1,11 +1,14 @@
 <?php
+
+
 include 'db.php'; // Include database connection
 // Enable error reporting for debugging (remove or adjust in production)
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
+// Start the session at the very top of your script
+session_start();
 
 // Get destination ID from query string
 $destinationID = isset($_GET['DestinationID']) ? $_GET['DestinationID'] : '';
@@ -38,15 +41,59 @@ $stmt->execute();
 $resultThings = $stmt->get_result();
 $thingsToDo = $resultThings->fetch_all(MYSQLI_ASSOC);
 
-// Fetch reviews with user names
+// Process review submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $userID = $_SESSION['UserID'];
+    $destinationID = $_GET['DestinationID'];
+    $rating = $_POST['rating'];
+    $comment = $_POST['comment'];
+    
+    // Insert review into the database
+    $query = "INSERT INTO review (UserID, DestinationID, Rating, Comment, Date) VALUES (?, ?, ?, ?, NOW())";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("siis", $userID, $destinationID, $rating, $comment);
+    $stmt->execute();
+    $reviewID = $stmt->insert_id; // Get the ID of the newly inserted review
+    $stmt->close();
+
+    // Handle photo uploads if any
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
+        $photoTmpName = $_FILES['photo']['tmp_name'];
+        $photoName = $_FILES['photo']['name'];
+        $photoPath = 'uploads/' . basename($photoName); // Path to store the image
+
+        // Move the uploaded file
+        if (move_uploaded_file($photoTmpName, $photoPath)) {
+            // Insert photo into the reviewimage table
+            $queryImage = "INSERT INTO reviewimage (ReviewID, ReviewImage) VALUES (?, ?)";
+            $stmt = $conn->prepare($queryImage);
+            $stmt->bind_param("is", $reviewID, $photoPath);
+            $stmt->execute();
+            $stmt->close();
+        } else {
+            echo "Error uploading file.";
+        }
+    }
+
+    // Redirect to refresh and show the new review
+    header("Location: DynamicDestination.php?DestinationID=" . $destinationID);
+    exit();
+}
+
+// Fetch reviews for the specific destination after page reload
+$destinationID = isset($_GET['DestinationID']) ? $_GET['DestinationID'] : '';
+
+// Query to fetch all reviews for the specific destination
 $queryReviews = "SELECT r.*, u.Name FROM review r 
                  JOIN user u ON r.UserID = u.UserID 
-                 WHERE r.DestinationID = ?";
+                 WHERE r.DestinationID = ? ORDER BY r.Date DESC"; // Ordered by the most recent review
 $stmt = $conn->prepare($queryReviews);
-$stmt->bind_param("s", $destinationID);
+$stmt->bind_param("i", $destinationID);
 $stmt->execute();
 $resultReviews = $stmt->get_result();
 $reviews = $resultReviews->fetch_all(MYSQLI_ASSOC);
+
+// Calculate total reviews and average rating
 $totalReviews = count($reviews);
 $averageRating = $totalReviews ? array_sum(array_column($reviews, 'Rating')) / $totalReviews : 0;
 ?>
@@ -229,80 +276,85 @@ foreach ($images as $img) { ?>
   <br><br>
   <div class="black-container reviews-container">
     <div class="reviews">
-      <h2 style="color: #f5b90d;">Reviews of Visitors</h2><br>
-      <div class="ratings">
-        <p>⭐ <?php echo number_format($averageRating, 1); ?> (<?php echo $totalReviews; ?> reviews)</p>
-      </div>
-      <?php foreach ($reviews as $review) { ?>
-      <div class="review">
-        <p><strong style="color: #f5b90d;"><?php echo htmlspecialchars($review['Name']); ?></strong><br><?php echo str_repeat('★', $review['Rating']) . str_repeat('☆', 5 - $review['Rating']); ?><br> <span class="date"><?php echo htmlspecialchars($review['Date']); ?></span></p>
-        <p><?php echo htmlspecialchars($review['Comment']); ?></p><br>
-        <div class="photo-container">
-          <?php
-          ;
-$videoIndex = 1; // ✅ New counter for videos
-
-$queryReviewMedia = "SELECT ReviewImage FROM reviewimage WHERE ReviewID = ?";
-$stmt = $conn->prepare($queryReviewMedia);
-$stmt->bind_param("s", $review['ReviewID']);
-$stmt->execute();
-$resultMedia = $stmt->get_result();
-while ($media = $resultMedia->fetch_assoc()) {
-    $filePath = htmlspecialchars($media['ReviewImage']);
-    $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION)); // ✅ Get file type
-
-   if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) { 
-    // Image - Use the existing $ii variable
-    echo "<img class='review-photo reviewPhoto' src='$filePath' onclick=\"openModal('photo$i')\">";
-    $i++; 
-} elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg'])) {
-    // Video - Use new $videoIndex variable
-    echo "<video src='$filePath' class='review-video reviewPhoto' onclick=\"openModal('video$videoIndex')\"></video>";
-    $videoIndex++; 
-}
-
-}
-?>
-
+        <h2 style="color: #f5b90d;">Reviews of Visitors</h2><br>
+        <div class="ratings">
+            <p>⭐ <?php echo number_format($averageRating, 1); ?> (<?php echo $totalReviews; ?> reviews)</p>
         </div>
-      </div>
-     <?php } ?>
-</div>
-    <!-- Modal Structure -->
+
+        <!-- Loop through and display reviews -->
+        <?php if ($totalReviews > 0) { ?>
+            <?php foreach ($reviews as $review) { ?>
+                <div class="review">
+                    <p><strong style="color: #f5b90d;"><?php echo htmlspecialchars($review['Name']); ?></strong><br>
+                    <?php echo str_repeat('★', $review['Rating']) . str_repeat('☆', 5 - $review['Rating']); ?><br>
+                    <span class="date"><?php echo htmlspecialchars($review['Date']); ?></span></p>
+                    <p><?php echo htmlspecialchars($review['Comment']); ?></p><br>
+
+                    <div class="photo-container">
+                        <?php
+                        $videoIndex = 1; // New counter for videos
+
+                        // Fetch review media (images and videos)
+                        $queryReviewMedia = "SELECT ReviewImage FROM reviewimage WHERE ReviewID = ?";
+                        $stmt = $conn->prepare($queryReviewMedia);
+                        $stmt->bind_param("i", $review['ReviewID']);
+                        $stmt->execute();
+                        $resultMedia = $stmt->get_result();
+                        while ($media = $resultMedia->fetch_assoc()) {
+                            $filePath = htmlspecialchars($media['ReviewImage']);
+                            $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+                            if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) { 
+                                // Image
+                                echo "<img class='review-photo reviewPhoto' src='$filePath' onclick=\"openModal('photo$i')\">";
+                                $i++; 
+                            } elseif (in_array($fileExtension, ['mp4', 'webm', 'ogg'])) {
+                                // Video
+                                echo "<video src='$filePath' class='review-video reviewPhoto' onclick=\"openModal('video$videoIndex')\"></video>";
+                                $videoIndex++; 
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+            <?php } ?>
+        <?php } else { ?>
+            <p>No reviews yet. Be the first to leave a review!</p>
+        <?php } ?>
+    </div>
+
+    <!-- Modal Structure for viewing images/videos -->
     <div id="modal" class="modal">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img id="modal-content" class="modal-content">
-      <video id="modal-video" class="modal-content" controls></video>
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modal-content" class="modal-content">
+        <video id="modal-video" class="modal-content" controls></video>
     </div>
 
-    <!-- review form-->
+    <!-- Add Review Form (inside the same container) -->
     <div class="add-review">
-       <form action="Destination.php?DestinationID=<?php echo $destinationID; ?>" method="post" enctype="multipart/form-data">
-    <h2 style="color: #f5b90d;">Add a Review</h2><br>
-    <p>add your rating:</p>
-    <div class="star-rating">
-    <span class="star" data-value="1">&#9733;</span>
-    <span class="star" data-value="2">&#9733;</span>
-    <span class="star" data-value="3">&#9733;</span>
-    <span class="star" data-value="4">&#9733;</span>
-    <span class="star" data-value="5">&#9733;</span>
-  </div><br>
-    <!-- Hidden input to store the chosen rating -->
-    <input type="hidden" name="rating" id="rating" value="0">
-    
-    <p>add your comment:</p>
-    <textarea name="comment" class="comment" placeholder="Write your comment"></textarea>
-    
-    <p>insert photos:</p>
-    <!-- The input name 'photo' here (adjust if multiple images are allowed) -->
-    <input type="file" name="photo">
-    
-    <button type="submit" id="submit">Submit</button>
-  </form>
+        <form action="DynamicDestination.php?DestinationID=<?php echo $destinationID; ?>" method="post" enctype="multipart/form-data">
+            <h2 style="color: #f5b90d;">Add a Review</h2><br>
+            <p>add your rating:</p>
+            <div class="star-rating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+            </div><br>
+            <!-- Hidden input to store the chosen rating -->
+            <input type="hidden" name="rating" id="rating" value="0">
 
+            <p>add your comment:</p>
+            <textarea name="comment" class="comment" placeholder="Write your comment"></textarea>
+
+            <p>insert photos:</p>
+            <input type="file" name="photo">
+
+            <button type="submit" id="submit">Submit</button>
+        </form>
     </div>
-  </div>
-
+</div>
   <script src="DestinationScript.js"></script>
 
 
