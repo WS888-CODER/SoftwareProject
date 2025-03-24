@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 23 مارس 2025 الساعة 11:15
--- إصدار الخادم: 5.7.24
+-- Generation Time: Mar 24, 2025 at 12:36 AM
+-- Server version: 5.7.24
 -- PHP Version: 8.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `farrah_database2`
+-- Database: `farrah_database`
 --
 
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `contains`
+-- Table structure for table `contains`
 --
 
 CREATE TABLE `contains` (
@@ -35,7 +35,7 @@ CREATE TABLE `contains` (
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `destination`
+-- Table structure for table `destination`
 --
 
 CREATE TABLE `destination` (
@@ -53,7 +53,7 @@ CREATE TABLE `destination` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- إرجاع أو استيراد بيانات الجدول `destination`
+-- Dumping data for table `destination`
 --
 
 INSERT INTO `destination` (`DestinationID`, `Name`, `Sentence`, `Latitude`, `Longitude`, `City`, `Region`, `Type`, `Description`, `TimeNeeded`, `BackgroundPhoto`) VALUES
@@ -81,7 +81,7 @@ INSERT INTO `destination` (`DestinationID`, `Name`, `Sentence`, `Latitude`, `Lon
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `destinationimage`
+-- Table structure for table `destinationimage`
 --
 
 CREATE TABLE `destinationimage` (
@@ -90,7 +90,7 @@ CREATE TABLE `destinationimage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- إرجاع أو استيراد بيانات الجدول `destinationimage`
+-- Dumping data for table `destinationimage`
 --
 
 INSERT INTO `destinationimage` (`DestinationID`, `DestinationImage`) VALUES
@@ -158,11 +158,11 @@ INSERT INTO `destinationimage` (`DestinationID`, `DestinationImage`) VALUES
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `review` (
-  `ReviewID` int(255) NOT NULL,
+  `ReviewID` int(11) NOT NULL,
   `UserID` varchar(255) NOT NULL,
   `DestinationID` varchar(255) NOT NULL,
   `Rating` int(11) NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- إرجاع أو استيراد بيانات الجدول `review`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`ReviewID`, `UserID`, `DestinationID`, `Rating`, `Comment`, `Date`) VALUES
@@ -219,7 +219,7 @@ INSERT INTO `review` (`ReviewID`, `UserID`, `DestinationID`, `Rating`, `Comment`
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `reviewimage`
+-- Table structure for table `reviewimage`
 --
 
 CREATE TABLE `reviewimage` (
@@ -228,7 +228,7 @@ CREATE TABLE `reviewimage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- إرجاع أو استيراد بيانات الجدول `reviewimage`
+-- Dumping data for table `reviewimage`
 --
 
 INSERT INTO `reviewimage` (`ReviewID`, `ReviewImage`) VALUES
@@ -242,7 +242,7 @@ INSERT INTO `reviewimage` (`ReviewID`, `ReviewImage`) VALUES
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `thingstodo`
+-- Table structure for table `thingstodo`
 --
 
 CREATE TABLE `thingstodo` (
@@ -251,7 +251,7 @@ CREATE TABLE `thingstodo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- إرجاع أو استيراد بيانات الجدول `thingstodo`
+-- Dumping data for table `thingstodo`
 --
 
 INSERT INTO `thingstodo` (`DestinationID`, `ThingsToDo`) VALUES
@@ -364,7 +364,7 @@ INSERT INTO `thingstodo` (`DestinationID`, `ThingsToDo`) VALUES
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `tripscheduler`
+-- Table structure for table `tripscheduler`
 --
 
 CREATE TABLE `tripscheduler` (
@@ -377,7 +377,7 @@ CREATE TABLE `tripscheduler` (
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -389,7 +389,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- إرجاع أو استيراد بيانات الجدول `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`UserID`, `Name`, `PhoneNumber`, `Email`, `Password`) VALUES
@@ -403,7 +403,8 @@ INSERT INTO `user` (`UserID`, `Name`, `PhoneNumber`, `Email`, `Password`) VALUES
 ('user_67ddefde14f71', 'Abdualziz Khalid', '+966577233668', 'AbdualzizKH@hotmail.com', '$2y$10$HcjuxIMMRiaAgwRXtbJ2t.avqfGQM/yBDxLP/sGGUCmhGzQ6KaMNC'),
 ('user_67ddf02bb0bb7', 'James Taylor', '+966556919033', 'JamTaylor@gmail.com', '$2y$10$CjD7IRUPWnOSgHQ3Whadq.DvUmUqIfaezyVLLufACrGliQVngnr72'),
 ('user_67ddf071b2555', 'Sara Mohammed', '+966553449838', 'Sara123@hotmail.com', '$2y$10$qq8dYP49tg.pDU4pJXftH.6DgqaPUgWsjvxP5qkcFwYVd9iKS.l4K'),
-('user_67df8d8beeddb', 'esraa', '+966502234455', 'esraa@gmail.com', '$2y$10$3FHIQrcf3WLL4GehaiAW6.nDbs3QuoZICxVw84gD21U7aEFo9WT/O');
+('user_67df8d8beeddb', 'esraa', '+966502234455', 'esraa@gmail.com', '$2y$10$3FHIQrcf3WLL4GehaiAW6.nDbs3QuoZICxVw84gD21U7aEFo9WT/O'),
+('user_67e0612843494', 'rama', '+966889005443', 'alomair@gmail.com', '$2y$10$Spkiqytzm7kNw9rAwotYjOsV7AOww2SagxOhQjQ9al5eMnuW1onya');
 
 --
 -- Indexes for dumped tables
@@ -445,17 +446,27 @@ ALTER TABLE `reviewimage`
   ADD KEY `ReviewID` (`ReviewID`);
 
 --
--- قيود الجداول المحفوظة
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- القيود للجدول `destinationimage`
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `ReviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `destinationimage`
 --
 ALTER TABLE `destinationimage`
   ADD CONSTRAINT `destinationimage_ibfk_1` FOREIGN KEY (`DestinationID`) REFERENCES `destination` (`DestinationID`) ON DELETE CASCADE;
 
 --
--- القيود للجدول `reviewimage`
+-- Constraints for table `reviewimage`
 --
 ALTER TABLE `reviewimage`
   ADD CONSTRAINT `reviewimage_ibfk_1` FOREIGN KEY (`ReviewID`) REFERENCES `review` (`ReviewID`) ON DELETE CASCADE;
