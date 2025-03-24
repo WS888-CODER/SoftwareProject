@@ -13,16 +13,36 @@ header('Content-Type: application/json');
 include 'db.php'; // Make sure the database connection is correct
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if required fields are set
-    if (empty($_POST["username"])  empty($_POST["email"])  empty($_POST["password"]) || empty($_POST["phone"])) {
+    // Check if required fields are set correctly
+    if (empty($_POST["username"]) || empty($_POST["email"]) || empty($_POST["password"]) || empty($_POST["phone"])) {
         echo json_encode(["status" => "error", "message" => "All fields are required."]);
         exit();
     }
 
-    $name = $_POST["username"];
-    $email = $_POST["email"];
-    $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // Securely hash password
-    $phone = $_POST["phone"];
+    $name = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $passwordRaw = $_POST["password"];
+    $phone = trim($_POST["phone"]);
+
+    // Email validation
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(["status" => "error", "message" => "Invalid email format."]);
+        exit();
+    }
+
+    // Password validation
+    if (strlen($passwordRaw) < 8) {
+        echo json_encode(["status" => "error", "message" => "Password must be at least 8 characters."]);
+        exit();
+    }
+
+    // Phone validation
+    if (!preg_match('/^\+966\d{9}$/', $phone)) {
+        echo json_encode(["status" => "error", "message" => "Phone number must start with +966 and be 12 digits."]);
+        exit();
+    }
+
+    $password = password_hash($passwordRaw, PASSWORD_DEFAULT); // Securely hash password
 
     // Generate a unique UserID
     $userID = uniqid('user_');
@@ -47,7 +67,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['UserID'] = $userID;
         $_SESSION['UserName'] = $name;
 
-        
         echo json_encode(["status" => "success", "message" => "Registration successful!"]);
     } else {
         echo json_encode(["status" => "error", "message" => "Registration failed!"]);
@@ -56,7 +75,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 } else {
-    // If the request method isn't POST, return error
     echo json_encode(["status" => "error", "message" => "Invalid request method."]);
 }
 ?>
