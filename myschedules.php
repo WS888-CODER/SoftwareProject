@@ -23,6 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve selected activities
     $selectedActivities = isset($_POST['things-to-do']) ? $_POST['things-to-do'] : [];
 
+    $tripStartDate = $_POST["start-date-personalized"]; // User-selected start date
+
     // Retrieve duration, default to 7 days
     $duration = isset($_POST['duration-personalized']) ? $_POST['duration-personalized'] : 7;
     $dailyAvailableHours = 6;
@@ -140,9 +142,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $startDate = date('Y-m-d');
 
             // Insert into tripscheduler table to create a new schedule
-            $sqlInsertSchedule = "INSERT INTO tripscheduler (ScheduleID, UserID, Date) VALUES (?, ?, ?)";
+            $sqlInsertSchedule = "INSERT INTO tripscheduler (ScheduleID, UserID, Date, StartDate) VALUES (?, ?, ?, ?)";
             $stmtInsert = $conn->prepare($sqlInsertSchedule);
-            $stmtInsert->bind_param("sss", $newScheduleID, $userId, $startDate);
+            $stmtInsert->bind_param("ssss", $newScheduleID, $userId, $startDate, $tripStartDate);
             if ($stmtInsert->execute()) {
                // echo "New schedule created successfully with ID: $newScheduleID.<br>";
             } else {
@@ -180,6 +182,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         //echo "No destinations to add to the schedule.<br>";
     }
+    // Redirect to avoid form resubmission
+    header("Location: myschedules.php"); // Redirect to the same page or another page
+    exit();
 }
 
 ?>
@@ -259,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </a>
                     <form action="delete_schedule.php" method="POST" style="display:inline;">
                         <input type="hidden" name="schedule_id" value="<?php echo $scheduleID; ?>">
-                        <button class="trash-btn" type="submit" onclick="return confirm('Are you sure you want to delete this schedule?');">&#128465;</button>
+                        <button class="trash-btn" type="submit" >&#128465;</button>
                     </form>
                 </div>
 </div>
@@ -325,6 +330,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "<p>No schedules found.</p>";
     }
+    
     ?>
 </div>
 
@@ -408,15 +414,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".schedule-wrapper").forEach((scheduleWrapper) => {
-    // Check if the required elements exist before trying to add event listeners
     const prevBtn = scheduleWrapper.querySelector(".prev-btn");
     const nextBtn = scheduleWrapper.querySelector(".next-btn");
     const cardsContainer = scheduleWrapper.querySelector(".cards-container");
     const trashBtn = scheduleWrapper.querySelector(".trash-btn");
 
-    // Only proceed if all elements are found
     if (prevBtn && nextBtn && cardsContainer && trashBtn) {
       let scrollAmount = 0;
       const step = 250;
@@ -442,14 +446,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         updateButtonsVisibility();
       });
 
-      trashBtn.addEventListener("click", function () {
-        scheduleWrapper.remove();
+      trashBtn.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        if (confirm("Are you sure you want to delete this schedule?")) {
+          let form = trashBtn.closest("form");
+          let formData = new FormData(form);
+
+          fetch(form.action, {
+            method: "POST",
+            body: formData
+          })
+          .then(response => response.json()) // Parse response as JSON
+          .then(data => {
+            if (data.success) {
+              alert(data.message); // Show success message
+              scheduleWrapper.remove(); // Remove from UI
+            } else {
+              alert("Error: " + data.message); // Show error message
+            }
+          })
+          .catch(error => {
+            alert("Request failed! Check console for details.");
+            console.error(error);
+          });
+        }
       });
 
       updateButtonsVisibility();
     }
   });
 });
+
 
     </script>
 </html>
