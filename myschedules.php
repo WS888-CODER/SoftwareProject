@@ -233,7 +233,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <button class="discover-btn">Discover Now!!</button>
     </a>
 <!-- Schedule Wrapper -->
-<div class="schedule-wrapper">
+
+
     <?php
     $userID = $_SESSION['UserID']; // Assuming session holds UserID
 
@@ -248,6 +249,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Loop through each schedule and display it
         while ($stmtSchedules->fetch()) { // ✅ Now, we don't close $stmtSchedules too early
             ?>
+            <div class="schedule-wrapper">
             <div class="schedule-row">
                 <h1 class="schedule-name"><?php echo "Schedule #" . substr($scheduleID, 9, 6); ?></h1>
 
@@ -257,10 +259,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </a>
                     <form action="delete_schedule.php" method="POST" style="display:inline;">
                         <input type="hidden" name="schedule_id" value="<?php echo $scheduleID; ?>">
-                        <button class="trash-btn" type="submit">&#128465;</button> 
+                        <button class="trash-btn" type="submit" onclick="return confirm('Are you sure you want to delete this schedule?');">&#128465;</button>
                     </form>
                 </div>
-
+</div>
                 <br>
                 <div class="cards-slider">
                     <button class="slider-btn prev-btn">&#9664;</button>
