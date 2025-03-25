@@ -33,18 +33,19 @@
           <a href="login.html">Login</a>
           <a href="register.html">Register</a>
         </div>
+          
         <form method="POST" action="login.php" id="loginForm" novalidate>
           <div class="form-group-login">
-            <label for="username-login">Username:</label>
-            <input type="text" id="username-login" name="username-login" required>
+              <label for="email-login">Email:</label>
+            <input type="email" id="email-login" name="email-login" required>
           </div>
           <div class="form-group-login">
             <label for="password-login">Password:</label>
-            <input type="password" id="password-login" name="password-login" required>
-            <a id="reset_Password_login" href="forgot-password.html">forgot your password? Reset it</a>
+            <input type="password" id="password-login" name="password-login" required><br>
+            <a id="reset_Password_login" href="forgot-password.html">Forgot your password? Reset it</a>
           </div>
           <button type="submit">Login</button>
-        </form>
+         </form>
 
 
       </div>
