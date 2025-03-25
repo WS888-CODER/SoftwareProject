@@ -375,6 +375,7 @@ CREATE TABLE `tripscheduler` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+ALTER TABLE tripscheduler ADD COLUMN StartDate DATE NOT NULL;
 
 --
 -- Table structure for table `user`
