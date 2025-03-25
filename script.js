@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // Determine backend URL (login or register)
-      let backendUrl = isLoginForm ? "http://localhost/SoftwareProject/login.php" : "http://localhost/SoftwareProject/register.php";
+      let backendUrl = isLoginForm ? "login.php" : "register.php";
 
       fetch(backendUrl, {
           method: "POST",
@@ -81,67 +81,8 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 
-  // Handle forgot password form submission
-  if (document.getElementById("resetPasswordForm")) {
-      const resetPasswordForm = document.getElementById("resetPasswordForm");
-
-      resetPasswordForm.addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the default form submission
-
-          const username = document.getElementById("reset-username").value.trim(); // Get username
-          const newPassword = document.getElementById("new-password").value.trim();
-          const confirmPassword = document.getElementById("confirm-new-password").value.trim();
-
-          // Check if passwords match
-          if (newPassword !== confirmPassword) {
-              showPopup("error", "🛑 Passwords do not match.");
-              return;
-          }
-
-          // Check if password is valid
-          if (newPassword.length < 8) {
-              showPopup("error", "🔒 Password must be at least 8 characters.");
-              return;
-          }
-
-          // Prepare data as JSON to send in the request body
-          const resetFormData = JSON.stringify({
-              username: username,
-              newPassword: newPassword
-          });
-
-          fetch("http://localhost/SoftwareProject/forgot-password.php", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json"
-              },
-              body: resetFormData
-          })
-          .then(response => {
-              // Check if the response is JSON before parsing it
-              const contentType = response.headers.get("Content-Type");
-              if (contentType && contentType.includes("application/json")) {
-                  return response.json();
-              } else {
-                  throw new Error("Expected JSON, but received " + contentType);
-              }
-          })
-          .then(data => {
-              if (data.status === "success") {
-                  showPopup("success", data.message);
-                  setTimeout(() => {
-                      window.location.href = "login.php"; // Redirect to login after success
-                  }, 2000);
-              } else {
-                  showPopup("error", data.message);
-              }
-          })
-          .catch(error => {
-              console.error("Error occurred:", error);
-              showPopup("error", "⚠️ Something went wrong. Please try again.");
-          });
-      });
-  }
+  
+  
 
   // Function to show popups
   function showPopup(type, message) {
