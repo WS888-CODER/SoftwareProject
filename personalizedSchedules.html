@@ -61,70 +61,74 @@
       <h2 class="form-title-personalized">Plan Your Personalized Trip</h2>
       <p class="form-subtitle-personalized">Answer a few questions, and we'll create your perfect schedule!</p>
 
-      <form id="travel-form-personalized" action = "MySchedules.php" method = "POST">
+     <form id="travel-form-personalized" action="myschedules.php" method="POST">
+
     <!-- Step 1: Region Selection (Dropdown) -->
-<div class="step-personalized" id="step-1-personalized">
-  <label for="region-personalized">📍 Which region do you prefer?</label>
-  <select id="region-personalized" name="region-personalized">
-    <option value="">Select a Region</option>
-    <option value="center">Center</option>
-    <option value="south">️South</option>
-    <option value="west">West</option>
-    <option value="north">North</option>
-  </select>
-  <button type="button" onclick="nextStep(1)">Next</button>
-</div>
-
-
-
-
-        <!-- Step 2: Destination -->
-<div class="step-personalized" id="step-2-personalized" style="display: none;">
-  <label for="destination-personalized">📍 What type of destination do you prefer?</label>
-  <select id="destination-personalized" name="destination-personalized">
-    <option value="">Select a destination</option>
-    <option value="oasis">🏝️ Oasis</option>
-    <option value="mountainous">⛰️ Mountainous</option>
-    <option value="sandy">🏜️ Sandy</option>
-    <option value="marine">🌊 Marine</option>
-    <option value="rocky">🪨 Rocky</option>
-  </select>
-  <button type="button" onclick="nextStep(2)">Next</button>
-</div>
-
-<div class="step-personalized" id="step-3-personalized">
-    <label>🎯 What activities are you interested in?</label>
-
-    <div id="activities-list" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 10px;">
-      <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-        <label><input type="checkbox" name="things-to-do[]" value="camel_riding"> 🐪 Camel Riding</label>
-        <label><input type="checkbox" name="things-to-do[]" value="camping"> ⛺ Camping</label>
-      </div>
-      <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-        <label><input type="checkbox" name="things-to-do[]" value="cave_diving"> 🌊 Cave Diving</label>
-        <label><input type="checkbox" name="things-to-do[]" value="hiking"> 🥾 Hiking</label>
-      </div>
-      <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-        <label><input type="checkbox" name="things-to-do[]" value="photography"> 📸 Photography</label>
-        <label><input type="checkbox" name="things-to-do[]" value="swimming"> 🏊 Swimming</label>
-      </div>
-      <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-        <label><input type="checkbox" name="things-to-do[]" value="picnicking"> 🥪 Picnicking</label>
-        <label><input type="checkbox" name="things-to-do[]" value="nature_walks"> 🌳 Nature Walks</label>
-      </div>  
+    <div class="step-personalized" id="step-1-personalized">
+        <label for="region-personalized">📍 Which region do you prefer?</label>
+        <select id="region-personalized" name="region-personalized">
+            <option value="">Select a Region</option>
+            <option value="center">Center</option>
+            <option value="south">️South</option>
+            <option value="west">West</option>
+            <option value="north">North</option>
+        </select>
+        <button type="button" onclick="nextStep(1)">Next</button>
     </div>
-  <button type="button" onclick="nextStep(3)">Next</button>
-</div>
 
+    <!-- Step 2: Destination Type -->
+    <div class="step-personalized" id="step-2-personalized" style="display: none;">
+        <label for="destination-personalized">📍 What type of destination do you prefer?</label>
+        <select id="destination-personalized" name="destination-personalized">
+            <option value="">Select a destination</option>
+            <option value="oasis">🏝️ Oasis</option>
+            <option value="mountainous">⛰️ Mountainous</option>
+            <option value="sandy">🏜️ Sandy</option>
+            <option value="marine">🌊 Marine</option>
+            <option value="rocky">🪨 Rocky</option>
+        </select>
+        <button type="button" onclick="nextStep(2)">Next</button>
+    </div>
 
-
-        <!-- Step 4: Duration -->
-        <div class="step-personalized" id="step-4-personalized" style="display: none;">
-          <label for="duration-personalized">📅 How many days will your trip be?</label>
-          <input type="number" id="duration-personalized" name="duration-personalized" min="1" max="30">
-          <button type="submit">Generate Schedule</button>
+    <!-- Step 3: Activities -->
+    <div class="step-personalized" id="step-3-personalized" style="display: none;">
+        <label>🎯 What activities are you interested in?</label>
+        <div id="activities-list" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 10px;">
+            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
+                <label><input type="checkbox" name="things-to-do[]" value="camel_riding"> 🐪 Camel Riding</label>
+                <label><input type="checkbox" name="things-to-do[]" value="camping"> ⛺ Camping</label>
+            </div>
+            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
+                <label><input type="checkbox" name="things-to-do[]" value="cave_diving"> 🌊 Cave Diving</label>
+                <label><input type="checkbox" name="things-to-do[]" value="hiking"> 🥾 Hiking</label>
+            </div>
+            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
+                <label><input type="checkbox" name="things-to-do[]" value="photography"> 📸 Photography</label>
+                <label><input type="checkbox" name="things-to-do[]" value="swimming"> 🏊 Swimming</label>
+            </div>
+            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
+                <label><input type="checkbox" name="things-to-do[]" value="picnicking"> 🥪 Picnicking</label>
+                <label><input type="checkbox" name="things-to-do[]" value="nature_walks"> 🌳 Nature Walks</label>
+            </div>
         </div>
-      </form>
+        <button type="button" onclick="nextStep(3)">Next</button>
+    </div>
+
+    <!-- Step 4: Start Date -->
+    <div class="step-personalized" id="step-4-personalized" style="display: none;">
+        <label for="start-date-personalized">📅 When does your trip start?</label>
+        <input type="date" id="start-date-personalized" name="start-date-personalized">
+        <button type="button" onclick="nextStep(4)">Next</button>
+    </div>
+
+    <!-- Step 5: Duration -->
+    <div class="step-personalized" id="step-5-personalized" style="display: none;">
+        <label for="duration-personalized">📅 How many days will your trip be?</label>
+        <input type="number" id="duration-personalized" name="duration-personalized" min="1" max="30">
+        <button type="submit">Generate Schedule</button>
+    </div>
+
+</form>
     </section>
 
       <!-- Success Popup -->
