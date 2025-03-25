@@ -304,6 +304,30 @@ small {
     border-radius: 4px; /* Optional: rounded corners */
     font-size: 16px;
 }
+/* Ensure the input fields take up the full width of the container */
+.container-login .form-container-login form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between form groups */
+}
+
+.form-group-login {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Ensure the form group takes up the full width */
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%; /* Make the input fields fill the available width */
+    padding: 8px; /* Add some padding inside the input fields */
+    font-size: 16px; /* Set a readable font size */
+    border: 1px solid #ccc; /* Border for the inputs */
+    border-radius: 5px; /* Rounded corners for the inputs */
+}
+
+
+
+
 .btn-group {
       display: flex;
       justify-content: space-between;
