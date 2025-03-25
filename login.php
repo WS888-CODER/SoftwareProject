@@ -7,22 +7,39 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include 'db.php'; // Include the database connection
+// Include the database connection
+include 'db.php'; 
+
+// Set response header to indicate that we're sending JSON
+header('Content-Type: application/json'); 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form inputs
-    $username = $_POST["username"];
-    $password = $_POST["password"];
+    // Get form inputs and sanitize them
+    $username = trim($_POST["username"]);
+    $password = trim($_POST["password"]);
 
-    // Check if the user exists
+    // Check if username and password are not empty
+    if (empty($username) || empty($password)) {
+        echo json_encode(["status" => "error", "message" => "Both username and password are required."]);
+        exit();
+    }
+
+    // Prepare SQL statement to check if the user exists
     $stmt = $conn->prepare("SELECT * FROM user WHERE Name = ?");
+    if (!$stmt) {
+        echo json_encode(["status" => "error", "message" => "Database error. Please try again."]);
+        exit();
+    }
+    
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
+        // Fetch the user data
         $user = $result->fetch_assoc();
-        // Check password
+
+        // Verify the password
         if (password_verify($password, $user['Password'])) {
             // Set session variables on successful login
             $_SESSION['UserID'] = $user['UserID'];
@@ -34,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "message" => "Login successful. Session is set!"
             ]);
 
-            // End the session handling, save the session
+            // End session handling, save the session
             session_write_close();
             exit();
         } else {
@@ -46,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(["status" => "error", "message" => "User not found!"]);
     }
 
+    // Close the statement and connection
     $stmt->close();
     $conn->close();
 }
