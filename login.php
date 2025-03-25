@@ -15,23 +15,29 @@ header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form inputs and sanitize them
-    $username = trim($_POST["username"]);
-    $password = trim($_POST["password"]);
+    $email = trim($_POST["email-login"]);
+    $password = trim($_POST["password-login"]);
 
-    // Check if username and password are not empty
-    if (empty($username) || empty($password)) {
-        echo json_encode(["status" => "error", "message" => "Both username and password are required."]);
+    // Check if email and password are not empty
+    if (empty($email) || empty($password)) {
+        echo json_encode(["status" => "error", "message" => "Both email and password are required."]);
         exit();
     }
 
-    // Prepare SQL statement to check if the user exists
-    $stmt = $conn->prepare("SELECT * FROM user WHERE Name = ?");
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo json_encode(["status" => "error", "message" => "Invalid email format."]);
+        exit();
+    }
+
+    // Prepare SQL statement to check if the email exists
+    $stmt = $conn->prepare("SELECT * FROM user WHERE Email = ?");
     if (!$stmt) {
         echo json_encode(["status" => "error", "message" => "Database error. Please try again."]);
         exit();
     }
     
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -43,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['Password'])) {
             // Set session variables on successful login
             $_SESSION['UserID'] = $user['UserID'];
-            $_SESSION['UserName'] = $user['Name'];
+            $_SESSION['UserEmail'] = $user['Email']; // Change Name to Email
 
             // Return JSON response for success (no debugging information in JSON)
             echo json_encode([
