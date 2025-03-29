@@ -142,9 +142,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $startDate = date('Y-m-d');
 
             // Insert into tripscheduler table to create a new schedule
-            $sqlInsertSchedule = "INSERT INTO tripscheduler (ScheduleID, UserID, Date, StartDate) VALUES (?, ?, ?, ?)";
+            $sqlInsertSchedule = "INSERT INTO tripscheduler (ScheduleID, UserID, Date, StartDate, Duration) VALUES (?, ?, ?, ?, ?)";
             $stmtInsert = $conn->prepare($sqlInsertSchedule);
-            $stmtInsert->bind_param("ssss", $newScheduleID, $userId, $startDate, $tripStartDate);
+            $stmtInsert->bind_param("ssssi", $newScheduleID, $userId, $startDate, $tripStartDate, $duration);
+
             if ($stmtInsert->execute()) {
                // echo "New schedule created successfully with ID: $newScheduleID.<br>";
             } else {
