@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 24, 2025 at 12:36 AM
--- Server version: 5.7.24
+-- Generation Time: 30 مارس 2025 الساعة 00:03
+-- إصدار الخادم: 5.7.24
 -- PHP Version: 8.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,18 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contains`
+-- بنية الجدول `contains`
 --
 
 CREATE TABLE `contains` (
   `ScheduleID` varchar(255) NOT NULL,
-  `DestinationID` varchar(255) NOT NULL
+  `DestinationID` varchar(255) NOT NULL,
+  `StartDateTime` datetime DEFAULT NULL,
+  `EndDateTime` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `contains`
+--
+
+INSERT INTO `contains` (`ScheduleID`, `DestinationID`, `StartDateTime`, `EndDateTime`) VALUES
+('schedule_67e2e67570e0e9.45045288', '1', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '10', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '11', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '12', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '13', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '14', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '17', NULL, NULL),
+('schedule_67e2e67570e0e9.45045288', '7', NULL, NULL),
+('schedule_67e2f8b81a10d0.26026380', '1', NULL, NULL),
+('schedule_67e2f8b81a10d0.26026380', '10', NULL, NULL),
+('schedule_67e2f8b81a10d0.26026380', '11', NULL, NULL),
+('schedule_67e2f8b81a10d0.26026380', '12', NULL, NULL),
+('schedule_67e2f8b81a10d0.26026380', '7', NULL, NULL),
+('schedule_67e87adcb6fd26.74779961', '1', '2025-04-01 13:30:00', '2025-04-01 18:30:00'),
+('schedule_67e87adcb6fd26.74779961', '10', '2025-04-01 09:00:00', '2025-04-01 11:00:00'),
+('schedule_67e87adcb6fd26.74779961', '13', '2025-04-02 09:00:00', '2025-04-02 10:00:00'),
+('schedule_67e87adcb6fd26.74779961', '17', '2025-04-02 16:30:00', '2025-04-02 19:30:00'),
+('schedule_67e87adcb6fd26.74779961', '7', '2025-04-03 09:00:00', '2025-04-03 10:00:00'),
+('schedule_67e87d8cf277c9.18214557', '19', '2025-04-03 08:00:00', '2025-04-03 14:30:00'),
+('schedule_67e87dc57300d8.46911622', '10', '2025-03-10 08:00:00', '2025-03-10 10:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `destination`
+-- بنية الجدول `destination`
 --
 
 CREATE TABLE `destination` (
@@ -53,7 +81,7 @@ CREATE TABLE `destination` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `destination`
+-- إرجاع أو استيراد بيانات الجدول `destination`
 --
 
 INSERT INTO `destination` (`DestinationID`, `Name`, `Sentence`, `Latitude`, `Longitude`, `City`, `Region`, `Type`, `Description`, `TimeNeeded`, `BackgroundPhoto`) VALUES
@@ -81,7 +109,7 @@ INSERT INTO `destination` (`DestinationID`, `Name`, `Sentence`, `Latitude`, `Lon
 -- --------------------------------------------------------
 
 --
--- Table structure for table `destinationimage`
+-- بنية الجدول `destinationimage`
 --
 
 CREATE TABLE `destinationimage` (
@@ -90,7 +118,7 @@ CREATE TABLE `destinationimage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `destinationimage`
+-- إرجاع أو استيراد بيانات الجدول `destinationimage`
 --
 
 INSERT INTO `destinationimage` (`DestinationID`, `DestinationImage`) VALUES
@@ -158,7 +186,7 @@ INSERT INTO `destinationimage` (`DestinationID`, `DestinationImage`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `review`
+-- بنية الجدول `review`
 --
 
 CREATE TABLE `review` (
@@ -171,7 +199,7 @@ CREATE TABLE `review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `review`
+-- إرجاع أو استيراد بيانات الجدول `review`
 --
 
 INSERT INTO `review` (`ReviewID`, `UserID`, `DestinationID`, `Rating`, `Comment`, `Date`) VALUES
@@ -219,7 +247,7 @@ INSERT INTO `review` (`ReviewID`, `UserID`, `DestinationID`, `Rating`, `Comment`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviewimage`
+-- بنية الجدول `reviewimage`
 --
 
 CREATE TABLE `reviewimage` (
@@ -228,7 +256,7 @@ CREATE TABLE `reviewimage` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `reviewimage`
+-- إرجاع أو استيراد بيانات الجدول `reviewimage`
 --
 
 INSERT INTO `reviewimage` (`ReviewID`, `ReviewImage`) VALUES
@@ -242,7 +270,7 @@ INSERT INTO `reviewimage` (`ReviewID`, `ReviewImage`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `thingstodo`
+-- بنية الجدول `thingstodo`
 --
 
 CREATE TABLE `thingstodo` (
@@ -251,7 +279,7 @@ CREATE TABLE `thingstodo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `thingstodo`
+-- إرجاع أو استيراد بيانات الجدول `thingstodo`
 --
 
 INSERT INTO `thingstodo` (`DestinationID`, `ThingsToDo`) VALUES
@@ -364,21 +392,33 @@ INSERT INTO `thingstodo` (`DestinationID`, `ThingsToDo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tripscheduler`
+-- بنية الجدول `tripscheduler`
 --
 
 CREATE TABLE `tripscheduler` (
   `ScheduleID` varchar(255) NOT NULL,
   `UserID` varchar(255) NOT NULL,
   `Date` datetime NOT NULL,
-  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `StartDate` date NOT NULL,
+  `Duration` int(11) DEFAULT '7'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- إرجاع أو استيراد بيانات الجدول `tripscheduler`
+--
+
+INSERT INTO `tripscheduler` (`ScheduleID`, `UserID`, `Date`, `Time`, `StartDate`, `Duration`) VALUES
+('schedule_67e2e67570e0e9.45045288', 'user_67e0612843494', '2025-03-25 00:00:00', '2025-03-25 17:23:01', '2025-03-21', 7),
+('schedule_67e2f8b81a10d0.26026380', 'user_67e2f3e130f9a', '2025-03-25 00:00:00', '2025-03-25 18:40:56', '2025-03-28', 7),
+('schedule_67e87adcb6fd26.74779961', 'user_67e33ae16f75f', '2025-03-29 00:00:00', '2025-03-29 22:57:32', '2025-04-01', 5),
+('schedule_67e87d8cf277c9.18214557', 'user_67e33ae16f75f', '2025-03-29 00:00:00', '2025-03-29 23:09:00', '2025-04-05', 4),
+('schedule_67e87dc57300d8.46911622', 'user_67e33ae16f75f', '2025-03-29 00:00:00', '2025-03-29 23:09:57', '2025-03-10', 3);
+
 -- --------------------------------------------------------
-ALTER TABLE tripscheduler ADD COLUMN StartDate DATE NOT NULL;
 
 --
--- Table structure for table `user`
+-- بنية الجدول `user`
 --
 
 CREATE TABLE `user` (
@@ -390,7 +430,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `user`
+-- إرجاع أو استيراد بيانات الجدول `user`
 --
 
 INSERT INTO `user` (`UserID`, `Name`, `PhoneNumber`, `Email`, `Password`) VALUES
@@ -405,7 +445,10 @@ INSERT INTO `user` (`UserID`, `Name`, `PhoneNumber`, `Email`, `Password`) VALUES
 ('user_67ddf02bb0bb7', 'James Taylor', '+966556919033', 'JamTaylor@gmail.com', '$2y$10$CjD7IRUPWnOSgHQ3Whadq.DvUmUqIfaezyVLLufACrGliQVngnr72'),
 ('user_67ddf071b2555', 'Sara Mohammed', '+966553449838', 'Sara123@hotmail.com', '$2y$10$qq8dYP49tg.pDU4pJXftH.6DgqaPUgWsjvxP5qkcFwYVd9iKS.l4K'),
 ('user_67df8d8beeddb', 'esraa', '+966502234455', 'esraa@gmail.com', '$2y$10$3FHIQrcf3WLL4GehaiAW6.nDbs3QuoZICxVw84gD21U7aEFo9WT/O'),
-('user_67e0612843494', 'rama', '+966889005443', 'alomair@gmail.com', '$2y$10$Spkiqytzm7kNw9rAwotYjOsV7AOww2SagxOhQjQ9al5eMnuW1onya');
+('user_67e0612843494', 'rama', '+966889005443', 'alomair@gmail.com', '$2y$10$Spkiqytzm7kNw9rAwotYjOsV7AOww2SagxOhQjQ9al5eMnuW1onya'),
+('user_67e2f3e130f9a', 'mona', '+966889005443', 'momo@gmail.com', '$2y$10$L3.3pwCNvJrgsJDqH3lCrOHyLB1rBRSSMXP.EHPPoAs635dQhuR8q'),
+('user_67e2f464a8711', 'shahad', '+966889005444', 'shahad@gmail.com', '$2y$10$WWz/sTby0VIoGrpG01GJvubINKT1SFW/.FuPhJOER.Pmj.mWS2pza'),
+('user_67e33ae16f75f', 'Ahlam', '+966507134615', 'halooh2004@gmail.com', '$2y$10$2lSxby1uJ4sSHpa7qHw32uCgdQC/6NRh9uGHG0asqfQdhfdv/FwOq');
 
 --
 -- Indexes for dumped tables
@@ -454,20 +497,20 @@ ALTER TABLE `reviewimage`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `ReviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `ReviewID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- Constraints for dumped tables
+-- قيود الجداول المحفوظة
 --
 
 --
--- Constraints for table `destinationimage`
+-- القيود للجدول `destinationimage`
 --
 ALTER TABLE `destinationimage`
   ADD CONSTRAINT `destinationimage_ibfk_1` FOREIGN KEY (`DestinationID`) REFERENCES `destination` (`DestinationID`) ON DELETE CASCADE;
 
 --
--- Constraints for table `reviewimage`
+-- القيود للجدول `reviewimage`
 --
 ALTER TABLE `reviewimage`
   ADD CONSTRAINT `reviewimage_ibfk_1` FOREIGN KEY (`ReviewID`) REFERENCES `review` (`ReviewID`) ON DELETE CASCADE;
