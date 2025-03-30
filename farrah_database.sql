@@ -401,7 +401,7 @@ CREATE TABLE `tripscheduler` (
   `Date` datetime NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `StartDate` date NOT NULL,
-  `Duration` int(11) DEFAULT '7'
+  `Duration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
