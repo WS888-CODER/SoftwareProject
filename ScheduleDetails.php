@@ -135,7 +135,11 @@ $schedule_result = $stmt2->get_result();
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/ScheduleDetails.css">
   <link rel="stylesheet" href="css/HomeStyle.css">
-
+  <style>
+  .btn:hover {
+  background-color: #b88d3f;
+  }
+  </style>
 
 </head>
 
