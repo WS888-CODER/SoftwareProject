@@ -29,7 +29,7 @@ $startDate = $schedule_info['StartDate'];
 $duration = $schedule_info['Duration'];
 $dailyStartHour = 8;
 $dailyEndHour = 21;
-$gap = 5;
+$gap = 4;
 
 if ($startDate && $duration) {
     $sql = "SELECT d.DestinationID, d.Name, d.Description, d.BackgroundPhoto, c.StartDateTime, c.EndDateTime, d.TimeNeeded
@@ -119,6 +119,10 @@ $stmt2 = $conn->prepare($schedule_query);
 $stmt2->bind_param("s", $user_id);
 $stmt2->execute();
 $schedule_result = $stmt2->get_result();
+$dest_sql = "SELECT Name FROM destination";
+$dest_stmt = $conn->prepare($dest_sql);
+$dest_stmt->execute();
+$dest_result = $dest_stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="ar">
