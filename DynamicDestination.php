@@ -337,11 +337,11 @@ foreach ($images as $img) { ?>
             <h2 style="color: #f5b90d;">Add a Review</h2><br>
             <p>add your rating:</p>
             <div class="star-rating">
-                <span class="star" data-value="1">&#9733;</span>
-                <span class="star" data-value="2">&#9733;</span>
-                <span class="star" data-value="3">&#9733;</span>
-                <span class="star" data-value="4">&#9733;</span>
                 <span class="star" data-value="5">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="1">&#9733;</span>
             </div><br>
             <!-- Hidden input to store the chosen rating -->
             <input type="hidden" name="rating" id="rating" value="0">
