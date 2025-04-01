@@ -258,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
             <div class="schedule-wrapper">
             <div class="schedule-row">
-                <h1 class="schedule-name"><?php echo "Schedule #" . substr($scheduleID, 9, 6); ?></h1>
+                <h1 class="schedule-name"><?php echo "Schedule #" . substr($scheduleID, -4); ?></h1>
 
                 <div class="buttons-container">
                     <a href="ScheduleDetails.php?schedule_id=<?php echo $scheduleID; ?>" style="text-decoration: none;">
