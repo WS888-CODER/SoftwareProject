@@ -223,8 +223,14 @@ $dest_result = $dest_stmt->get_result();
 
 <div class="text-center" style="margin-top: 10px;">
   <button type="button" id="saveAllChanges" class="btn btn-primary">Save All Changes</button>
-</div>
 
+
+<a href="download_schedule_ics.php?schedule_id=<?= $schedule_id ?>" class="btn btn-success" target="_blank">
+  📅 Download the schedule to your calendar
+</a>
+
+
+</div>
 
 <!-- Edit Destination-->
 <div id="editEventModal" class="modal fade" role="dialog">
