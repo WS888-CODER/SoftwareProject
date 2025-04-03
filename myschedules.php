@@ -19,18 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
     $Region = isset($_POST['region-personalized']) ? trim($_POST['region-personalized']) : '';
     $selectedTypes = isset($_POST['destination-personalized']) ? $_POST['destination-personalized'] : '';
-
-    // Retrieve selected activities
     $selectedActivities = isset($_POST['things-to-do']) ? $_POST['things-to-do'] : [];
-
-    $tripStartDate = $_POST["start-date-personalized"]; // User-selected start date
-
-    // Retrieve duration, default to 7 days
+    $tripStartDate = $_POST["start-date-personalized"]; 
     $duration = isset($_POST['duration-personalized']) ? $_POST['duration-personalized'] : 7;
     $dailyAvailableHours = 6;
     $totalAvailableHours = $duration * $dailyAvailableHours;
 
-    // Fetch destinations from the database based on the selected region
+    // Fetch destinations based on the selected region
     $sqlDestinations = "SELECT DestinationID, Name, Description, Type, TimeNeeded, BackgroundPhoto FROM destination WHERE Region = ?";
     $stmt = $conn->prepare($sqlDestinations);
     $stmt->bind_param("s", $Region);
@@ -46,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $destinationType = strtolower(trim($row['Type']));
             $timeNeeded = isset($row['TimeNeeded']) ? intval($row['TimeNeeded']) : 0;
 
-            // Fetch activities for the current destination
+            // Fetch activities for the destination
             $sqlActivities = "SELECT ThingsToDo FROM thingstodo WHERE DestinationID = ?";
             $stmtActivities = $conn->prepare($sqlActivities);
             $stmtActivities->bind_param("s", $destinationID);
@@ -55,14 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $activities = [];
             while ($activity = $activitiesResult->fetch_assoc()) {
-                $activities[] = strtolower(trim(preg_replace('/\s+/', ' ', $activity['ThingsToDo'])));
+                $activities[] = strtolower(trim($activity['ThingsToDo']));
             }
 
-            // Normalize user-selected activities and types
             $normalizedSelectedActivities = array_map('strtolower', array_map('trim', $selectedActivities));
             $normalizedSelectedTypes = is_array($selectedTypes) ? array_map('strtolower', array_map('trim', $selectedTypes)) : [strtolower(trim($selectedTypes))];
 
-            // Check for activity and type match
             $activitiesMatch = empty($selectedActivities) || array_filter($activities, function ($act) use ($normalizedSelectedActivities) {
                 foreach ($normalizedSelectedActivities as $selected) {
                     if (strpos($act, $selected) !== false) return true;
@@ -74,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 return strpos($destinationType, $selectedType) !== false;
             });
 
-            // If match found and within time limit, add to filtered destinations
             if (($activitiesMatch || $typeMatch) && ($totalTimeNeeded + $timeNeeded <= $totalAvailableHours)) {
                 $filteredDestinations[] = $row;
                 $totalTimeNeeded += $timeNeeded;
@@ -82,113 +74,93 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Ensure there are filtered destinations
-    if (!empty($filteredDestinations)) {
-        // Check if any schedule exists for this user
-        $sqlCheckSchedules = "SELECT ScheduleID FROM tripscheduler WHERE UserID = ?";
-        $stmtCheckSchedules = $conn->prepare($sqlCheckSchedules);
-        $stmtCheckSchedules->bind_param("s", $userId);
-        $stmtCheckSchedules->execute();
-        $stmtCheckSchedules->store_result();
+    // **❌ No matching destinations alert**
+    if (empty($filteredDestinations)) {
+        echo "<script>alert('❌ No destinations match your preferences. Please try different inputs.'); window.location.href='myschedules.php';</script>";
+        exit();
+    }
 
-       
-        // Fetch all existing schedule IDs
-        $existingScheduleIDs = [];
-        while ($stmtCheckSchedules->fetch()) {
-        // Bind the ScheduleID result to a variable
+    // **Check for existing schedules and matching destinations**
+    $existingScheduleID = null;
+    $allDestinationsExist = true; // Assume destinations exist, and break if one is missing
+
+    // Fetch the user's existing schedule IDs
+    $sqlCheckSchedules = "SELECT ScheduleID FROM tripscheduler WHERE UserID = ?";
+    $stmtCheckSchedules = $conn->prepare($sqlCheckSchedules);
+    $stmtCheckSchedules->bind_param("s", $userId);
+    $stmtCheckSchedules->execute();
+    $stmtCheckSchedules->store_result();
+
+    $existingScheduleIDs = [];
+    while ($stmtCheckSchedules->fetch()) {
         $stmtCheckSchedules->bind_result($existingScheduleID);
         $existingScheduleIDs[] = $existingScheduleID;
-          }
-
-        $stmtCheckSchedules->close();
-
-        // Flag to track if all the destinations already exist in any schedule
-        $allDestinationsExist = false;
-        $existingScheduleID = null;
-
-        // Check if these destinations already exist in any of the existing schedules
-        foreach ($existingScheduleIDs as $scheduleID) {
-            $allDestinationsExist = true;
-            foreach ($filteredDestinations as $destination) {
-                $destinationID = $destination['DestinationID'];
-
-                // Check if this destination exists in the 'contains' table for this schedule
-                $sqlCheckContains = "SELECT 1 FROM contains WHERE ScheduleID = ? AND DestinationID = ?";
-                $stmtCheckContains = $conn->prepare($sqlCheckContains);
-                $stmtCheckContains->bind_param("ss", $scheduleID, $destinationID);
-                $stmtCheckContains->execute();
-                $stmtCheckContains->store_result();
-
-                if ($stmtCheckContains->num_rows == 0) {
-                    $allDestinationsExist = false;
-                }
-
-                $stmtCheckContains->close();
-            }
-
-            // If all destinations already exist in this schedule, save the scheduleID and break
-            if ($allDestinationsExist) {
-                $existingScheduleID = $scheduleID;
-                break;
-            }
-        }
-
-        // If all destinations exist in an existing schedule, don't create a new one
-        if ($allDestinationsExist) {
-            //echo "All destinations already exist in the schedule with ID: $existingScheduleID.<br>";
-        } else {
-            // If not all destinations exist, create a new schedule
-            $newScheduleID = uniqid('schedule_', true);
-            $startDate = date('Y-m-d');
-
-            // Insert into tripscheduler table to create a new schedule
-            $sqlInsertSchedule = "INSERT INTO tripscheduler (ScheduleID, UserID, Date, StartDate, Duration) VALUES (?, ?, ?, ?, ?)";
-            $stmtInsert = $conn->prepare($sqlInsertSchedule);
-            $stmtInsert->bind_param("ssssi", $newScheduleID, $userId, $startDate, $tripStartDate, $duration);
-
-            if ($stmtInsert->execute()) {
-               // echo "New schedule created successfully with ID: $newScheduleID.<br>";
-            } else {
-                //echo "Error creating schedule.<br>";
-            }
-            $stmtInsert->close();
-
-            // Insert filtered destinations into the contains table for the new schedule
-            foreach ($filteredDestinations as $destination) {
-                $destinationID = $destination['DestinationID'];
-
-                // Check if this destination is already in the 'contains' table for the new schedule
-                $sqlCheckContains = "SELECT 1 FROM contains WHERE ScheduleID = ? AND DestinationID = ?";
-                $stmtCheckContains = $conn->prepare($sqlCheckContains);
-                $stmtCheckContains->bind_param("ss", $newScheduleID, $destinationID);
-                $stmtCheckContains->execute();
-                $stmtCheckContains->store_result();
-
-                if ($stmtCheckContains->num_rows == 0) {
-                    // If destination doesn't exist in the schedule, add it
-                    $sqlInsertContains = "INSERT INTO contains (ScheduleID, DestinationID) VALUES (?, ?)";
-                    $stmtInsertContains = $conn->prepare($sqlInsertContains);
-                    $stmtInsertContains->bind_param("ss", $newScheduleID, $destinationID);
-                    if ($stmtInsertContains->execute()) {
-                        //echo "Destination '" . $destination['Name'] . "' added to schedule.<br>";
-                    } else {
-                        //echo "Error linking destination '" . $destination['Name'] . "'.<br>";
-                    }
-                    $stmtInsertContains->close();
-                }
-
-                $stmtCheckContains->close();
-            }
-        }
-    } else {
-        //echo "No destinations to add to the schedule.<br>";
     }
-    // Redirect to avoid form resubmission
-    header("Location: myschedules.php"); // Redirect to the same page or another page
+    $stmtCheckSchedules->close();
+
+    foreach ($existingScheduleIDs as $scheduleID) {
+        foreach ($filteredDestinations as $destination) {
+            $destinationID = $destination['DestinationID'];
+
+            // Check if the destination is part of the current schedule
+            $sqlCheckContains = "SELECT 1 FROM contains WHERE ScheduleID = ? AND DestinationID = ?";
+            $stmtCheckContains = $conn->prepare($sqlCheckContains);
+            $stmtCheckContains->bind_param("ss", $scheduleID, $destinationID);
+            $stmtCheckContains->execute();
+            $stmtCheckContains->store_result();
+
+            // If any destination is not found in the schedule, mark allDestinationsExist as false
+            if ($stmtCheckContains->num_rows == 0) {
+                $allDestinationsExist = false;
+                break 2; // Break both loops since we found a mismatch
+            }
+            $stmtCheckContains->close();
+        }
+
+        if ($allDestinationsExist) {
+            $existingScheduleID = $scheduleID;
+            break;
+        }
+    }
+
+    // **✅ Alert user if the schedule already exists but still proceed**
+    if ($existingScheduleID) {
+        echo "<script>alert('⚠️ You already have a schedule with these destinations.');</script>";
+    
+        // **Create a new schedule since no matching schedule was found**
+        $newScheduleID = uniqid('schedule_', true);
+        $startDate = date('Y-m-d');
+
+        $sqlInsertSchedule = "INSERT INTO tripscheduler (ScheduleID, UserID, Date, StartDate, Duration) VALUES (?, ?, ?, ?, ?)";
+        $stmtInsert = $conn->prepare($sqlInsertSchedule);
+        $stmtInsert->bind_param("ssssi", $newScheduleID, $userId, $startDate, $tripStartDate, $duration);
+
+        if ($stmtInsert->execute()) {
+            echo "<script>alert('✅ New schedule created successfully!');</script>";
+        } else {
+            echo "<script>alert('Error creating schedule.');</script>";
+        }
+        $stmtInsert->close();
+
+        // **Insert destinations into contains table for the new schedule**
+        foreach ($filteredDestinations as $destination) {
+            $destinationID = $destination['DestinationID'];
+
+            $sqlInsertContains = "INSERT INTO contains (ScheduleID, DestinationID) VALUES (?, ?)";
+            $stmtInsertContains = $conn->prepare($sqlInsertContains);
+            $stmtInsertContains->bind_param("ss", $newScheduleID, $destinationID);
+            $stmtInsertContains->execute();
+            $stmtInsertContains->close();
+        }
+    }
+
+    // **Redirect to schedules page**
+    echo "<script>window.location.href='myschedules.php';</script>";
     exit();
 }
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

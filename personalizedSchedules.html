@@ -92,29 +92,55 @@
         <button type="button" onclick="nextStep(2)">Next</button>
     </div>
 
-    <!-- Step 3: Activities -->
-    <div class="step-personalized" id="step-3-personalized" style="display: none;">
-        <label>🎯 What activities are you interested in?</label>
-        <div id="activities-list" style="display: flex; flex-wrap: wrap; gap: 20px; padding: 10px;">
-            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-                <label><input type="checkbox" name="things-to-do[]" value="camel_riding"> 🐪 Camel Riding</label>
-                <label><input type="checkbox" name="things-to-do[]" value="camping"> ⛺ Camping</label>
-            </div>
-            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-                <label><input type="checkbox" name="things-to-do[]" value="cave_diving"> 🌊 Cave Diving</label>
-                <label><input type="checkbox" name="things-to-do[]" value="hiking"> 🥾 Hiking</label>
-            </div>
-            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-                <label><input type="checkbox" name="things-to-do[]" value="photography"> 📸 Photography</label>
-                <label><input type="checkbox" name="things-to-do[]" value="swimming"> 🏊 Swimming</label>
-            </div>
-            <div style="display: flex; gap: 20px; width: 100%; justify-content: flex-start;">
-                <label><input type="checkbox" name="things-to-do[]" value="picnicking"> 🥪 Picnicking</label>
-                <label><input type="checkbox" name="things-to-do[]" value="nature_walks"> 🌳 Nature Walks</label>
-            </div>
-        </div>
-        <button type="button" onclick="nextStep(3)">Next</button>
+   <!-- Step 3: Activities -->
+<div class="step-personalized" id="step-3-personalized" style="display: none;">
+    <label>🎯 What activities are you interested in?</label>
+    <div id="activities-list">
+        <label><input type="checkbox" name="things-to-do[]" value="camel_riding"> 🐪 Camel Riding</label>
+        <label><input type="checkbox" name="things-to-do[]" value="camping"> ⛺ Camping</label>
+        <label><input type="checkbox" name="things-to-do[]" value="cave_diving"> 🌊 Cave Diving</label>
+        <label><input type="checkbox" name="things-to-do[]" value="hiking"> 🥾 Hiking</label>
+        <label><input type="checkbox" name="things-to-do[]" value="photography"> 📸 Photography</label>
+        <label><input type="checkbox" name="things-to-do[]" value="swimming"> 🏊 Swimming</label>
+        <label><input type="checkbox" name="things-to-do[]" value="picnicking"> 🥪 Picnicking</label>
+        <label><input type="checkbox" name="things-to-do[]" value="nature_walks"> 🌳 Nature Walks</label>
+        <label><input type="checkbox" name="things-to-do[]" value="Stargazing">🔭 Stargazing</label>
+
     </div>
+    <button type="button" onclick="nextStep(3)">Next</button>
+</div>
+
+<style>
+  #activities-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 5px; /* Even smaller gap */
+    padding: 3px;
+    width: 100%;
+}
+
+#activities-list label {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Tighter spacing */
+    font-size: 10px; /* Extra small text */
+    white-space: nowrap;
+    width: 100%;
+}
+
+#activities-list input {
+    flex-shrink: 0;
+    width: 12px; /* Smallest checkbox */
+    height: 12px;
+}
+
+@media (max-width: 600px) {
+    #activities-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
+    }
+}
+
+</style>
 
     <!-- Step 4: Start Date -->
     <div class="step-personalized" id="step-4-personalized" style="display: none;">
@@ -127,9 +153,12 @@
     <div class="step-personalized" id="step-5-personalized" style="display: none;">
         <label for="duration-personalized">📅 How many days will your trip be?</label>
         <input type="number" id="duration-personalized" name="duration-personalized" min="1" max="30">
-        <button type="submit">Generate Schedule</button>
+        <button type="button" onclick="nextStep(5)">Generate Schedule</button>
     </div>
-
+ <!-- Step 5: Duration -->
+    <div class="step-personalized" id="step-6-personalized" style="display: none;">
+        <label for="duration-personalized">End of question!</label>
+    </div>
 </form>
     </section>
 
@@ -217,25 +246,69 @@
   </footer>
 
   <script>
-    const slidebarBtn = document.getElementById('slidebarBtn');
-    const slidebar = document.getElementById('slidebar');
-    slidebarBtn.addEventListener('click', () => {
-      slidebar.classList.toggle('active');
-      slidebarBtn.classList.toggle('is-active');
-    });
+// Slidebar toggler
+const slidebarBtn = document.getElementById('slidebarBtn');
+const slidebar = document.getElementById('slidebar');
+slidebarBtn.addEventListener('click', () => {
+  slidebar.classList.toggle('active');
+  slidebarBtn.classList.toggle('is-active');
+});
 
-    function nextStep(step) {
-   // Get the other input elements (like text inputs or selects)
+// Function to show popups
+function showPopup(type, message) {
+  let popupId = type === "success" ? "success-popup-personalized" : "error-popup-personalized";
+  let messageId = type === "success" ? "success-message-personalized" : "error-message-personalized";
+
+  document.getElementById(messageId).textContent = message;
+  let popup = document.getElementById(popupId);
+  popup.style.visibility = "visible";
+  popup.style.opacity = "1";
+
+  // Hide after 2 seconds
+  setTimeout(() => closePopup(popupId), 2000);
+}
+
+// Function to close popups
+function closePopup(id) {
+  let popup = document.getElementById(id);
+  popup.style.visibility = "hidden";
+  popup.style.opacity = "0";
+}
+function nextStep(step) {
+  // Get the other input elements (like text inputs or selects) for the current step
   let input = document.querySelector(`#step-${step}-personalized input, #step-${step}-personalized select`);
 
   // Check if there's any non-checkbox input that is empty (e.g., text input or select)
-  // This validation should not trigger the error for the dropdown (select) if it's not empty
-  if (input && !input.value.trim() && !input.closest("div").querySelector('input[name="things-to-do"]')) {
+  if (input && !input.value.trim()) {
     showPopup("error", "🛑 Please fill in this field before proceeding.");
-    return;
+    return; // Stop if the input is empty
   }
 
-  // Check if we are on step 3
+  // Check if we are on step 5 (the step with the duration input)
+  if (step === 5) {
+    const durationInput = document.querySelector("#duration-personalized");
+
+    // If duration is not filled or it's less than 1 day, show the error popup
+    if (!durationInput.value.trim() || parseInt(durationInput.value) < 1) {
+      showPopup("error", "🛑 Please select the number of days for your trip before proceeding.");
+      return;
+    }
+
+    // Show the loading message first
+    showPopup("loading", "⏳ Please do not click anywhere, we are generating your schedule!");
+
+    // Immediately submit the form
+    document.getElementById("travel-form-personalized").submit();
+
+    // Redirect to my schedules page after a brief delay
+    setTimeout(() => {
+      window.location.href = "myschedules.php";
+    }, 2000); // Adjust the delay (in milliseconds) if needed
+
+    return; // Prevent going to the next step after step 5
+  }
+
+  // Check if we are on step 3 (activities selection)
   if (step === 3) {
     // Get the checkboxes for the current step (activities)
     const checkboxes = document.querySelectorAll(`#step-${step}-personalized input[name="things-to-do[]"]:checked`);
@@ -248,43 +321,12 @@
     }
   }
 
+  // If validation passes, proceed to the next step
+  document.getElementById(`step-${step}-personalized`).style.display = 'none';
+  document.getElementById(`step-${step + 1}-personalized`).style.display = 'block';
+}
 
-      document.getElementById(`step-${step}-personalized`).style.display = "none";
-      document.getElementById(`step-${step + 1}-personalized`).style.display = "block";
-    }
 
-    // Function to show popups
-    function showPopup(type, message) {
-      let popupId = type === "success" ? "success-popup-personalized" : "error-popup-personalized";
-      let messageId = type === "success" ? "success-message-personalized" : "error-message-personalized";
-
-      document.getElementById(messageId).textContent = message;
-      let popup = document.getElementById(popupId);
-      popup.style.visibility = "visible";
-      popup.style.opacity = "1";
-
-      // Hide after 2 seconds
-      setTimeout(() => closePopup(popupId), 2000);
-    }
-
-    // Function to close popups
-    function closePopup(id) {
-      let popup = document.getElementById(id);
-      popup.style.visibility = "hidden";
-      popup.style.opacity = "0";
-    }
-
-    document.getElementById("travel-form-personalized").addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent immediate submission
-
-      // Show loading message
-      showPopup("loading", "⏳ Please do not click anywhere, we are generating your schedule!");
-
-     // Manually submit the form after a delay (optional)
-  setTimeout(function () {
-    document.getElementById("travel-form-personalized").submit(); // This triggers the form submission
-  }, 2000);
-    });
   </script>
 </body>
 
