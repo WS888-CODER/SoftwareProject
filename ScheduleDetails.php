@@ -356,16 +356,29 @@ $dest_result = $dest_stmt->get_result();
       slidebarBtn.classList.toggle('is-active');
     });
   </script>
+
 <script>
-const phpEvents = <?php echo json_encode($eventsData, JSON_UNESCAPED_UNICODE); ?>;
-const destinationDetails = <?php echo json_encode($destData, JSON_UNESCAPED_UNICODE); ?>;
-</script>
-<script>
-  const phpEvents = <?php echo json_encode($eventsData, JSON_UNESCAPED_UNICODE); ?>;
   const destinationDetails = <?php echo json_encode($destData, JSON_UNESCAPED_UNICODE); ?>;
   const tripDuration = <?php echo json_encode($duration); ?>; // Trip duration from database
-</script>
-<script>
+  const tripStartDate = moment(<?php echo json_encode($startDate); ?>);
+document.addEventListener("DOMContentLoaded", () => {
+  const datetimeInput = document.getElementById("newEventDateTime");
+  const editInput = document.getElementById("eventDateTime");
+
+  if (tripStartDate && typeof moment !== "undefined") {
+    const minDateTime = tripStartDate.format("YYYY-MM-DDTHH:mm");
+
+    if (datetimeInput) {
+      datetimeInput.setAttribute("min", minDateTime);
+    }
+
+    if (editInput) {
+      editInput.setAttribute("min", minDateTime);
+    }
+  }
+});
+
+
 $(document).ready(function () {
   const phpEvents = <?php echo json_encode($eventsData, JSON_UNESCAPED_UNICODE); ?>;
   let allEventsToSave = [];
@@ -418,50 +431,73 @@ if (details) {
 
       $('#editEventModal').modal('show');
     },
-    eventDrop: function (event) {
-      markEventAsModified({
-        id: event.id,
-        title: event.title,
-        start: event.start.format('YYYY-MM-DD HH:mm:ss'),
-        end: event.end ? event.end.format('YYYY-MM-DD HH:mm:ss') : null
-      });
-    },
-    eventResize: function (event) {
-      markEventAsModified({
-        id: event.id,
-        title: event.title,
-        start: event.start.format('YYYY-MM-DD HH:mm:ss'),
-        end: event.end ? event.end.format('YYYY-MM-DD HH:mm:ss') : null
-      });
-    }
+eventDrop: function (event, delta, revertFunc) {
+  if (moment(event.start).isBefore(tripStartDate)) {
+    alert('❌ You cannot schedule the event before the trip start date.');
+    revertFunc(); // يرجّع الحدث لمكانه
+    return;
+  }
+  markEventAsModified({
+    id: event.id,
+    title: event.title,
+    start: event.start.format('YYYY-MM-DD HH:mm:ss'),
+    end: event.end ? event.end.format('YYYY-MM-DD HH:mm:ss') : null
+  });
+},
+
+eventResize: function (event, delta, revertFunc) {
+  if (moment(event.start).isBefore(tripStartDate)) {
+    alert('❌ You cannot change the event timing before the trip start date.');
+    revertFunc();
+    return;
+  }
+  markEventAsModified({
+    id: event.id,
+    title: event.title,
+    start: event.start.format('YYYY-MM-DD HH:mm:ss'),
+    end: event.end ? event.end.format('YYYY-MM-DD HH:mm:ss') : null
+  });
+}
   });
 
-  $('#saveNewEvent').click(function () {
-    let newDateTime = $('#newEventDateTime').val();
-    let destination = $('#eventDestination').val();
+$('#saveNewEvent').click(function () {
+  let newDateTime = $('#newEventDateTime').val();
+  let destination = $('#eventDestination').val();
 
-    if (newDateTime && destination) {
-      let newEvent = {
-        id: String(Date.now()),
-        title: destination,
-        start: moment(newDateTime).format('YYYY-MM-DD HH:mm:ss'),
-        end: moment(newDateTime).add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'),
-        backgroundColor: '#d0a84b',
-        borderColor: '#b88d3f'
-      };
+  if (!newDateTime || !destination) {
+    alert('Please fill in all fields.');
+    return;
+  }
 
-      allEventsToSave.push(newEvent);
-      $('#calendar').fullCalendar('renderEvent', newEvent, true);
-      $('#createEventModal').modal('hide');
-      $('#createEventForm')[0].reset();
-    } else {
-      alert('Please fill all fields.');
-    }
-  });
+  const eventStart = moment(newDateTime);
+  if (eventStart.isBefore(tripStartDate)) {
+    alert('❌ You cannot add a destination before the trip start date.');
+    return;
+  }
+
+  let newEvent = {
+    id: String(Date.now()),
+    title: destination,
+    start: eventStart.format('YYYY-MM-DD HH:mm:ss'),
+    end: eventStart.clone().add(2, 'hours').format('YYYY-MM-DD HH:mm:ss'),
+    backgroundColor: '#d0a84b',
+    borderColor: '#b88d3f'
+  };
+
+  allEventsToSave.push(newEvent);
+  $('#calendar').fullCalendar('renderEvent', newEvent, true);
+  $('#createEventModal').modal('hide');
+  $('#createEventForm')[0].reset();
+});
+
 
   $('#saveChanges').click(function () {
     let eventId = $('#eventId').val();
     let newDateTime = $('#eventDateTime').val();
+ if (moment(newDateTime).isBefore(tripStartDate)) {
+        alert('❌ You cannot change the destination date to be before the start of the trip.');
+        return;
+      }
 
     let event = $('#calendar').fullCalendar('clientEvents', eventId)[0];
     if (event) {
