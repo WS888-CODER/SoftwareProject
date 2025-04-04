@@ -92,7 +92,7 @@
         <button type="button" onclick="nextStep(2)">Next</button>
     </div>
 
-   <!-- Step 3: Activities -->
+      <!-- Step 3: Activities -->
 <div class="step-personalized" id="step-3-personalized" style="display: none;">
     <label>🎯 What activities are you interested in?</label>
     <div id="activities-list">
@@ -141,7 +141,6 @@
 }
 
 </style>
-
     <!-- Step 4: Start Date -->
     <div class="step-personalized" id="step-4-personalized" style="display: none;">
         <label for="start-date-personalized">📅 When does your trip start?</label>
@@ -153,12 +152,9 @@
     <div class="step-personalized" id="step-5-personalized" style="display: none;">
         <label for="duration-personalized">📅 How many days will your trip be?</label>
         <input type="number" id="duration-personalized" name="duration-personalized" min="1" max="30">
-        <button type="button" onclick="nextStep(5)">Generate Schedule</button>
+        <button type="submit">Generate Schedule</button>
     </div>
- <!-- Step 5: Duration -->
-    <div class="step-personalized" id="step-6-personalized" style="display: none;">
-        <label for="duration-personalized">End of question!</label>
-    </div>
+
 </form>
     </section>
 
@@ -246,7 +242,7 @@
   </footer>
 
   <script>
-// Slidebar toggler
+// Slidebar toggle
 const slidebarBtn = document.getElementById('slidebarBtn');
 const slidebar = document.getElementById('slidebar');
 slidebarBtn.addEventListener('click', () => {
@@ -254,80 +250,82 @@ slidebarBtn.addEventListener('click', () => {
   slidebarBtn.classList.toggle('is-active');
 });
 
-// Function to show popups
-function showPopup(type, message) {
-  let popupId = type === "success" ? "success-popup-personalized" : "error-popup-personalized";
-  let messageId = type === "success" ? "success-message-personalized" : "error-message-personalized";
+// Set today's date as the minimum for the start-date input
+window.addEventListener('DOMContentLoaded', () => {
+  const startDateInput = document.getElementById("start-date-personalized");
+  const today = new Date().toISOString().split("T")[0];
+  startDateInput.setAttribute("min", today);
+});
 
-  document.getElementById(messageId).textContent = message;
-  let popup = document.getElementById(popupId);
-  popup.style.visibility = "visible";
-  popup.style.opacity = "1";
-
-  // Hide after 2 seconds
-  setTimeout(() => closePopup(popupId), 2000);
-}
-
-// Function to close popups
-function closePopup(id) {
-  let popup = document.getElementById(id);
-  popup.style.visibility = "hidden";
-  popup.style.opacity = "0";
-}
+// Function to go to the next step with validation
 function nextStep(step) {
-  // Get the other input elements (like text inputs or selects) for the current step
+  // General input/select validation
   let input = document.querySelector(`#step-${step}-personalized input, #step-${step}-personalized select`);
-
-  // Check if there's any non-checkbox input that is empty (e.g., text input or select)
-  if (input && !input.value.trim()) {
+  if (input && !input.value.trim() && !input.closest("div").querySelector('input[name="things-to-do"]')) {
     showPopup("error", "🛑 Please fill in this field before proceeding.");
-    return; // Stop if the input is empty
+    return;
   }
 
-  // Check if we are on step 5 (the step with the duration input)
-  if (step === 5) {
-    const durationInput = document.querySelector("#duration-personalized");
-
-    // If duration is not filled or it's less than 1 day, show the error popup
-    if (!durationInput.value.trim() || parseInt(durationInput.value) < 1) {
-      showPopup("error", "🛑 Please select the number of days for your trip before proceeding.");
-      return;
-    }
-
-    // Show the loading message first
-    showPopup("loading", "⏳ Please do not click anywhere, we are generating your schedule!");
-
-    // Immediately submit the form
-    document.getElementById("travel-form-personalized").submit();
-
-    // Redirect to my schedules page after a brief delay
-    setTimeout(() => {
-      window.location.href = "myschedules.php";
-    }, 2000); // Adjust the delay (in milliseconds) if needed
-
-    return; // Prevent going to the next step after step 5
-  }
-
-  // Check if we are on step 3 (activities selection)
+  // Special validation for step 3 (checkboxes)
   if (step === 3) {
-    // Get the checkboxes for the current step (activities)
     const checkboxes = document.querySelectorAll(`#step-${step}-personalized input[name="things-to-do[]"]:checked`);
-
-    // Check if at least one checkbox is selected
     if (checkboxes.length === 0) {
-      // If no checkboxes are selected, show the error popup for activities
       showPopup("error", "🛑 Please select at least one activity before proceeding.");
       return;
     }
   }
 
-  // If validation passes, proceed to the next step
-  document.getElementById(`step-${step}-personalized`).style.display = 'none';
-  document.getElementById(`step-${step + 1}-personalized`).style.display = 'block';
+  // Show next step
+  document.getElementById(`step-${step}-personalized`).style.display = "none";
+  document.getElementById(`step-${step + 1}-personalized`).style.display = "block";
 }
 
+// Show popup
+function showPopup(type, message) {
+  const popupId = type === "success" ? "success-popup-personalized" : "error-popup-personalized";
+  const messageId = type === "success" ? "success-message-personalized" : "error-message-personalized";
 
-  </script>
+  document.getElementById(messageId).textContent = message;
+  const popup = document.getElementById(popupId);
+  popup.style.visibility = "visible";
+  popup.style.opacity = "1";
+
+  setTimeout(() => closePopup(popupId), 2000);
+}
+
+// Hide popup
+function closePopup(id) {
+  const popup = document.getElementById(id);
+  popup.style.visibility = "hidden";
+  popup.style.opacity = "0";
+}
+
+// Form submission with validation
+document.getElementById("travel-form-personalized").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent immediate submission
+
+  const startDate = document.getElementById("start-date-personalized").value;
+  const today = new Date().toISOString().split("T")[0];
+
+  if (!startDate || startDate < today) {
+    showPopup("error", "📅 Please choose a valid start date (today or later).");
+    return;
+  }
+
+  // Optional: you can also validate duration here
+  const duration = document.getElementById("duration-personalized").value;
+  if (!duration || parseInt(duration) < 1) {
+    showPopup("error", "⏳ Please enter a valid duration.");
+    return;
+  }
+   console.log("form submitted");
+  // Immediately submit the form without showing any message
+  document.getElementById("travel-form-personalized").submit(); // This triggers the form submission immediately
+});
+
+
+</script>
+
 </body>
 
 </html>
