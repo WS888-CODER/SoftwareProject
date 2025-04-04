@@ -1,7 +1,7 @@
 <?php
-session_start();     // بدء الجلسة
-session_unset();     // إزالة جميع متغيرات الجلسة
-session_destroy();   // إنهاء الجلسة
-header("Location: index.html"); // إعادة التوجيه للصفحة الرئيسية أو صفحة تسجيل الدخول
+session_start();    
+session_unset();    
+session_destroy(); 
+header("Location: index.html"); // Redirect to the login page or home page
 exit();
 ?>
