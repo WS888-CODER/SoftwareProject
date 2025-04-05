@@ -9,7 +9,7 @@ include 'db.php'; // Include the database connection
 
 // Check if the user is logged in
 if (!isset($_SESSION['UserID'])) {
-    header('Location: login.php');
+    header('Location: login.html');
     exit();
 }
 
