@@ -14,6 +14,21 @@ body {
 }
 
 
+  .small-gray-btn {
+    background-color: #d0a84b;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px; /* نفس الزر الكبير */
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .small-gray-btn:hover {
+    background-color: #b88d3f;
+  }
+
 /* slide bar */
 .slidebar-btn {
     position: fixed;
