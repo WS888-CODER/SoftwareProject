@@ -220,6 +220,10 @@
         .then(data => {
           if (data.status === "success") {
             showPopup("success", data.message);
+            fields.forEach(id => document.getElementById(id).disabled = true);
+            document.getElementById("edit-btn").style.display = "inline-block";
+            document.getElementById("save-btn").style.display = "none";
+            document.getElementById("cancel-btn").style.display = "none";
           } else {
             showPopup("error", data.message);
           }
