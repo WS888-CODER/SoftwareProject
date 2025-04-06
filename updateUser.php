@@ -22,6 +22,18 @@ if (strlen($newPassword) < 8) {
     exit();
 }
 
+$checkStmt = $conn->prepare("SELECT UserID FROM user WHERE Email = ? AND UserID != ?");
+$checkStmt->bind_param("ss", $newEmail, $userID);
+$checkStmt->execute();
+$checkStmt->store_result();
+
+if ($checkStmt->num_rows > 0) {
+    echo json_encode(["status" => "error", "message" => "📧 Email already exists. Please use a different email."]);
+    $checkStmt->close();
+    exit();
+}
+$checkStmt->close();
+
 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
 $stmt = $conn->prepare("UPDATE user SET Name = ?, Email = ?, PhoneNumber = ?, Password = ? WHERE UserID = ?");
@@ -29,9 +41,9 @@ $stmt->bind_param("sssss", $newName, $newEmail, $newPhone, $hashedPassword, $use
 
 if ($stmt->execute()) {
     $_SESSION['UserName'] = $newName;
-    echo json_encode(["status" => "success", "message" => "Information updated successfully!"]);
+    echo json_encode(["status" => "success", "message" => "✅ Information updated successfully!"]);
 } else {
-    echo json_encode(["status" => "error", "message" => "Failed to update information."]);
+    echo json_encode(["status" => "error", "message" => "❌ Failed to update information."]);
 }
 
 $stmt->close();
