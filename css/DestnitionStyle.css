@@ -531,3 +531,185 @@ copyright span {
   font-family: "Arial", sans-serif;
 }
 
+/* ========== Responsive Design for Destination Page ========== */
+@media (max-width: 576px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+  body {
+    font-size: 14px;
+    background-attachment: fixed;
+  }
+  .background,
+.overlay {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+  .destination-header {
+    margin-top: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .destination-info h1 {
+    font-size: 36px;
+  }
+
+  .destination-info {
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+
+  .destination-images {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .photo-container1,
+  .photo-container {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-right: 0;
+    margin-top: 20px;
+  }
+
+  .review-photo1 {
+    width: 40%;
+  }
+
+  .info-map-container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .info-map-container .info,
+  .info-map-container .map {
+    width: 100%;
+  }
+
+  .reviews-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .reviews,
+  .add-review {
+    width: 100%;
+  }
+
+  .review-photo,
+  .review-video {
+    width: 100%;
+  }
+
+  .black-container {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .weather-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .weather-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .map-preview {
+    height: 200px;
+  }
+
+  .modal-map {
+    height: 300px;
+  }
+
+  .map-modal-content {
+    width: 90%;
+  }
+
+  .star {
+    font-size: 1.5em;
+  }
+
+  .destination-info h1 {
+    font-size: 36px;
+  }
+
+  .add-review textarea,
+  .add-review input {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  #submit {
+    width: 40%;
+    margin-top: 10px;
+
+  }
+
+  /* الهيدر */
+  header {
+    padding: 10px 20px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  /* السلايد بار */
+  .slidebar-btn {
+    width: 24px;
+    height: 20px;
+  }
+
+  .slidebar {
+    width: 200px;
+    padding: 1em;
+  }
+  .sign-out {
+    padding: 1em;
+  }
+  .footer h2 {
+    font-size: 16px;
+  }
+
+  .footer p,
+  .footer .time-sidual li {
+    font-size: 12px;
+  }
+
+  .footer .social {
+    font-size: 12px;
+  }
+}
+@media (max-width: 576px) {
+  .destination-images,
+.photo-container,
+.photo-container1 {
+  flex-wrap: wrap;
+  justify-content: left;
+  gap: 10px;
+  margin-right: 0;
+  
+}
+
+  .review-photo1,
+  .review-photo,
+  .review-video {
+    width: 40%;
+    max-width: 40%;
+  }
+
+  .destination-images img {
+    width: 40%;
+    height: auto;
+  }
+}
