@@ -9,8 +9,18 @@
 /*Background*/
 body {
   background: url('../images/neomBg.jpg') center center/cover no-repeat;
-  background-attachment: fixed; 
-  margin: 0; 
+ background-attachment: fixed;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3); /* درجة التعتيم */
+  z-index: -1;
 }
 
 
@@ -247,17 +257,10 @@ copyright span {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 50px;
+  padding: 100px 50px 0 50px; 
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
+
 .hero-content {
   position: relative;
   z-index: 2;
@@ -389,33 +392,6 @@ copyright span {
   background-color: #ddd;
 }
 
-@media (max-width: 992px) {
-  .hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-  }
-  .cards-slider {
-    padding: 40px;
-    min-height: 450px;
-  }
-}
-@media (max-width: 576px) {
-  header {
-    padding: 10px 20px;
-  }
-  .hero {
-    padding: 0 20px;
-  }
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-  .card {
-    width: 180px;
-    height: 280px;
-  }
-}
-
 .search-popup {
   position: fixed;
   top: 0; left: 0;
@@ -481,5 +457,188 @@ copyright span {
   left: 0;
   width: 100%; 
   padding: 2em;
-  text-align: left; 
-        }
+  text-align: left;
+}
+/* =================== Responsive Design for Mobiles =================== */
+@media (max-width: 576px) {
+  
+  body {
+    font-size: 14px;
+  }
+  .slidebar-btn {
+    position: relative;
+    margin-left: auto; 
+    width: 24px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 999;
+  }
+  
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  header {
+    padding: 10px 20px;
+    flex-direction: row;
+  }
+
+  /* الشريط الجانبي */
+  .slidebar {
+    width: 200px;
+    padding: 1em;
+  }
+
+  /* الهيرو */
+  .hero {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 20px;
+    height: auto;
+    text-align: left;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+    align-items: left;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text h2 {
+    font-size: 1rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .hero-text .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 40%;
+  }
+
+  /* البطاقات */
+  .cards-slider {
+    flex-direction: column;
+    padding: 10px;
+    overflow-x: auto;
+    min-height: auto;
+  }
+
+  .cards-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+
+  .card {
+    width: 180px;
+    height: 280px;
+    scroll-snap-align: start;
+    
+  }
+  .card:hover {
+    transform:none;
+  }
+  
+  
+  .card img {
+    height: 120px;
+  }
+  
+  .card-content h3 {
+    font-size: 1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  
+  .card-content a {
+    font-size: 0.8rem;
+  }
+  
+
+  .footer h2 {
+    font-size: 16px;
+  }
+
+  .footer p,
+  .footer .time-sidual li {
+    font-size: 12px;
+  }
+
+  .footer .social {
+    font-size: 12px;
+  }
+
+  /* البحث */
+  .search-box {
+    padding: 10px;
+    width: 90%;
+  }
+
+  .search-box input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* أزرار التنقل بالبطاقات */
+  .slider-controls {
+    display: none;
+    bottom: 0;
+    right: 10px;
+  }
+
+  .slider-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* زر تسجيل الخروج */
+  .sign-out {
+    padding: 1em;
+  }
+
+}
+
+@media (max-width: 576px) {
+  .cards-slider {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .cards-container {
+    padding-left: 800px;
+    padding-right: 10px;
+  }
+}
+
+.ai-travel-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+@media (max-width: 576px) {
+  .ai-travel-btn-wrapper {
+    justify-content: flex-start;
+  }
+}
+
