@@ -111,8 +111,8 @@
 /*Background*/
 body {
   background: url('../images/neomBg.jpg') center center/cover no-repeat;
-  background-attachment: fixed; 
-  margin: 0; 
+ background-attachment: fixed;
+  min-height: 100vh;
 }
 
 
@@ -463,33 +463,6 @@ copyright span {
 }
 
 
-@media (max-width: 992px) {
-  .hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-  }
-  .cards-slider {
-    padding: 40px;
-    min-height: 450px;
-  }
-}
-@media (max-width: 576px) {
-  header {
-    padding: 10px 20px;
-  }
-  .hero {
-    padding: 0 20px;
-  }
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-  .card {
-    width: 180px;
-    height: 280px;
-  }
-}
-
 .schedule-wrapper {
   margin-top: 20px; 
 }
@@ -615,43 +588,150 @@ copyright span {
   position: relative;
 }
 
-@media (max-width: 992px) {
-  .buttons-container {
-    position: relative;
-    justify-content: flex-end;
-    margin-top: 10px;
+
+@media (max-width: 576px) {
+  .main-container {
+    padding: 100px 10px 20px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .schedule-wrapper {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 15px;
   }
 
-  .cards-slider {
-    width: 100%;
+  .schedule-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .schedule-card {
+    width: 90%;
+  }
+  .schedule-row {
+    gap: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (max-width: 576px) {
+  .schedule-info {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+  body {
+    font-size: 14px;
+  }
+
+  /* الهيدر */
+  header {
+    padding: 10px 20px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  /* السلايد بار */
+  .slidebar-btn {
+    width: 24px;
+    height: 20px;
+  }
+
+  .slidebar {
+    width: 200px;
+    padding: 1em;
+  }
+  .sign-out {
+    padding: 1em;
+  }
+  .footer h2 {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .footer p,
+  .footer .time-sidual li {
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .footer .social {
+    font-size: 12px;
+    text-align: left;
   }
 }
 
 @media (max-width: 576px) {
   .buttons-container {
-    flex-direction: column;
-    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    position: relative;
+    padding-right: 0px; 
   }
 
-  .cards-slider {
-    padding: 10px;
-  }
-
-  .card {
-    width: 180px;
-    height: 280px;
+  .trash-btn,
+  .ScheduleDetails-button {
+    width: auto;
+    margin: 0;
+    padding: 6px 10px;
+    font-size: 13px;
+    white-space: nowrap;
   }
 }
 
 
+@media (max-width: 576px) {
+  .schedule-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+
+  .schedule-name {
+    font-size: 18px;
+  }
+
+  .buttons-container {
+    gap: 5px;
+  }
+
+  .trash-btn,
+  .ScheduleDetails-button {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+}
 
 
+@media (max-width: 576px) {
+  .card-content {
+    padding-top: 10px;
+  }
 
+  .card-content p {
+    font-size: 14px; 
+  }
 
+  .card-content h3 {
+    font-size: 16px;
+  }
 
-
-
-
-
-
-
+  .schedule-card {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
