@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Return JSON response for success (no debugging information in JSON)
             echo json_encode([
                 "status" => "success",
-                "message" => "Login successful. Session is set!"
+                "message" => "Login successful."
             ]);
 
             // End session handling, save the session
