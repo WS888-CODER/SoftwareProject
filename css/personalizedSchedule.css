@@ -233,3 +233,107 @@ button:hover {
     margin-bottom: 10px;
 }
 
+@media (max-width: 576px) {
+
+  .form-container-personalized {
+    margin: 70px 20px;
+    height: auto;
+    padding: 30px 15px;
+    align-items: flex-start;
+  }
+
+  .form-box-personalized {
+    width: 80%;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .form-title-personalized {
+    font-size: 20px;
+  }
+
+  .form-subtitle-personalized {
+    font-size: 14px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+    padding: 7px;
+  }
+
+  .riyal-personalized {
+    width: 30px;
+    margin-left: 4px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 9px;
+  }
+
+  .popup-box-personalized {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .popup-box-personalized p {
+    font-size: 14px;
+  }
+
+  .footer h2 {
+    font-size: 16px;
+  }
+
+  .footer p,
+  .footer .time-sidual li {
+    font-size: 12px;
+  }
+
+  .footer .social {
+    font-size: 12px;
+  }
+
+}
+
+#activities-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 5px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#activities-list label {
+  flex: 1 1 calc(33.33% - 10px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+#activities-list input {
+  width: 14px;
+  height: 14px;
+}
+@media (max-width: 576px) {
+  #activities-list {
+    gap: 6px;
+  }
+
+  #activities-list label {
+    flex: 1 1 calc(33.33% - 10px);
+    font-size: 13px;
+  }
+
+  #activities-list input {
+    width: 12px;
+    height: 12px;
+  }
+}
