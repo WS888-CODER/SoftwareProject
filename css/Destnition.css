@@ -5,12 +5,16 @@
   box-sizing: border-box;
   font-family: "Arial", sans-serif;
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 /*Background*/
 body {
   background: url('../images/neomBg.jpg') center center/cover no-repeat;
   background-attachment: fixed; 
-  margin: 0; 
+  min-height: 100vh;
 }
 .sign-out {
   position: absolute;
@@ -414,33 +418,6 @@ copyright span {
   background-color: #ddd;
 }
 
-@media (max-width: 992px) {
-  .hero-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 40px;
-  }
-  .cards-slider {
-    padding: 40px;
-    min-height: 450px;
-  }
-}
-@media (max-width: 576px) {
-  header {
-    padding: 10px 20px;
-  }
-  .hero {
-    padding: 0 20px;
-  }
-  .hero-text h1 {
-    font-size: 2rem;
-  }
-  .card {
-    width: 180px;
-    height: 280px;
-  }
-}
-
 .search-popup {
   position: fixed;
   top: 0; left: 0;
@@ -499,4 +476,161 @@ copyright span {
 }
 .close-search:hover {
   color: #d0a84b;
+}
+
+@media (max-width: 576px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+  body {
+    font-size: 14px;
+    background-attachment: scroll;
+  }
+  .background,
+.overlay {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+  /* الهيدر */
+  header {
+    padding: 10px 20px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  /* السلايد بار */
+  .slidebar-btn {
+    width: 24px;
+    height: 20px;
+  }
+
+  .slidebar {
+    width: 200px;
+    padding: 1em;
+  }
+
+  /* قسم الهيرو */
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px 20px;
+    height: auto;
+    text-align: center;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero-text {
+    max-width: 100%;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text h2 {
+    font-size: 1rem;
+  }
+
+  .hero-text p {
+    font-size: 0.9rem;
+  }
+
+  .hero-text .btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  /* الكروت */
+  .cards-slider {
+    padding: 10px;
+    overflow-x: auto;
+  }
+
+  .cards-container {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+
+  .card {
+    width: 180px;
+    height: 280px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .card img {
+    height: 120px;
+  }
+
+  .card-content h3 {
+    font-size: 1rem;
+  }
+
+  .card-content p {
+    font-size: 0.80rem;
+  }
+
+  .card-content a {
+    font-size: 0.7rem;
+  }
+
+  .filter-section {
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 80px;
+    font-size: 12px;
+  }
+
+  .search-box input {
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    font-size: 12px;
+  }
+
+  #regionFilter, #typeFilter{
+  font-size: 12px;  
+  }
+  
+  .filter-group label {
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+  }
+  
+  .sign-out {
+    padding: 1em;
+  }
+  .footer h2 {
+    font-size: 16px;
+  }
+
+  .footer p,
+  .footer .time-sidual li {
+    font-size: 12px;
+  }
+
+  .footer .social {
+    font-size: 12px;
+  }
 }
