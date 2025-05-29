@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <title>FARRAH | Personalized Farrah schedule</title>
   <link rel="icon" type="image/png" href="images/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/HomeStyle.css">
   <link rel="stylesheet" href="css/personalizedSchedule.css">
 </head>
@@ -109,38 +110,6 @@
     </div>
     <button type="button" onclick="nextStep(3)">Next</button>
 </div>
-
-<style>
-  #activities-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 5px; /* Even smaller gap */
-    padding: 3px;
-    width: 100%;
-}
-
-#activities-list label {
-    display: flex;
-    align-items: center;
-    gap: 4px; /* Tighter spacing */
-    font-size: 10px; /* Extra small text */
-    white-space: nowrap;
-    width: 100%;
-}
-
-#activities-list input {
-    flex-shrink: 0;
-    width: 12px; /* Smallest checkbox */
-    height: 12px;
-}
-
-@media (max-width: 600px) {
-    #activities-list {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for smaller screens */
-    }
-}
-
-</style>
     <!-- Step 4: Start Date -->
     <div class="step-personalized" id="step-4-personalized" style="display: none;">
         <label for="start-date-personalized">📅 When does your trip start?</label>
