@@ -223,13 +223,17 @@ label {
 }
 
 input[type="text"],
-input[type="password"] {
-    width: 97%;
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box;
 }
+
 
 button {
     width: 100%;
@@ -291,19 +295,8 @@ small {
     flex-direction: column;
     gap: 20px;
     text-align: left;
-
-
 }
-/* Styling the email input field to fit the container */
-#reset-email {
-    width: 100%; /* Make it take up the full width of the parent container */
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box; /* Ensure padding and border don't affect the width */
-    border: 1px solid #ccc; /* Add a border for styling */
-    border-radius: 4px; /* Optional: rounded corners */
-    font-size: 16px;
-}
+
 /* Ensure the input fields take up the full width of the container */
 .container-login .form-container-login form {
     display: flex;
@@ -316,17 +309,6 @@ small {
     flex-direction: column;
     width: 100%; /* Ensure the form group takes up the full width */
 }
-
-input[type="email"], input[type="password"] {
-    width: 100%; /* Make the input fields fill the available width */
-    padding: 8px; /* Add some padding inside the input fields */
-    font-size: 16px; /* Set a readable font size */
-    border: 1px solid #ccc; /* Border for the inputs */
-    border-radius: 5px; /* Rounded corners for the inputs */
-}
-
-
-
 
 .btn-group {
       display: flex;
@@ -375,3 +357,114 @@ input[type="email"], input[type="password"] {
 
 
 
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+
+  body {
+      background-position: center;
+      background-size: cover;
+      font-size: 14px;
+  }
+
+  .title-index {
+      font-size: 24px;
+      top: 15%;
+      left: 5%;
+      width: 90%;
+  }
+
+  .underline-index {
+      width: 80%;
+      left: 5%;
+      top: 28%;
+  }
+
+  .adventure-text-index {
+      font-size: 16px;
+      top: 32%;
+      left: 5%;
+      right: 5%;
+      padding: 5px;
+  }
+
+  .gallery-index {
+      bottom: 15%;
+      right: 2%;
+      max-width: 90vw;
+      gap: 5px;
+  }
+
+  .gallery-index img {
+      width: 90px;
+      height: 70px;
+  }
+
+  .logo-index {
+      width: 60px;
+      top: 10px;
+      right: 10px;
+  }
+
+  .auth-section-index {
+      bottom: 6%;
+      right: 10%;
+  }
+
+  .login-btn-index {
+      width: 100px;
+      font-size: 14px;
+      padding: 8px 16px;
+  }
+
+  .register-link-index {
+      font-size: 12px;
+  }
+
+  .container-login {
+      width: 80%;
+      height: auto;
+      padding: 20px;
+  }
+
+  .form-container-login,
+  .form-container-Register {
+      gap: 20px;
+  }
+  .form-container-Register {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+    margin-top: 5px; 
+  }
+
+  .form-group-login,
+  .form-group-Register {
+      width: 100%;
+  }
+  
+  .form-group-login input,
+  .form-group-Register input {
+      width: 100%;
+  }
+  
+
+  .headerform {
+      flex-direction: row;
+      gap: 10px;
+  }
+
+  .popup-box {
+      width: 90%;
+      padding: 15px;
+  }
+
+  .btn-group {
+      flex-direction: row;
+      gap: 10px;
+  }
+
+  .btn-group button {
+      width: 40%;
+  }
+}
