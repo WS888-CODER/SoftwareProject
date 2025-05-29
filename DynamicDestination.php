@@ -57,23 +57,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 
     // Handle photo uploads if any
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
-        $photoTmpName = $_FILES['photo']['tmp_name'];
-        $photoName = $_FILES['photo']['name'];
-        $photoPath = 'uploads/' . basename($photoName); // Path to store the image
+if (isset($_FILES['photo'])) {
+    $totalFiles = count($_FILES['photo']['name']);
 
-        // Move the uploaded file
+    for ($i = 0; $i < $totalFiles; $i++) {
+        $photoTmpName = $_FILES['photo']['tmp_name'][$i];
+        $photoName = basename($_FILES['photo']['name'][$i]);
+        $photoPath = 'uploads/' . uniqid() . '_' . $photoName;
+
         if (move_uploaded_file($photoTmpName, $photoPath)) {
-            // Insert photo into the reviewimage table
             $queryImage = "INSERT INTO reviewimage (ReviewID, ReviewImage) VALUES (?, ?)";
             $stmt = $conn->prepare($queryImage);
             $stmt->bind_param("is", $reviewID, $photoPath);
             $stmt->execute();
             $stmt->close();
         } else {
-            echo "Error uploading file.";
+            echo "Error uploading file: " . $photoName;
         }
     }
+}
+
 
     // Redirect to refresh and show the new review
     header("Location: DynamicDestination.php?DestinationID=" . $destinationID);
@@ -350,7 +353,7 @@ foreach ($images as $img) { ?>
             <textarea name="comment" class="comment" placeholder="Write your comment"></textarea>
 
             <p>insert photos:</p>
-            <input type="file" name="photo">
+<input type="file" name="photo[]" multiple>
 
             <button type="submit" id="submit">Submit</button>
         </form>
@@ -441,10 +444,10 @@ foreach ($images as $img) { ?>
       slidebarBtn.classList.toggle('is-active');
     });
 
-    const apiKey = "7ba0d8702b5e4d69a8290c127b5ad526";
+    const apiKey = "4ed1362187134c6bbe26c658ca9936ee";
     const latitude = <?php echo $destination['Latitude']; ?>;
     const longitude = <?php echo $destination['Longitude']; ?>;
-    const weatherUrl = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${apiKey}`;
+    const weatherUrl = "https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${apiKey}";
 
     function fetchWeather() {
       fetch(weatherUrl)
@@ -537,6 +540,8 @@ foreach ($images as $img) { ?>
         star.addEventListener('click', function () {
           // Remove 'selected' class from all stars.
           stars.forEach(s => s.classList.remove('selected'));
+          // Add 'selected' only to the clicked star.
+          s.classList.remove('selected'));
           // Add 'selected' only to the clicked star.
           this.classList.add('selected');
           // Update hidden input with the clicked star's value.
