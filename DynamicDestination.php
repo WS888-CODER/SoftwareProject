@@ -445,7 +445,7 @@ foreach ($images as $img) { ?>
 toggle('is-active');
     });
 
-    const apiKey = "4ed1362187134c6bbe26c658ca9936ee";
+    const apiKey = "fb0704db71ec41f2aacf34f234d8f5d2";
     const latitude = <?php echo $destination['Latitude']; ?>;
     const longitude = <?php echo $destination['Longitude']; ?>;
 const weatherUrl = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${apiKey}`;
