@@ -111,7 +111,8 @@ $averageRating = $totalReviews ? array_sum(array_column($reviews, 'Rating')) / $
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="css/DestnitionStyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.
+com/leaflet@1.7.1/dist/leaflet.css" />
   <style>
     body,
     html {
@@ -243,8 +244,7 @@ foreach ($images as $img) { ?>
     <p><?php echo htmlspecialchars($destination['Description']); ?></p>
   </div>
   <br><br>
-
-  <div class="info-map-container">
+<div class="info-map-container">
     <div class="black-container info">
       <h2 style="color: #f5b90d;">More Information</h2> <br>
       <ul>
@@ -329,7 +329,7 @@ foreach ($images as $img) { ?>
 
     <!-- Modal Structure for viewing images/videos -->
     <div id="modal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
+<span class="close" onclick="closeModal()">&times;</span>
         <img id="modal-content" class="modal-content">
         <video id="modal-video" class="modal-content" controls></video>
     </div>
@@ -424,7 +424,7 @@ foreach ($images as $img) { ?>
         <div class="row">
           <div class="copyright-content">
             <p>
-              © 2025 | All Rights Reserved by
+              ©️ 2025 | All Rights Reserved by
               <span>Farrah Travel</span>
             </p>
           </div>
@@ -441,13 +441,14 @@ foreach ($images as $img) { ?>
     const slidebar = document.getElementById('slidebar');
     slidebarBtn.addEventListener('click', () => {
       slidebar.classList.toggle('active');
-      slidebarBtn.classList.toggle('is-active');
+      slidebarBtn.classList.
+toggle('is-active');
     });
 
     const apiKey = "4ed1362187134c6bbe26c658ca9936ee";
     const latitude = <?php echo $destination['Latitude']; ?>;
     const longitude = <?php echo $destination['Longitude']; ?>;
-    const weatherUrl = "https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${apiKey}";
+const weatherUrl = `https://api.weatherbit.io/v2.0/current?lat=${latitude}&lon=${longitude}&key=${apiKey}`;
 
     function fetchWeather() {
       fetch(weatherUrl)
@@ -538,10 +539,8 @@ foreach ($images as $img) { ?>
 
       stars.forEach(star => {
         star.addEventListener('click', function () {
-          // Remove 'selected' class from all stars.
+// Remove 'selected' class from all stars.
           stars.forEach(s => s.classList.remove('selected'));
-          // Add 'selected' only to the clicked star.
-          s.classList.remove('selected'));
           // Add 'selected' only to the clicked star.
           this.classList.add('selected');
           // Update hidden input with the clicked star's value.
