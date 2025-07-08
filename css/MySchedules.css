@@ -1,61 +1,59 @@
-      
-        .main-container {
-          text-align: center;
-          padding: 150px 20px 20px;
-          color: white;
-      }
-      .container h2 {
-          font-size: 24px;
-          font-weight: bold;
-          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      }
-      .discover-btn {
-          background: #d0a84b;
-          color: white;
-          border: none;
-          padding: 12px 20px;
-          border-radius: 20px;
-          font-size: 18px;
-          font-weight: bold;
-          cursor: pointer;
-          margin-top: 10px;
-      }
-      .discover-btn:hover {
-          background: #b88d3f;
-      }
-      .schedule-wrapper {
-          background:rgba(0,0,0,0.7);
-          padding: 20px;
-          margin-top: 80px;
-          margin-bottom: 80px;
-          width: 100%;
-          position: relative;
-          left: 0;
-          right: 0;
-      }
-      .schedule-container {
-          display: flex;
-          justify-content: flex-start;
-          flex-wrap: wrap;
-          gap: 30px;
-          margin-top: 20px;
-          padding: 20px;
-      }
-      .schedule-card {
-          background: rgba(165, 103, 63, 0.9);
-          padding: 15px;
-          border-radius: 15px;
-          width: 200px;
-          text-align: center;
-          color: white;
-          box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-          
-      }
+.main-container {
+  text-align: center;
+  padding: 150px 20px 20px;
+  color: white;
+}
+.container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.discover-btn {
+  background: #d0a84b;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.discover-btn:hover {
+  background: #b88d3f;
+}
+.schedule-wrapper {
+  background:rgba(0,0,0,0.7);
+  padding: 20px;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  width: 100%;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+.schedule-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+  padding: 20px;
+}
+.schedule-card {
+  background: rgba(165, 103, 63, 0.9);
+  padding: 15px;
+  border-radius: 15px;
+  width: 200px;
+  text-align: center;
+  color: white;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+  
+}
 .schedule-wrapper {
   margin-top: 20px; 
   border-radius: 20px;
 }
-
 
 .schedule-info {
   display: flex;
@@ -76,256 +74,27 @@
   font-weight: 600;
 }
 
-
-
-
 .schedule-card img {
-          width: 100%;
-          height: 120px;
-          object-fit: cover;
-          border-radius: 10px;
-      }
-      .schedule-card h3 {
-          margin: 10px 0 5px;
-          font-size: 16px;
-      }
-      .schedule-card p {
-          font-size: 14px;
-      }
-      .schedule-row {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 35px;
-        margin-left: 20px;
-        margin-bottom: 20px;
-      }
-    /* (Reset)  */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Arial", sans-serif;
-}
-
-/*Background*/
-body {
-  background: url('../images/neomBg.jpg') center center/cover no-repeat;
- background-attachment: fixed;
-  min-height: 100vh;
-}
-
-
-/* slide bar */
-.slidebar-btn {
-    position: fixed;
-    top: 25px;
-    right: 10px;
-    width: 20px;    
-    height: 20px;  
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-    z-index: 999; 
-    margin-left: 20px; 
-  }
-  
-  .slidebar-btn .bar {
-    display: block;
-    width: 100%;
-    height: 3px;  
-    background-color: #ffffff; 
-    transition: 0.3s;
-  }
-  
-  .slidebar-btn.is-active .bar:nth-of-type(1) {
-    transform: translateY(10px) rotate(45deg);
-  }
-  .slidebar-btn.is-active .bar:nth-of-type(2) {
-    opacity: 0;
-  }
-  .slidebar-btn.is-active .bar:nth-of-type(3) {
-    transform: translateY(-10px) rotate(-45deg);
-  }
-  
-  .slidebar {
-    position: fixed;
-    top: 0;
-    left: -250px; 
-    width: 250px;
-    height: 100vh;
-    background: rgba(0,0,0,0.7);
-    color: #fff;
-    transition: left 0.3s ease;
-    padding: 2em;
-    z-index: 998;
-  }
-  .slidebar.active {
-    left: 0;
-  }
-  .sign-out {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%; 
-    padding: 2em;
-    text-align: left; 
-  }
-  
-  .slidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  .slidebar ul li {
-    margin-bottom: 1em;
-  }
-  .slidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
-  }
-  .slidebar ul li a:hover {
-    color: #d0a84b;
-  }
-  
-/* header */
-header {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 60px;
-  color: #fff;
-  background-color: rgba(0,0,0,0.0); 
-  margin-left: 0px; 
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
 }
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+.schedule-card h3 {
+  margin: 10px 0 5px;
+  font-size: 16px;
 }
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.search-icon {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.search-icon svg {
-  width: 24px;
-  height: 24px;
-  fill: #fff;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px; 
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-nav ul li a:hover {
-  color: #d0a84b;
-}
-
-/* footer */
-.footer {
-  position: relative; 
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7); 
-  color: #fff;
-  padding: 0em;
-}
-
-/* .footer-top */
-.footer-top .container .row {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-}
-.footer-top span {
-  font-weight: bold;
-}
-.footer-top .container .row .col {
-  max-width: 25%;
-  transition: transform 0.3s ease;
-}
-.footer-top .container .row .col:hover {
-  transform: scale(1.025);
-}
-.footer-top {
-  padding: 2em;
-}
-.footer h2 {
-  text-shadow: 0.1em 0.1em 0.1em #333;
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #f5b90d; 
-}
-.footer p {
-  font-size: 14px;
-  margin-bottom: 15px;
-  text-shadow: 0.1em 0.1em 0.08em #333;
-}
-.footer .social {
-  font-size: 0.9em;
-  padding-left: 0;
-}
-.footer .social li {
-  list-style: none;
-  margin-bottom: 0.4em;
-  display: flex;
-  align-items: center;
-}
-.footer .social img {
-  height: 1em;
-  width: 1em;
-  margin-right: 0.5em;
-}
-.footer .time-sidual {
-  list-style: none;
-  padding-left: 0;
-}
-.footer .time-sidual li {
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-.footer .time-sidual .day {
-  display: flex;
-  justify-content: space-between;
-  color: #ddd;
-}
-
-/* copyright*/
-.copyright {
-  text-align: center;
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.0);
-  color: white;
+.schedule-card p {
   font-size: 14px;
 }
-copyright span {
-  text-decoration: underline;
+.schedule-row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 35px;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
-
-
-
 /* (Hero Section) */
 .hero {
   position: relative;
@@ -625,49 +394,7 @@ copyright span {
     align-items: flex-start;
     margin-left: 0;
   }
-  body {
-    font-size: 14px;
-  }
 
-  /* الهيدر */
-  header {
-    padding: 10px 20px;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .logo {
-    font-size: 30px;
-  }
-
-  /* السلايد بار */
-  .slidebar-btn {
-    width: 24px;
-    height: 20px;
-  }
-
-  .slidebar {
-    width: 200px;
-    padding: 1em;
-  }
-  .sign-out {
-    padding: 1em;
-  }
-  .footer h2 {
-    font-size: 16px;
-    text-align: left;
-  }
-
-  .footer p,
-  .footer .time-sidual li {
-    text-align: left;
-    font-size: 12px;
-  }
-
-  .footer .social {
-    font-size: 12px;
-    text-align: left;
-  }
 }
 
 @media (max-width: 576px) {
