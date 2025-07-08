@@ -7,6 +7,7 @@
   <title>Farrah | Destinations</title>
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="css/Destnition.css">
+  <link rel="stylesheet" href="css/baiscStyle.css" />
 </head>
 
 <body>
@@ -46,17 +47,24 @@
     </nav>
   </header>
 
+  <!-- Search -->
   <div class="search-popup" id="searchPopup">
     <div class="search-box" style="padding:10px;">
-      <button class="close-search" id="closeSearch">&times;</button>
-      <form id="destSearchForm" action="#" method="get" style="display: flex; gap: 10px;">
-        <input id="destSearchInput" type="search" name="q" placeholder="Search in Destinations..." style="flex:1;" />
+      <form id="homeSearchForm" action="#" method="get" style="display: flex; gap: 10px; align-items: center;">
+        <input id="homeSearchInput" type="search" name="q" placeholder="Search in Destinations..."
+          style="flex:1; padding:8px;" />
         <button type="submit"
-          style="padding:6px 12px; background:#d0a84b; color:#fff; border:none; border-radius:4px; cursor:pointer;">Search</button>
+          style="padding: 6px 12px; background: #d0a84b; border: none; color:#fff; border-radius:4px; cursor:pointer;">
+          Search
+        </button>
+        <button type="button" id="closeSearch"
+          style="font-size: 1.5rem; background: none; border: none; color: #444; cursor: pointer;">
+          &times;
+        </button>
       </form>
     </div>
   </div>
-
+  
   <!-- Filter-->
   <section class="filter-section"
     style="padding: 20px; text-align: center; background: rgba(0,0,0,0.4); margin-top:120px;">
