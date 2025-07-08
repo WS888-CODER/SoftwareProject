@@ -140,6 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>FARRAH | My Schedules </title>
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" href="css/MySchedules.css">
+  <link rel="stylesheet" href="css/baiscStyle.css"> 
 </head>
 
 <body>
