@@ -311,15 +311,15 @@ small {
 }
 
 .btn-group {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      margin-top: 20px;
-    }
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 20px;
+}
 
-    .btn-group button {
-      width: 48%;
-    }
+.btn-group button {
+  width: 50%;
+}
 /* Background overlay */
 .popup-overlay {
     position: fixed;
@@ -461,10 +461,10 @@ small {
 
   .btn-group {
       flex-direction: row;
-      gap: 10px;
+      gap: 5px;
   }
 
   .btn-group button {
-      width: 40%;
+      width: 50%;
   }
 }
